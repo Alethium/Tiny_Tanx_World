@@ -1,0 +1,295 @@
+[gd_scene load_steps=16 format=3 uid="uid://cx1y1p4ehilni"]
+
+[ext_resource type="Texture2D" uid="uid://bu44113t6v1f8" path="res://tank tracks.png" id="1_3ll58"]
+[ext_resource type="Texture2D" uid="uid://d37j07ebsp3e5" path="res://Sprites/topdownmechbottom.png" id="2_bsmnk"]
+[ext_resource type="Texture2D" uid="uid://xdf6t2nbnlp0" path="res://smoke_cards2.png" id="3_dsq5r"]
+[ext_resource type="PackedScene" uid="uid://8qrv1ct2axpq" path="res://Scenes/wp_cannon.tscn" id="4_cidal"]
+[ext_resource type="Texture2D" uid="uid://cnm8ncbbhj46o" path="res://topdownmechweapons.png" id="4_lcc5e"]
+[ext_resource type="Texture2D" uid="uid://b6vb5bp0ntoes" path="res://topdownmechbottom2.png" id="5_cidal"]
+
+[sub_resource type="GDScript" id="GDScript_mhbhr"]
+resource_name = "multiplayer_player"
+script/source = "class_name Player
+extends CharacterBody2D
+
+
+@onready var top_half: Node2D = $top_half
+@onready var bottom_half: Node2D = $bottom_half
+
+@export var SPEED = 30.0
+@export var TOP_TURN_SPEED = 3.0
+@export var BOTTOM_TURN_SPEED = 2.0
+@export var ACCELLERATION = 40.0
+
+var current_throttle : float = 0.0
+var bottom_direction := Input.get_axis(\"rotate bottom left\", \"rotate bottom right\")
+var top_direction := Input.get_axis(\"rotate top left\", \"rotate top right\" )
+@onready var left_arm_weapon_slot: Node2D = $top_half/weapon_slots/left_arm_weapon_slot
+@onready var right_arm_weapon_slot: Node2D = $top_half/weapon_slots/right_arm_weapon_slot
+@onready var right_shoulder_weapon_slot: Node2D = $top_half/weapon_slots/right_shoulder_weapon_slot
+@onready var left_shoulder_weapon_slot: Node2D = $top_half/weapon_slots/left_shoulder_weapon_slot
+
+
+var bottom_dir = 0.0
+var top_dir = 0.0
+var throttle = 0.0
+
+@export var max_speed : float
+var acceleration = 400.0
+var current_speed = 0.0
+
+@export var health : int
+@export var overheat = 0
+
+
+func _physics_process(delta: float) -> void:
+	
+	# Add the gravity.
+	handle_inputs(delta)
+	apply_movement(delta)
+	
+
+	# Handle jump.
+	
+		
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+
+	
+
+
+	move_and_slide()
+
+
+
+
+
+
+func handle_inputs(delta):
+	if Input.is_action_pressed(\"rotate bottom left\"):
+		bottom_dir -= BOTTOM_TURN_SPEED * delta
+		top_dir -= BOTTOM_TURN_SPEED * delta
+		
+	if Input.is_action_pressed(\"rotate bottom right\"):
+		bottom_dir += BOTTOM_TURN_SPEED * delta
+		top_dir += BOTTOM_TURN_SPEED * delta
+	if Input.is_action_pressed(\"rotate top left\"):
+		top_dir -= TOP_TURN_SPEED * delta
+	if Input.is_action_pressed(\"rotate top right\"):
+		top_dir += TOP_TURN_SPEED * delta
+	
+
+	
+	top_half.global_rotation = top_dir
+	bottom_half.global_rotation = bottom_dir
+	
+	
+		# Movement input - accelerate forward/backward
+	throttle = Input.get_axis(\"throttle up\", \"throttle down\")
+	
+	if abs(throttle) > 0.1:
+		# Accelerate in the direction of input
+		current_speed += throttle * acceleration * delta
+		current_speed = clamp(current_speed, -max_speed, max_speed)
+	else:
+		# Gradually slow down when no input
+		current_speed = move_toward(current_speed, 0, acceleration * delta)
+	
+	
+	if Input.is_action_pressed(\" fire left weapon 1\"): 
+		
+		left_arm_weapon_slot.get_children()[0].fire(top_dir)
+func apply_movement(delta):
+	# Add 90 degrees to align with sprite's forward
+	var adjusted_angle = bottom_dir + deg_to_rad(90)  # Assuming bottom_dir is in radians
+	var move_direction = Vector2(cos(adjusted_angle), sin(adjusted_angle))
+	
+	velocity = move_direction * current_speed
+	global_position += velocity * delta
+	
+	
+	
+	
+	
+	
+	
+	
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jv763"]
+size = Vector2(44, 51.5)
+
+[sub_resource type="Gradient" id="Gradient_lcc5e"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_dsq5r"]
+_data = [Vector2(0, 0.25727075), 0.0, 0.38911086, 0, 0, Vector2(1, 0.901566), 1.8080378, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_dsq5r"]
+offsets = PackedFloat32Array(0, 0.63736266, 1)
+colors = PackedColorArray(0.39607844, 0.39607844, 0.39607844, 1, 0.79369557, 0.79369676, 0.79369575, 0.7295365, 1, 1, 1, 0.14509805)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4qfu"]
+size = Vector2(8.500002, 17.499996)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0bbr"]
+size = Vector2(7.500001, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cidal"]
+size = Vector2(7.000001, 7.999997)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lcc5e"]
+size = Vector2(20, 17.999996)
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = SubResource("GDScript_mhbhr")
+ACCELLERATION = 20.0
+max_speed = 40.0
+health = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.75)
+shape = SubResource("RectangleShape2D_jv763")
+
+[node name="bottom_half" type="Node2D" parent="."]
+
+[node name="treads" type="CPUParticles2D" parent="bottom_half"]
+position = Vector2(0, 11)
+amount = 24
+texture = ExtResource("1_3ll58")
+draw_order = 1
+particle_flag_align_y = true
+direction = Vector2(10.72, 11.34)
+spread = 101.16
+gravity = Vector2(0, 0)
+color_ramp = SubResource("Gradient_lcc5e")
+
+[node name="mech_bottom" type="Sprite2D" parent="bottom_half"]
+modulate = Color(0.5818384, 0.5818384, 0.5818384, 1)
+texture_filter = 1
+texture = ExtResource("2_bsmnk")
+
+[node name="smoke3" type="CPUParticles2D" parent="bottom_half"]
+position = Vector2(12, 16)
+rotation = -0.5235988
+amount = 50
+texture = ExtResource("3_dsq5r")
+lifetime = 0.5
+speed_scale = 2.0
+randomness = 0.5
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(2, 3)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.2
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_dsq5r")
+color_ramp = SubResource("Gradient_dsq5r")
+
+[node name="smoke4" type="CPUParticles2D" parent="bottom_half"]
+position = Vector2(-12.000001, 15.999998)
+rotation = 0.2617994
+amount = 50
+texture = ExtResource("3_dsq5r")
+lifetime = 0.5
+speed_scale = 2.0
+randomness = 0.5
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(2, 3)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 2)
+initial_velocity_min = 5.0
+initial_velocity_max = 25.0
+scale_amount_min = 0.2
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_dsq5r")
+color_ramp = SubResource("Gradient_dsq5r")
+
+[node name="top_half" type="Area2D" parent="."]
+rotation = -0.0016419707
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="weapon_slots" type="Node2D" parent="top_half"]
+position = Vector2(0.108107135, -1.8948294)
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="left_arm_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+position = Vector2(-17.00326, 1.9720839)
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="Cannon" parent="top_half/weapon_slots/left_arm_weapon_slot" instance=ExtResource("4_cidal")]
+
+[node name="right_arm_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+
+[node name="Weapon1R" type="Area2D" parent="top_half/weapon_slots/right_arm_weapon_slot"]
+position = Vector2(16.996685, 2.02791)
+rotation = 0.001641971
+scale = Vector2(0.99999976, 0.99999976)
+
+[node name="Sprite2D" type="Sprite2D" parent="top_half/weapon_slots/right_arm_weapon_slot/Weapon1R"]
+position = Vector2(1.0000019, 7.150229e-07)
+texture = ExtResource("4_lcc5e")
+region_enabled = true
+region_rect = Rect2(20, 7, 9, 25)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="top_half/weapon_slots/right_arm_weapon_slot/Weapon1R"]
+position = Vector2(1.7500019, -2.75)
+scale = Vector2(1.0000004, 1.0000004)
+shape = SubResource("RectangleShape2D_v4qfu")
+
+[node name="right_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+z_index = 1
+
+[node name="Weapon2R" type="Area2D" parent="top_half/weapon_slots/right_shoulder_weapon_slot"]
+position = Vector2(8.986851, 8.014766)
+rotation = 0.0016419708
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="Sprite2D2" type="Sprite2D" parent="top_half/weapon_slots/right_shoulder_weapon_slot/Weapon2R"]
+position = Vector2(-9.536743e-07, 9.536743e-07)
+scale = Vector2(1.0000001, 1.0000001)
+texture = ExtResource("4_lcc5e")
+region_enabled = true
+region_rect = Rect2(51, 1, 9, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top_half/weapon_slots/right_shoulder_weapon_slot/Weapon2R"]
+position = Vector2(0.99999905, 2.000001)
+shape = SubResource("RectangleShape2D_e0bbr")
+
+[node name="left_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+z_index = 1
+
+[node name="Weapon2L" type="Area2D" parent="top_half/weapon_slots/left_shoulder_weapon_slot"]
+position = Vector2(-9.013123, 7.9852095)
+rotation = 0.001641971
+
+[node name="Sprite2D" type="Sprite2D" parent="top_half/weapon_slots/left_shoulder_weapon_slot/Weapon2L"]
+position = Vector2(-9.534416e-07, 7.1525574e-07)
+texture = ExtResource("4_lcc5e")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(67, 2, 9, 14)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="top_half/weapon_slots/left_shoulder_weapon_slot/Weapon2L"]
+position = Vector2(0.49999714, 2.000001)
+scale = Vector2(1.0000002, 1.0000002)
+shape = SubResource("RectangleShape2D_cidal")
+
+[node name="mech_top" type="Sprite2D" parent="top_half"]
+position = Vector2(0.10810714, -1.8948296)
+texture = ExtResource("5_cidal")
+
+[node name="Core_hitbox" type="CollisionShape2D" parent="top_half"]
+position = Vector2(0.113033526, -4.894826)
+rotation = 0.0016419708
+scale = Vector2(1.0000002, 1.0000002)
+shape = SubResource("RectangleShape2D_lcc5e")

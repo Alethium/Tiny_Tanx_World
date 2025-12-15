@@ -1,0 +1,60 @@
+class_name Mg_Bullet
+extends Projectile  
+
+var impacted = false
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+	
+
+
+
+func _physics_process(delta):
+	#handle_animation()
+	
+	position += direction * speed * delta
+
+	if global_position.distance_to(get_parent().global_position) > 2000:
+		queue_free()
+
+
+
+
+#func handle_animation():
+	#sprite_index += 0.1
+	#if sprite_index > 3:
+		#sprite_index = 0
+	#sprite.frame = sprite_index
+func move(delta):
+	if !impacted:
+		global_position += direction * speed * delta	
+	
+
+
+func impact():
+	impacted = true
+	var hitspark = impact_effect.instantiate()
+	#explosion.global_position = self.global_position
+	sprite.visible = false
+	set_deferred("monitoring",false)
+	set_deferred("monitorable",false)
+	
+	get_parent().add_child(hitspark)
+	hitspark.global_position = global_transform.origin 
+	hitspark.rotation = rotation
+	queue_free()
+
+
+
+func _on_impact(_area):
+	print("HIT ME")
+	if _area.has_method("on_damage_recieved"):
+		impact()
+	
+	
+
+
+func _on_body_inpacted(body: Node2D) -> void:
+	impact()

@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwdmtqbybucq1"]
+
+[ext_resource type="PackedScene" uid="uid://ddty2wgvpl3jm" path="res://Scenes/projectile.tscn" id="1_r1rg3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dympo"]
+
+[sub_resource type="Curve" id="Curve_7fqiw"]
+_data = [Vector2(0.007042259, 0.25727075), 0.0, -0.12760086, 0, 0, Vector2(1, 0.84787476), 1.433902, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_87apo"]
+offsets = PackedFloat32Array(0, 0.07777778, 0.17222223, 0.2888889, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.07999998, 0.5568628, 0.29, 0.29, 0.29, 0.14509805, 0.14767182, 0.14767182, 0.14767176, 0)
+
+[node name="SRM" instance=ExtResource("1_r1rg3")]
+position = Vector2(0, 12)
+
+[node name="sprite" parent="." index="0"]
+position = Vector2(0, -11)
+hframes = 1
+region_rect = Rect2(32, 70, 16, 5)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -12)
+
+[node name="smoke3" type="CPUParticles2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_dympo")
+position = Vector2(0, -5)
+amount = 50
+lifetime = 3.29
+speed_scale = 2.0
+randomness = 0.5
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+damping_min = 20.0
+damping_max = 20.0
+angle_min = -180.0
+angle_max = 168.0
+scale_amount_min = 3.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_7fqiw")
+color_ramp = SubResource("Gradient_87apo")

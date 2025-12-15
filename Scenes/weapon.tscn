@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmcdcsgi0wple"]
+
+[ext_resource type="Script" uid="uid://nx3t11dui8c" path="res://Scripts/Weapon.gd" id="1_qv81b"]
+[ext_resource type="Texture2D" uid="uid://cnm8ncbbhj46o" path="res://topdownmechweapons.png" id="2_e1ly8"]
+
+[node name="Weapon" type="Area2D"]
+script = ExtResource("1_qv81b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_e1ly8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

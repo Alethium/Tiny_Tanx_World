@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://rrn85d8k5pvo"]
+
+[ext_resource type="PackedScene" uid="uid://ddty2wgvpl3jm" path="res://Scenes/projectile.tscn" id="1_swc3t"]
+[ext_resource type="Script" uid="uid://bt5vf1dmbcy3y" path="res://Scripts/mg_bullet.gd" id="2_d7kvd"]
+[ext_resource type="PackedScene" uid="uid://b7x52r75q7x3o" path="res://Scenes/hitspark.tscn" id="3_d7kvd"]
+
+[node name="Mg_Bullet" instance=ExtResource("1_swc3t")]
+script = ExtResource("2_d7kvd")
+proj_name = "mg_bullet"
+damage = 1.0
+heat = 1.0
+impact_effect = ExtResource("3_d7kvd")
+
+[node name="sprite" parent="." index="0"]
+position = Vector2(2.3841858e-07, -8)
+rotation = -3.1415927
+hframes = 1
+region_rect = Rect2(389, 173, 5, 8)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.25000024, -8)
+
+[connection signal="area_entered" from="." to="." method="_on_impact"]
+[connection signal="body_entered" from="." to="." method="_on_body_inpacted"]

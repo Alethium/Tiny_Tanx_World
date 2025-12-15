@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxqi6gped8ijk"]
+
+[ext_resource type="Script" uid="uid://dptje71eeb1c6" path="res://Scripts/vfx.gd" id="1_0m6cb"]
+[ext_resource type="Texture2D" uid="uid://dcsexgtm2kym3" path="res://Sprites/Fire Effect and Bullet 16x16.png" id="2_yq3f5"]
+
+[node name="VFX" type="Node2D"]
+script = ExtResource("1_0m6cb")
+
+[node name="Vx sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_yq3f5")
+region_enabled = true

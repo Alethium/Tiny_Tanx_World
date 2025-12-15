@@ -1,0 +1,156 @@
+[gd_scene load_steps=8 format=3 uid="uid://jhho1u3orutm"]
+
+[ext_resource type="PackedScene" uid="uid://cx1y1p4ehilni" path="res://Scenes/player_mech.tscn" id="1_tumq0"]
+[ext_resource type="Shader" uid="uid://cebet10lqwu4h" path="res://Scenes/gridfloor.gdshader" id="2_k5f4k"]
+[ext_resource type="Texture2D" uid="uid://djr3x6twywe5o" path="res://Sprites/mosaic.png" id="3_6phgx"]
+
+[sub_resource type="GDScript" id="GDScript_tumq0"]
+resource_name = "Level"
+script/source = "extends Node2D
+@onready var spawned_projectiles: Node2D = $spawned_projectiles
+@onready var player: Player = $Player
+var spawn_timer = 0
+const TARGET = preload(\"uid://cse7hhgh7mp6n\")
+@onready var targets: Node = $Targets
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"spawn_enemy\"):
+		spawn_targets()
+	move_targets(delta)
+
+
+
+func spawn_targets():
+	for i in range(0,10):
+		var new_target = TARGET.instantiate()
+		
+		# Get viewport and camera info
+		var viewport = get_viewport()
+		var camera = get_viewport().get_camera_2d()
+		
+		# Get screen edges in world coordinates
+		var viewport_size = viewport.get_visible_rect().size
+		var top_left = camera.get_screen_transform().affine_inverse() * Vector2(0, 0)
+		var bottom_right = camera.get_screen_transform().affine_inverse() * viewport_size
+		
+		# Add margin (outside the screen)
+		var margin = 100
+		var spawn_rect = Rect2(
+			top_left - Vector2(margin, margin),
+			(bottom_right - top_left) + Vector2(margin * 2, margin * 2)
+		)
+		
+		# Pick a random edge (0: top, 1: right, 2: bottom, 3: left)
+		var edge = randi() % 4
+		var spawn_position = Vector2()
+		
+		match edge:
+			0: # Top edge
+				spawn_position = Vector2(
+					randf_range(spawn_rect.position.x, spawn_rect.end.x),
+					spawn_rect.position.y
+				)
+			1: # Right edge
+				spawn_position = Vector2(
+					spawn_rect.end.x,
+					randf_range(spawn_rect.position.y, spawn_rect.end.y)
+				)
+			2: # Bottom edge
+				spawn_position = Vector2(
+					randf_range(spawn_rect.position.x, spawn_rect.end.x),
+					spawn_rect.end.y
+				)
+			3: # Left edge
+				spawn_position = Vector2(
+					spawn_rect.position.x,
+					randf_range(spawn_rect.position.y, spawn_rect.end.y)
+				)
+		
+		new_target.position = spawn_position	
+		targets.add_child(new_target)	
+	
+	
+	
+	
+	
+func move_targets(delta):
+	
+	for target in targets.get_children():
+		target.global_position =  lerp(target.global_position,player.global_position,delta*0.1)
+	
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6phgx"]
+shader = ExtResource("2_k5f4k")
+shader_parameter/grid_color = Color(0.99999994, 0.1207164, 0.59204483, 1)
+shader_parameter/grid_spacing = 20.0
+shader_parameter/line_thickness = 0.4
+shader_parameter/grid_visual_world_pos = Vector2(0, 0)
+shader_parameter/grid_visual_world_size = Vector2(1920, 1080)
+shader_parameter/global_time_sec = 0.0
+shader_parameter/active_pulse_count = 0
+shader_parameter/ripple_origin_world = PackedVector2Array(0, 0, 0, 0, 0, 0)
+shader_parameter/ripple_start_time = PackedFloat32Array(0, 0, 0)
+shader_parameter/implosion_origin_world = PackedVector2Array(0, 0, 0, 0, 0, 0)
+shader_parameter/implosion_start_time = PackedFloat32Array(0, 0, 0)
+shader_parameter/ripple_speed = 1200.0
+shader_parameter/ripple_thickness = 70.0
+shader_parameter/ripple_peak_strength = 45.0
+shader_parameter/implosion_speed = 1000.0
+shader_parameter/implosion_thickness = 80.0
+shader_parameter/implosion_peak_strength = 60.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81xng"]
+size = Vector2(262, 261.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6phgx"]
+polygon = PackedVector2Array(-105, -102, -366, -102, -366, 160, -104, 160)
+
+[node name="level" type="Node2D"]
+script = SubResource("GDScript_tumq0")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+material = SubResource("ShaderMaterial_6phgx")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.144
+anchor_bottom = 1.0840001
+offset_left = -959.0
+offset_top = -494.0
+offset_right = 961.0
+offset_bottom = 586.0
+
+[node name="Player" parent="." instance=ExtResource("1_tumq0")]
+
+[node name="spawned_projectiles" type="Node2D" parent="."]
+
+[node name="Targets" type="Node" parent="."]
+
+[node name="Building" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Building"]
+position = Vector2(-236, 29.25)
+shape = SubResource("RectangleShape2D_81xng")
+
+[node name="Sprite2D" type="Sprite2D" parent="Building"]
+position = Vector2(-236, 29)
+texture = ExtResource("3_6phgx")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Building"]
+occluder = SubResource("OccluderPolygon2D_6phgx")

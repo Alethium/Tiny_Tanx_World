@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://8qrv1ct2axpq"]
+
+[ext_resource type="PackedScene" uid="uid://b1ho04fxtvp8l" path="res://Scenes/cannon_lg.tscn" id="1_l0sxq"]
+[ext_resource type="Script" uid="uid://clvh5vo58d6wm" path="res://Scripts/wp_cannon.gd" id="1_la6kp"]
+[ext_resource type="Texture2D" uid="uid://cnm8ncbbhj46o" path="res://topdownmechweapons.png" id="1_n7oph"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ml5r5"]
+size = Vector2(7.9999833, 12.749994)
+
+[node name="Cannon" type="Area2D"]
+position = Vector2(-2.3841858e-07, -7.1525574e-07)
+rotation = 0.0016419711
+scale = Vector2(0.9999998, 0.9999998)
+script = ExtResource("1_la6kp")
+damage = 20.0
+speed = 500.0
+cooldown = 60.0
+heat = 100.0
+munition = ExtResource("1_l0sxq")
+health = 100.0
+spread = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.1920929e-07, 0)
+texture = ExtResource("1_n7oph")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(20, 7, 9, 25)
+
+[node name="weapon1L_hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0.0049261516, 2.9999971)
+scale = Vector2(1.000001, 1.000001)
+shape = SubResource("RectangleShape2D_ml5r5")

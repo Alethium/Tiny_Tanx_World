@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn25vrrfdwenv"]
+
+[ext_resource type="PackedScene" uid="uid://cxqi6gped8ijk" path="res://Scenes/vfx.tscn" id="1_yav7f"]
+[ext_resource type="Script" uid="uid://us3gatdekisr" path="res://Scripts/explosion_1.gd" id="2_4yk8w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yav7f"]
+radius = 5.0
+
+[node name="explosion_1" instance=ExtResource("1_yav7f")]
+script = ExtResource("2_4yk8w")
+damage = 50.0
+max_blast_size = 20.0
+vfx_name = "explosion_1"
+anim_speed = 2.0
+frame_count = 4
+
+[node name="Vx sprite" parent="." index="0"]
+position = Vector2(-1, -1)
+hframes = 6
+frame = 5
+region_rect = Rect2(479, 48, 96, 16)
+region_filter_clip_enabled = true
+
+[node name="blast_radius" type="Area2D" parent="." index="1"]
+position = Vector2(1, 0)
+
+[node name="blast_shape" type="CollisionShape2D" parent="blast_radius" index="0"]
+shape = SubResource("CircleShape2D_yav7f")

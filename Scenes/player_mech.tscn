@@ -1,0 +1,146 @@
+[gd_scene load_steps=14 format=3 uid="uid://cx1y1p4ehilni"]
+
+[ext_resource type="Texture2D" uid="uid://bu44113t6v1f8" path="res://tank tracks.png" id="1_3ll58"]
+[ext_resource type="Script" uid="uid://p1cx4nnqj5s1" path="res://Scripts/player_mech.gd" id="1_e0bbr"]
+[ext_resource type="Texture2D" uid="uid://d37j07ebsp3e5" path="res://Sprites/topdownmechbottom.png" id="2_bsmnk"]
+[ext_resource type="Texture2D" uid="uid://xdf6t2nbnlp0" path="res://smoke_cards2.png" id="3_dsq5r"]
+[ext_resource type="PackedScene" uid="uid://8qrv1ct2axpq" path="res://Scenes/wp_cannon.tscn" id="4_cidal"]
+[ext_resource type="Texture2D" uid="uid://b6vb5bp0ntoes" path="res://topdownmechbottom2.png" id="5_cidal"]
+[ext_resource type="PackedScene" uid="uid://dx11aqaggxpxn" path="res://Scenes/machine_gun.tscn" id="6_ml5r5"]
+[ext_resource type="PackedScene" uid="uid://dgxw3ow82ruaw" path="res://Scenes/laser.tscn" id="7_v4qfu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4qfu"]
+radius = 16.0
+height = 54.0
+
+[sub_resource type="Gradient" id="Gradient_lcc5e"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_dsq5r"]
+_data = [Vector2(0, 0.25727075), 0.0, 0.38911086, 0, 0, Vector2(1, 0.901566), 1.8080378, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_dsq5r"]
+offsets = PackedFloat32Array(0, 0.63736266, 1)
+colors = PackedColorArray(0.39607844, 0.39607844, 0.39607844, 1, 0.79369557, 0.79369676, 0.79369575, 0.7295365, 1, 1, 1, 0.14509805)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lcc5e"]
+size = Vector2(20, 17.999996)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_e0bbr")
+ACCELLERATION = 10.0
+max_speed = 500.0
+
+[node name="bottom_hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_v4qfu")
+
+[node name="bottom_half" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="bottom_half"]
+ignore_rotation = false
+limit_enabled = false
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 10.0
+
+[node name="treads" type="CPUParticles2D" parent="bottom_half"]
+position = Vector2(0, 11)
+amount = 24
+texture = ExtResource("1_3ll58")
+draw_order = 1
+particle_flag_align_y = true
+direction = Vector2(10.72, 11.34)
+spread = 101.16
+gravity = Vector2(0, 0)
+color_ramp = SubResource("Gradient_lcc5e")
+
+[node name="mech_bottom" type="Sprite2D" parent="bottom_half"]
+modulate = Color(0.5818384, 0.5818384, 0.5818384, 1)
+texture_filter = 1
+texture = ExtResource("2_bsmnk")
+
+[node name="smoke3" type="CPUParticles2D" parent="bottom_half"]
+position = Vector2(12, 16)
+rotation = -0.5235988
+amount = 50
+texture = ExtResource("3_dsq5r")
+lifetime = 0.5
+speed_scale = 2.0
+randomness = 0.5
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(2, 3)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.2
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_dsq5r")
+color_ramp = SubResource("Gradient_dsq5r")
+
+[node name="smoke4" type="CPUParticles2D" parent="bottom_half"]
+position = Vector2(-12.000001, 15.999998)
+rotation = 0.2617994
+amount = 50
+texture = ExtResource("3_dsq5r")
+lifetime = 0.5
+speed_scale = 2.0
+randomness = 0.5
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(2, 3)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 2)
+initial_velocity_min = 5.0
+initial_velocity_max = 25.0
+scale_amount_min = 0.2
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_dsq5r")
+color_ramp = SubResource("Gradient_dsq5r")
+
+[node name="top_half" type="Area2D" parent="."]
+rotation = -0.0016419707
+scale = Vector2(0.99999994, 0.99999994)
+collision_layer = 0
+
+[node name="weapon_slots" type="Node2D" parent="top_half"]
+position = Vector2(0.108107135, -1.8948294)
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="left_arm_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+position = Vector2(-17.00326, 1.9720839)
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="Cannon" parent="top_half/weapon_slots/left_arm_weapon_slot" instance=ExtResource("4_cidal")]
+
+[node name="right_arm_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+
+[node name="right_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+z_index = 1
+
+[node name="Machine_gun" parent="top_half/weapon_slots/right_shoulder_weapon_slot" instance=ExtResource("6_ml5r5")]
+position = Vector2(7.882029, 7.907956)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="left_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+z_index = 1
+
+[node name="Laser" parent="top_half/weapon_slots/left_shoulder_weapon_slot" instance=ExtResource("7_v4qfu")]
+position = Vector2(-9.119587, 8.880041)
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="mech_top" type="Sprite2D" parent="top_half"]
+position = Vector2(0.10810714, -1.8948296)
+texture = ExtResource("5_cidal")
+
+[node name="Core_hitbox" type="CollisionShape2D" parent="top_half"]
+position = Vector2(0.113033526, -4.894826)
+rotation = 0.0016419708
+scale = Vector2(1.0000002, 1.0000002)
+shape = SubResource("RectangleShape2D_lcc5e")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx11aqaggxpxn"]
+
+[ext_resource type="Script" uid="uid://sfm63si7qqb2" path="res://Scripts/wp_machinegun.gd" id="1_paadf"]
+[ext_resource type="PackedScene" uid="uid://rrn85d8k5pvo" path="res://Scenes/mg_bullet.tscn" id="2_3yqks"]
+[ext_resource type="Texture2D" uid="uid://cnm8ncbbhj46o" path="res://topdownmechweapons.png" id="2_paadf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8cdk"]
+size = Vector2(8.5, 15)
+
+[node name="Machine_gun" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_paadf")
+damage = 5.0
+speed = 500.0
+cooldown = 5.0
+heat = 1.0
+munition = ExtResource("2_3yqks")
+health = 10.0
+spread = 3.0
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_paadf")
+region_enabled = true
+region_rect = Rect2(51, 1, 9, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_f8cdk")
