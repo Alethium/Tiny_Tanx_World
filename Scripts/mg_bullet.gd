@@ -42,7 +42,7 @@ func impact():
 	set_deferred("monitorable",false)
 	
 	get_parent().add_child(hitspark)
-	hitspark.global_position = global_transform.origin 
+	hitspark.global_position = sprite.global_transform.origin 
 	hitspark.rotation = rotation
 	queue_free()
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cx1y1p4ehilni"]
+[gd_scene load_steps=23 format=3 uid="uid://cx1y1p4ehilni"]
 
 [ext_resource type="Texture2D" uid="uid://bu44113t6v1f8" path="res://tank tracks.png" id="1_3ll58"]
 [ext_resource type="Script" uid="uid://p1cx4nnqj5s1" path="res://Scripts/player_mech.gd" id="1_e0bbr"]
 [ext_resource type="Texture2D" uid="uid://d37j07ebsp3e5" path="res://Sprites/topdownmechbottom.png" id="2_bsmnk"]
+[ext_resource type="PackedScene" uid="uid://ftl8f5x5g86g" path="res://Scenes/player_ui.tscn" id="2_e0bbr"]
 [ext_resource type="Texture2D" uid="uid://xdf6t2nbnlp0" path="res://smoke_cards2.png" id="3_dsq5r"]
 [ext_resource type="PackedScene" uid="uid://8qrv1ct2axpq" path="res://Scenes/wp_cannon.tscn" id="4_cidal"]
 [ext_resource type="Texture2D" uid="uid://b6vb5bp0ntoes" path="res://topdownmechbottom2.png" id="5_cidal"]
@@ -16,6 +17,21 @@ height = 54.0
 [sub_resource type="Gradient" id="Gradient_lcc5e"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxxpq"]
+size = Vector2(8, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shtb6"]
+size = Vector2(8, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpdlx"]
+size = Vector2(9, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4unb"]
+size = Vector2(9, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p21fq"]
+size = Vector2(10, 6)
+
 [sub_resource type="Curve" id="Curve_dsq5r"]
 _data = [Vector2(0, 0.25727075), 0.0, 0.38911086, 0, 0, Vector2(1, 0.901566), 1.8080378, 0.0, 0, 0]
 point_count = 2
@@ -24,8 +40,17 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.63736266, 1)
 colors = PackedColorArray(0.39607844, 0.39607844, 0.39607844, 1, 0.79369557, 0.79369676, 0.79369575, 0.7295365, 1, 1, 1, 0.14509805)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0bbr"]
+size = Vector2(5.999999, 12)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lcc5e"]
-size = Vector2(20, 17.999996)
+size = Vector2(7.999997, 7.999999)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fk877"]
+size = Vector2(5.4999995, 11.999996)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l82a"]
+size = Vector2(21.999992, 12.499991)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
@@ -34,6 +59,12 @@ script = ExtResource("1_e0bbr")
 ACCELLERATION = 10.0
 max_speed = 500.0
 
+[node name="PLAYER_UI" parent="." instance=ExtResource("2_e0bbr")]
+offset_left = 0.0
+offset_top = 3.0
+offset_right = 0.0
+offset_bottom = 3.0
+
 [node name="bottom_hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_v4qfu")
@@ -41,7 +72,6 @@ shape = SubResource("CapsuleShape2D_v4qfu")
 [node name="bottom_half" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="bottom_half"]
-ignore_rotation = false
 limit_enabled = false
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 10.0
@@ -61,6 +91,46 @@ color_ramp = SubResource("Gradient_lcc5e")
 modulate = Color(0.5818384, 0.5818384, 0.5818384, 1)
 texture_filter = 1
 texture = ExtResource("2_bsmnk")
+
+[node name="Bottom_Armor_hitboxes" type="Node2D" parent="bottom_half"]
+
+[node name="front_left" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
+unique_name_in_owner = true
+position = Vector2(-10, -18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/front_left"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_dxxpq")
+
+[node name="front_right" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
+unique_name_in_owner = true
+position = Vector2(10, -18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/front_right"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_shtb6")
+
+[node name="rear_left" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
+unique_name_in_owner = true
+position = Vector2(-10, 21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/rear_left"]
+shape = SubResource("RectangleShape2D_jpdlx")
+
+[node name="rear_right" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
+unique_name_in_owner = true
+position = Vector2(10, 21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/rear_right"]
+shape = SubResource("RectangleShape2D_i4unb")
+
+[node name="Front_mid" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
+unique_name_in_owner = true
+position = Vector2(0, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/Front_mid"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_p21fq")
 
 [node name="smoke3" type="CPUParticles2D" parent="bottom_half"]
 position = Vector2(12, 16)
@@ -104,10 +174,54 @@ scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_dsq5r")
 color_ramp = SubResource("Gradient_dsq5r")
 
-[node name="top_half" type="Area2D" parent="."]
+[node name="top_half" type="Node2D" parent="."]
 rotation = -0.0016419707
 scale = Vector2(0.99999994, 0.99999994)
-collision_layer = 0
+
+[node name="mech_top" type="Sprite2D" parent="top_half"]
+position = Vector2(0.10810715, -1.8948298)
+scale = Vector2(1.0000001, 1.0000001)
+texture = ExtResource("5_cidal")
+
+[node name="Top_Armor_Hitboxes" type="Node2D" parent="top_half"]
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="Core_L" type="Area2D" parent="top_half/Top_Armor_Hitboxes"]
+unique_name_in_owner = true
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Core_L"]
+position = Vector2(8.008202, -4.9868584)
+rotation = 0.0016419708
+scale = Vector2(1.0000004, 1.0000004)
+shape = SubResource("RectangleShape2D_e0bbr")
+
+[node name="Cockpit" type="Area2D" parent="top_half/Top_Armor_Hitboxes"]
+unique_name_in_owner = true
+
+[node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Cockpit"]
+position = Vector2(0.008210088, -4.9999943)
+rotation = 0.0016419708
+scale = Vector2(1.0000004, 1.0000004)
+shape = SubResource("RectangleShape2D_lcc5e")
+
+[node name="Core_R" type="Area2D" parent="top_half/Top_Armor_Hitboxes"]
+unique_name_in_owner = true
+
+[node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Core_R"]
+position = Vector2(-7.7417827, -5.0127196)
+rotation = 0.0016419708
+scale = Vector2(1.0000004, 1.0000004)
+shape = SubResource("RectangleShape2D_fk877")
+
+[node name="Core_Rear" type="Area2D" parent="top_half/Top_Armor_Hitboxes"]
+unique_name_in_owner = true
+
+[node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Core_Rear"]
+position = Vector2(-0.012725361, 7.749994)
+rotation = 0.0016419708
+scale = Vector2(1.0000004, 1.0000004)
+shape = SubResource("RectangleShape2D_8l82a")
 
 [node name="weapon_slots" type="Node2D" parent="top_half"]
 position = Vector2(0.108107135, -1.8948294)
@@ -125,22 +239,13 @@ scale = Vector2(0.9999998, 0.9999998)
 z_index = 1
 
 [node name="Machine_gun" parent="top_half/weapon_slots/right_shoulder_weapon_slot" instance=ExtResource("6_ml5r5")]
-position = Vector2(7.882029, 7.907956)
+position = Vector2(9.880385, 8.91124)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="left_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
 z_index = 1
 
 [node name="Laser" parent="top_half/weapon_slots/left_shoulder_weapon_slot" instance=ExtResource("7_v4qfu")]
-position = Vector2(-9.119587, 8.880041)
+position = Vector2(-12.122869, 10.8751135)
 scale = Vector2(0.9999998, 0.9999998)
-
-[node name="mech_top" type="Sprite2D" parent="top_half"]
-position = Vector2(0.10810714, -1.8948296)
-texture = ExtResource("5_cidal")
-
-[node name="Core_hitbox" type="CollisionShape2D" parent="top_half"]
-position = Vector2(0.113033526, -4.894826)
-rotation = 0.0016419708
-scale = Vector2(1.0000002, 1.0000002)
-shape = SubResource("RectangleShape2D_lcc5e")
+ray_offset_x = 12

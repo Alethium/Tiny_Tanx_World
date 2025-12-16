@@ -1,5 +1,6 @@
 class_name Explosion
 extends Vfx
+@onready var vx_sprite: Sprite2D = $"Vx sprite"
 
 
 @export var damage : float
@@ -14,7 +15,7 @@ var blast_size : float = 0
 func _ready() -> void:
 	queue_redraw()
 func _draw() -> void:
-	draw_circle(position,blast_size,Color.DARK_SALMON,false,2.0,false)
+	draw_circle(vx_sprite.position,blast_size,Color.DARK_SALMON,false,2.0,false)
 	
 	
 	

@@ -3,7 +3,7 @@
 class_name CannonLG
 extends Projectile  
 
-
+var impacted = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,3 +40,29 @@ func _on_body_entered(body):
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 		queue_free()
+
+
+func impact():
+	impacted = true
+	var hitspark = impact_effect.instantiate()
+	#explosion.global_position = self.global_position
+	sprite.visible = false
+	set_deferred("monitoring",false)
+	set_deferred("monitorable",false)
+	
+	get_parent().add_child(hitspark)
+	hitspark.global_position = sprite.global_transform.origin 
+	hitspark.rotation = rotation
+	queue_free()
+		
+func _on_area_impact(_area):
+	print("HIT ME")
+	if _area.has_method("on_damage_recieved"):
+		impact()
+	
+	
+
+
+func _on_body_impacted(body: Node2D) -> void:
+	if impacted == false:
+		impact()

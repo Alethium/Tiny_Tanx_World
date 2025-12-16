@@ -18,7 +18,7 @@ heat = 10.0
 health = 100.0
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="0"]
-enabled = false
+position = Vector2(0, -9)
 target_position = Vector2(0, -300)
 collide_with_areas = true
 

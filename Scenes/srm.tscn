@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwdmtqbybucq1"]
+[gd_scene load_steps=7 format=3 uid="uid://cwdmtqbybucq1"]
 
 [ext_resource type="PackedScene" uid="uid://ddty2wgvpl3jm" path="res://Scenes/projectile.tscn" id="1_r1rg3"]
+[ext_resource type="Script" uid="uid://bldtxj3i722xr" path="res://Scripts/srm.gd" id="2_1ql8x"]
+[ext_resource type="PackedScene" uid="uid://cn25vrrfdwenv" path="res://Scenes/explosion_1.tscn" id="3_dympo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dympo"]
 
@@ -13,7 +15,8 @@ offsets = PackedFloat32Array(0, 0.07777778, 0.17222223, 0.2888889, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.07999998, 0.5568628, 0.29, 0.29, 0.29, 0.14509805, 0.14767182, 0.14767182, 0.14767176, 0)
 
 [node name="SRM" instance=ExtResource("1_r1rg3")]
-position = Vector2(0, 12)
+script = ExtResource("2_1ql8x")
+impact_effect = ExtResource("3_dympo")
 
 [node name="sprite" parent="." index="0"]
 position = Vector2(0, -11)

@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 
+
 @onready var top_half: Node2D = $top_half
 @onready var bottom_half: Node2D = $bottom_half
 
@@ -13,12 +14,49 @@ extends CharacterBody2D
 var current_throttle : float = 0.0
 var bottom_direction := Input.get_axis("rotate bottom left", "rotate bottom right")
 var top_direction := Input.get_axis("rotate top left", "rotate top right" )
+@onready var bottom_hitbox: CollisionShape2D = $bottom_hitbox
+
+@onready var front_left: Area2D = %front_left
+@onready var front_right: Area2D = %front_right
+@onready var rear_left: Area2D = %rear_left
+@onready var rear_right: Area2D = %rear_right
+@onready var front_mid: Area2D = %Front_mid
+
+@onready var core_l: Area2D = %Core_L
+@onready var cockpit: Area2D = %Cockpit
+@onready var core_r: Area2D = %Core_R
+@onready var core_rear: Area2D = %Core_Rear
+
+@export var components = {}
+
+
+
+
+
+
+
+@onready var hitboxes = [
+	front_left,
+	front_right,
+	rear_left,
+	rear_right,
+	front_mid,
+	core_l,
+	core_r,
+	cockpit,
+	core_rear
+	
+]
+
+
 @onready var left_arm_weapon_slot: Node2D = $top_half/weapon_slots/left_arm_weapon_slot
 @onready var right_arm_weapon_slot: Node2D = $top_half/weapon_slots/right_arm_weapon_slot
 @onready var right_shoulder_weapon_slot: Node2D = $top_half/weapon_slots/right_shoulder_weapon_slot
 @onready var left_shoulder_weapon_slot: Node2D = $top_half/weapon_slots/left_shoulder_weapon_slot
-@onready var bottom_hitbox: CollisionShape2D = $bottom_hitbox
 
+var weapon_slots = [
+	
+]
 
 var bottom_dir = 0.0
 var top_dir = 0.0
