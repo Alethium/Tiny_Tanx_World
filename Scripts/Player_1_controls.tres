@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerControls" load_steps=2 format=3 uid="uid://m2sjqkxfifmj"]
+
+[ext_resource type="Script" uid="uid://ducyp7otf1ng6" path="res://Scripts/PlayerControls.gd" id="1_3yrv2"]
+
+[resource]
+script = ExtResource("1_3yrv2")
+player_index = 1
+rotate_top_left = "rotate top left_p1"
+rotate_top_right = "rotate top right_p1"

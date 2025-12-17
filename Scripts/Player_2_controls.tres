@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PlayerControls" load_steps=2 format=3 uid="uid://djbf4ibjvpqxp"]
+
+[ext_resource type="Script" uid="uid://ducyp7otf1ng6" path="res://Scripts/PlayerControls.gd" id="1_8lgxo"]
+
+[resource]
+script = ExtResource("1_8lgxo")
+player_index = 2
+rotate_bottom_left = "rotate bottom left_p2"
+rotate_bottom_right = "rotate bottom right_p2"
+rotate_top_left = "rotate top left_p2"
+rotate_top_right = "rotate top right_p2"
+throttle_up = "throttle up_p2"
+throttle_down = "throttle down_p2"
+fire_left_weapon_1 = "fire left weapon 1_p2"
+fire_left_weapon_2 = "fire left weapon 2_p2"
+fire_right_weapon_1 = "fire right weapon 1_p2"
+fire_right_weapon_2 = "fire right weapon 2_p2"
+brake = "brake_p2"

@@ -12,8 +12,6 @@ extends CharacterBody2D
 @export var ACCELLERATION = 40.0
 
 var current_throttle : float = 0.0
-var bottom_direction := Input.get_axis("rotate bottom left", "rotate bottom right")
-var top_direction := Input.get_axis("rotate top left", "rotate top right" )
 @onready var bottom_hitbox: CollisionShape2D = $bottom_hitbox
 
 @onready var front_left: Area2D = %front_left
@@ -47,6 +45,8 @@ var top_direction := Input.get_axis("rotate top left", "rotate top right" )
 	core_rear
 	
 ]
+
+@export var Controls: Resource = null
 
 
 @onready var left_arm_weapon_slot: Node2D = $top_half/weapon_slots/left_arm_weapon_slot
@@ -95,16 +95,17 @@ func _physics_process(delta: float) -> void:
 
 
 func handle_inputs(delta):
-	if Input.is_action_pressed("rotate bottom left"):
+	if Input.is_action_pressed(Controls.rotate_bottom_left):
+		print("rotatingleft :", Controls.player_index)
 		bottom_dir -= BOTTOM_TURN_SPEED * delta
 		top_dir -= BOTTOM_TURN_SPEED * delta
 		
-	if Input.is_action_pressed("rotate bottom right"):
+	if Input.is_action_pressed(Controls.rotate_bottom_right):
 		bottom_dir += BOTTOM_TURN_SPEED * delta
 		top_dir += BOTTOM_TURN_SPEED * delta
-	if Input.is_action_pressed("rotate top left"):
+	if Input.is_action_pressed(Controls.rotate_top_left):
 		top_dir -= TOP_TURN_SPEED * delta
-	if Input.is_action_pressed("rotate top right"):
+	if Input.is_action_pressed(Controls.rotate_top_right):
 		top_dir += TOP_TURN_SPEED * delta
 	
 
@@ -114,7 +115,7 @@ func handle_inputs(delta):
 	
 	
 		# Movement input - accelerate forward/backward
-	throttle = Input.get_axis("throttle down", "throttle up")
+	throttle = Input.get_axis(Controls.throttle_down, Controls.throttle_up)
 	current_throttle -= throttle 
 	current_throttle = clamp(current_throttle, -50, 50)
 	
@@ -125,7 +126,7 @@ func handle_inputs(delta):
 	current_speed = current_throttle 
 	current_speed = clamp(current_speed, -max_speed, max_speed)
 	#print("current speed : ",current_speed)
-	if Input.is_action_pressed("brake"):
+	if Input.is_action_pressed(Controls.brake):
 		current_throttle = lerp(current_throttle,0.0,delta) 
 		
 		if abs(current_speed) < 15:
@@ -133,11 +134,11 @@ func handle_inputs(delta):
 			current_throttle = 0
 		
 	
-	if Input.is_action_pressed("fire left weapon 1"): 
+	if Input.is_action_pressed(Controls.fire_left_weapon_1): 
 		left_arm_weapon_slot.get_children()[0].fire(top_dir)
-	if Input.is_action_pressed("fire left weapon 2"):
+	if Input.is_action_pressed(Controls.fire_left_weapon_2):
 		left_shoulder_weapon_slot.get_children()[0].fire(top_dir)
-	if Input.is_action_pressed("fire right weapon 2"): 
+	if Input.is_action_pressed(Controls.fire_right_weapon_2): 
 		right_shoulder_weapon_slot.get_children()[0].fire(top_dir)
 		
 func apply_movement(delta):
