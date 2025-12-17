@@ -27,7 +27,7 @@ func fire(dir :float):
 		new_shot.damage = damage
 		new_shot.speed = speed
 		new_shot.direction = -move_direction
-		get_parent().get_parent().get_parent().get_parent().get_parent().spawned_projectiles.add_child(new_shot)
+		get_parent().get_parent().get_parent().get_parent().get_parent().add_child(new_shot)
 		#var new_shot2 = munition.instantiate()
 		#new_shot2.global_rotation = dir 
 		#new_shot2.global_position = to_global(Vector2(position.x-8,position.y))

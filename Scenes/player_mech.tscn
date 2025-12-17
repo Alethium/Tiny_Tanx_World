@@ -1,9 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://cx1y1p4ehilni"]
+[gd_scene load_steps=22 format=3 uid="uid://cx1y1p4ehilni"]
 
 [ext_resource type="Texture2D" uid="uid://bu44113t6v1f8" path="res://tank tracks.png" id="1_3ll58"]
 [ext_resource type="Script" uid="uid://p1cx4nnqj5s1" path="res://Scripts/player_mech.gd" id="1_e0bbr"]
 [ext_resource type="Texture2D" uid="uid://d37j07ebsp3e5" path="res://Sprites/topdownmechbottom.png" id="2_bsmnk"]
-[ext_resource type="PackedScene" uid="uid://ftl8f5x5g86g" path="res://Scenes/player_ui.tscn" id="2_e0bbr"]
 [ext_resource type="Texture2D" uid="uid://xdf6t2nbnlp0" path="res://smoke_cards2.png" id="3_dsq5r"]
 [ext_resource type="PackedScene" uid="uid://8qrv1ct2axpq" path="res://Scenes/wp_cannon.tscn" id="4_cidal"]
 [ext_resource type="Texture2D" uid="uid://b6vb5bp0ntoes" path="res://topdownmechbottom2.png" id="5_cidal"]
@@ -59,22 +58,11 @@ script = ExtResource("1_e0bbr")
 ACCELLERATION = 10.0
 max_speed = 500.0
 
-[node name="PLAYER_UI" parent="." instance=ExtResource("2_e0bbr")]
-offset_left = 0.0
-offset_top = 3.0
-offset_right = 0.0
-offset_bottom = 3.0
-
 [node name="bottom_hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_v4qfu")
 
 [node name="bottom_half" type="Node2D" parent="."]
-
-[node name="Camera2D" type="Camera2D" parent="bottom_half"]
-limit_enabled = false
-rotation_smoothing_enabled = true
-rotation_smoothing_speed = 10.0
 
 [node name="treads" type="CPUParticles2D" parent="bottom_half"]
 position = Vector2(0, 11)

@@ -16,8 +16,7 @@ func _physics_process(delta):
 	
 	position += direction * speed * delta
 
-	if global_position.distance_to(get_parent().global_position) > 2000:
-		queue_free()
+
 
 
 

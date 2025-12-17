@@ -26,4 +26,4 @@ func fire(dir :float):
 		new_shot.damage = damage
 		new_shot.speed = speed
 		new_shot.direction = -move_direction
-		get_parent().get_parent().get_parent().get_parent().get_parent().spawned_projectiles.add_child(new_shot)
+		get_parent().get_parent().get_parent().get_parent().get_parent().add_child(new_shot)
