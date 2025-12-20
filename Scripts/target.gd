@@ -55,7 +55,7 @@ func handle_animation():
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Projectile:
-		on_damage_recieved(area.damage)
+		_on_damage_recieved(area.damage)
 
 	
 func explode():
@@ -63,7 +63,8 @@ func explode():
 	var explosion = EXPLOSION_1.instantiate()
 	#explosion.global_position = self.global_position
 	add_child(explosion)
-func on_damage_recieved(damage):
+	
+func _on_damage_recieved(damage):
 	health -= damage
 	spin += 0.5 
 	

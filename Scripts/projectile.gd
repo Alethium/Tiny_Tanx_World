@@ -8,7 +8,7 @@ extends Area2D
 @export var heat : float
 @export var impact_effect : PackedScene
 @onready var sprite: Sprite2D = $sprite
-
+var projectile_owner = Player
 var sprite_index = 0
 var direction : Vector2
 
@@ -21,10 +21,9 @@ func _ready() -> void:
 func _physics_process(delta):
 	handle_animation()
 	
-	position += direction * speed * delta
+	
 
-	if global_position.distance_to(get_parent().global_position) > 2000:
-		queue_free()
+
 
 
 

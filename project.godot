@@ -19,8 +19,11 @@ config/icon="res://Sprites/icon.svg"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
+window/stretch/mode="viewport"
+
+[global_group]
+
+projectile=""
 
 [input]
 
@@ -166,3 +169,5 @@ spawn_enemy={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/ssao/quality=3
+anti_aliasing/screen_space_roughness_limiter/enabled=false

@@ -54,9 +54,9 @@ func impact():
 	hitspark.rotation = rotation
 	queue_free()
 		
-func _on_area_impact(_area):
-	print("HIT ME")
-	if _area.has_method("on_damage_recieved"):
+func _on_area_entered(area):
+	if area.has_method("_on_damage_recieved") and area.component_owner != projectile_owner:
+		area._on_damage_recieved(damage)
 		impact()
 	
 	

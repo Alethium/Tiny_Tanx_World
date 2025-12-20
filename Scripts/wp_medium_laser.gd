@@ -10,9 +10,10 @@ var firing = false
 var pulse_timer = 0
 var hit_point : Vector2
 var ray_set = false
+
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	queue_redraw()
+#func _ready() -> void:
+	#queue_redraw()
 	
 
 
@@ -29,21 +30,28 @@ func _process(delta: float) -> void:
 			hit_point = to_local(raycast.get_collision_point())
 			#print("colliding")
 			#print(raycast.get_collider())
-			if raycast.get_collider().has_method("on_damage_recieved"):
-				raycast.get_collider().on_damage_recieved(damage)
+			if raycast.get_collider().has_method("_on_damage_recieved"):
+				raycast.get_collider()._on_damage_recieved(damage)
 			#if raycast.get_collider().has_method("on_damage_recieved"):
 				#raycast.get_collider().get_parent().on_damage_recieved(damage)
 		else:
 			hit_point = raycast.target_position		
-
-	
+		%beam.size.y = position.distance_to(hit_point)- 15
+		#$beam/Line2D.points[1] = hit_point
+		#$beam/Line2D2.points[1] = hit_point
 	if pulse_timer == 0:
 		firing = false
+	if firing:
+		%beam.visible = true 
+		gun_owner.overheat += heat
+		
+	else:
+		%beam.visible = false	
 		
 		
-		
-	queue_redraw()
-	
+
+func on_destroyed():
+	pass	
 
 
 func fire(_dir):
@@ -57,14 +65,8 @@ func fire(_dir):
 # 		do a draw of a line between the target point of the laser 
 # 		if raycast collides with an area, it needs to make that distance the end of the laser. cant have it passing through things.
 # 		laser confers damage per frame, it turns on, then turns off.
-func _draw() -> void:
-	if firing:
-		draw_line(Vector2(position.x+ray_offset_x+1,position.y+ray_offset_y),hit_point,Color.PALE_GREEN,1,true)
-		draw_line(Vector2(position.x+ray_offset_x,position.y+ray_offset_y),hit_point,Color.WHITE,1,true)
-		draw_line(Vector2(position.x+ray_offset_x-1,position.y+ray_offset_y),hit_point,Color.PALE_GREEN,1,true)	
-		
-	#else:
-		#raycast.enabled = false
+
+
 	
 func setup_raycast():
 	#print(get_parent().get_parent().get_parent().get_parent().name)

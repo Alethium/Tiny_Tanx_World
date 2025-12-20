@@ -1,13 +1,17 @@
-class_name MachineGun
+class_name MissileLauncher
 extends Weapon
 
-
+@export var volly_num : int
+@export var num_per_volley : int
+var volly_timer = 0
 
 
 # Called when the node enters the scene tree for the first time.
 
 	
-
+func _physics_process(delta: float) -> void:
+	volly_timer -= 1
+	volly_timer = clampi(volly_timer,0,100)
 
 
 func on_destroyed():
@@ -20,16 +24,22 @@ func fire(dir :float):
 	var move_direction = Vector2(cos(adjusted_angle), sin(adjusted_angle))
 	
 	if cooldown_timer == 0:
+		
 		cooldown_timer += cooldown
 		gun_owner.overheat += heat
-		var new_shot = munition.instantiate()
-		new_shot.global_rotation = dir 
-		new_shot.global_position = global_position
-		new_shot.damage = damage
-		new_shot.speed = speed
-		new_shot.direction = -move_direction
-		new_shot.projectile_owner = gun_owner
-		get_parent().get_parent().get_parent().get_parent().get_parent().add_child(new_shot)
+		
+		for i in range(0,volly_num):
+		
+				for j in range(0,num_per_volley):
+					var new_shot = munition.instantiate()
+					new_shot.global_rotation = dir 
+					new_shot.global_position = to_global(Vector2(position.x + ( 10*i ),position.y))
+					new_shot.projectile_owner = gun_owner
+					new_shot.damage = damage
+					new_shot.speed = speed
+					new_shot.direction = -move_direction
+					new_shot.projectile_owner = gun_owner
+					get_parent().get_parent().get_parent().get_parent().get_parent().add_child(new_shot)
 		#var new_shot2 = munition.instantiate()
 		#new_shot2.global_rotation = dir 
 		#new_shot2.global_position = to_global(Vector2(position.x-8,position.y))

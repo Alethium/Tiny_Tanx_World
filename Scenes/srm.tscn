@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwdmtqbybucq1"]
+[gd_scene load_steps=8 format=3 uid="uid://cwdmtqbybucq1"]
 
 [ext_resource type="PackedScene" uid="uid://ddty2wgvpl3jm" path="res://Scenes/projectile.tscn" id="1_r1rg3"]
 [ext_resource type="Script" uid="uid://bldtxj3i722xr" path="res://Scripts/srm.gd" id="2_1ql8x"]
@@ -14,21 +14,29 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.07777778, 0.17222223, 0.2888889, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.07999998, 0.5568628, 0.29, 0.29, 0.29, 0.14509805, 0.14767182, 0.14767182, 0.14767176, 0)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ql8x"]
+radius = 98.0
+
 [node name="SRM" instance=ExtResource("1_r1rg3")]
+z_index = 1
 script = ExtResource("2_1ql8x")
+turn_speed = 7
+speed = 20.0
+damage = 4.0
+heat = 4.0
 impact_effect = ExtResource("3_dympo")
 
 [node name="sprite" parent="." index="0"]
-position = Vector2(0, -11)
+position = Vector2(0, -1)
 hframes = 1
 region_rect = Rect2(32, 70, 16, 5)
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, -12)
+position = Vector2(0, 0)
 
 [node name="smoke3" type="CPUParticles2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_dympo")
-position = Vector2(0, -5)
+position = Vector2(0.50000024, 7)
 amount = 50
 lifetime = 3.29
 speed_scale = 2.0
@@ -49,3 +57,13 @@ scale_amount_min = 3.0
 scale_amount_max = 15.0
 scale_amount_curve = SubResource("Curve_7fqiw")
 color_ramp = SubResource("Gradient_87apo")
+
+[node name="Area2D" type="Area2D" parent="." index="3"]
+collision_mask = 3
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_1ql8x")
+
+[connection signal="area_entered" from="." to="." method="_on_impact"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

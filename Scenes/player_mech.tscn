@@ -1,13 +1,23 @@
-[gd_scene load_steps=22 format=3 uid="uid://cx1y1p4ehilni"]
+[gd_scene load_steps=32 format=3 uid="uid://cx1y1p4ehilni"]
 
 [ext_resource type="Texture2D" uid="uid://bu44113t6v1f8" path="res://tank tracks.png" id="1_3ll58"]
 [ext_resource type="Script" uid="uid://p1cx4nnqj5s1" path="res://Scripts/player_mech.gd" id="1_e0bbr"]
 [ext_resource type="Texture2D" uid="uid://d37j07ebsp3e5" path="res://Sprites/topdownmechbottom.png" id="2_bsmnk"]
 [ext_resource type="Texture2D" uid="uid://xdf6t2nbnlp0" path="res://smoke_cards2.png" id="3_dsq5r"]
 [ext_resource type="PackedScene" uid="uid://8qrv1ct2axpq" path="res://Scenes/wp_cannon.tscn" id="4_cidal"]
+[ext_resource type="Script" uid="uid://cnx5w81cdundo" path="res://Scripts/front_left.gd" id="4_e0bbr"]
 [ext_resource type="Texture2D" uid="uid://b6vb5bp0ntoes" path="res://topdownmechbottom2.png" id="5_cidal"]
+[ext_resource type="Script" uid="uid://b2bopcgx8l3kj" path="res://Scripts/front_right.gd" id="5_dxxpq"]
 [ext_resource type="PackedScene" uid="uid://dx11aqaggxpxn" path="res://Scenes/machine_gun.tscn" id="6_ml5r5"]
+[ext_resource type="Script" uid="uid://c3lslhnd1ieaa" path="res://Scripts/rear_left.gd" id="6_shtb6"]
+[ext_resource type="Script" uid="uid://c8hfr6v0ghbiw" path="res://Scripts/rear_right.gd" id="7_jpdlx"]
 [ext_resource type="PackedScene" uid="uid://dgxw3ow82ruaw" path="res://Scenes/laser.tscn" id="7_v4qfu"]
+[ext_resource type="Script" uid="uid://b300sjtksbva4" path="res://Scripts/front_mid.gd" id="8_shtb6"]
+[ext_resource type="Script" uid="uid://v6wst15cbwgh" path="res://Scripts/core_l.gd" id="11_i4unb"]
+[ext_resource type="Script" uid="uid://4ttit432d21s" path="res://cockpit.gd" id="12_p21fq"]
+[ext_resource type="Script" uid="uid://dulaaixjsglyo" path="res://Scripts/core_r.gd" id="13_p21fq"]
+[ext_resource type="Script" uid="uid://hsobbqqft2tg" path="res://Scripts/core_rear.gd" id="14_jb6ot"]
+[ext_resource type="PackedScene" uid="uid://ydce2xf53jyc" path="res://Scenes/wp_srm_4.tscn" id="18_6bbur"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4qfu"]
 radius = 16.0
@@ -86,6 +96,9 @@ texture = ExtResource("2_bsmnk")
 [node name="front_left" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
 unique_name_in_owner = true
 position = Vector2(-10, -18)
+script = ExtResource("4_e0bbr")
+health = 50.0
+armor = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/front_left"]
 position = Vector2(0, 1)
@@ -94,6 +107,9 @@ shape = SubResource("RectangleShape2D_dxxpq")
 [node name="front_right" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
 unique_name_in_owner = true
 position = Vector2(10, -18)
+script = ExtResource("5_dxxpq")
+health = 50.0
+armor = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/front_right"]
 position = Vector2(0, 1)
@@ -102,6 +118,9 @@ shape = SubResource("RectangleShape2D_shtb6")
 [node name="rear_left" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
 unique_name_in_owner = true
 position = Vector2(-10, 21)
+script = ExtResource("6_shtb6")
+health = 50.0
+armor = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/rear_left"]
 shape = SubResource("RectangleShape2D_jpdlx")
@@ -109,15 +128,21 @@ shape = SubResource("RectangleShape2D_jpdlx")
 [node name="rear_right" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
 unique_name_in_owner = true
 position = Vector2(10, 21)
+script = ExtResource("7_jpdlx")
+health = 50.0
+armor = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/rear_right"]
 shape = SubResource("RectangleShape2D_i4unb")
 
-[node name="Front_mid" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
+[node name="front_mid" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
 unique_name_in_owner = true
 position = Vector2(0, -19)
+script = ExtResource("8_shtb6")
+health = 50.0
+armor = 50.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/Front_mid"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/front_mid"]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_p21fq")
 
@@ -164,6 +189,7 @@ scale_amount_curve = SubResource("Curve_dsq5r")
 color_ramp = SubResource("Gradient_dsq5r")
 
 [node name="top_half" type="Node2D" parent="."]
+z_index = 1
 rotation = -0.0016419707
 scale = Vector2(0.99999994, 0.99999994)
 
@@ -178,6 +204,9 @@ scale = Vector2(1.0000001, 1.0000001)
 [node name="Core_L" type="Area2D" parent="top_half/Top_Armor_Hitboxes"]
 unique_name_in_owner = true
 scale = Vector2(1.0000001, 1.0000001)
+script = ExtResource("11_i4unb")
+health = 50.0
+armor = 100.0
 
 [node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Core_L"]
 position = Vector2(8.008202, -4.9868584)
@@ -187,6 +216,9 @@ shape = SubResource("RectangleShape2D_e0bbr")
 
 [node name="Cockpit" type="Area2D" parent="top_half/Top_Armor_Hitboxes"]
 unique_name_in_owner = true
+script = ExtResource("12_p21fq")
+health = 100.0
+armor = 100.0
 
 [node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Cockpit"]
 position = Vector2(0.008210088, -4.9999943)
@@ -196,6 +228,9 @@ shape = SubResource("RectangleShape2D_lcc5e")
 
 [node name="Core_R" type="Area2D" parent="top_half/Top_Armor_Hitboxes"]
 unique_name_in_owner = true
+script = ExtResource("13_p21fq")
+health = 50.0
+armor = 100.0
 
 [node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Core_R"]
 position = Vector2(-7.7417827, -5.0127196)
@@ -205,6 +240,9 @@ shape = SubResource("RectangleShape2D_fk877")
 
 [node name="Core_Rear" type="Area2D" parent="top_half/Top_Armor_Hitboxes"]
 unique_name_in_owner = true
+script = ExtResource("14_jb6ot")
+health = 50.0
+armor = 100.0
 
 [node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Core_Rear"]
 position = Vector2(-0.012725361, 7.749994)
@@ -221,20 +259,26 @@ position = Vector2(-17.00326, 1.9720839)
 scale = Vector2(0.9999998, 0.9999998)
 
 [node name="Cannon" parent="top_half/weapon_slots/left_arm_weapon_slot" instance=ExtResource("4_cidal")]
+heat = 10.0
 
 [node name="right_arm_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+
+[node name="Laser" parent="top_half/weapon_slots/right_arm_weapon_slot" instance=ExtResource("7_v4qfu")]
+position = Vector2(18.890226, 2.9260252)
+scale = Vector2(0.99999976, 0.99999976)
+ray_offset_x = 12
 
 [node name="right_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
 z_index = 1
 
 [node name="Machine_gun" parent="top_half/weapon_slots/right_shoulder_weapon_slot" instance=ExtResource("6_ml5r5")]
-position = Vector2(9.880385, 8.91124)
+z_index = -2
+position = Vector2(8.918152, -14.090372)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="left_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
 z_index = 1
 
-[node name="Laser" parent="top_half/weapon_slots/left_shoulder_weapon_slot" instance=ExtResource("7_v4qfu")]
-position = Vector2(-12.122869, 10.8751135)
-scale = Vector2(0.9999998, 0.9999998)
-ray_offset_x = 12
+[node name="SRM_4" parent="top_half/weapon_slots/left_shoulder_weapon_slot" instance=ExtResource("18_6bbur")]
+position = Vector2(-5.117952, 7.8866115)
+scale = Vector2(0.99999994, 0.99999994)

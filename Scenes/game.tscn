@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://dvockkcnjdenb" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://jhho1u3orutm" path="res://Scenes/level.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://cx1y1p4ehilni" path="res://Scenes/player_mech.tscn" id="2_qxrlw"]
-[ext_resource type="Texture2D" uid="uid://dkgfg8q0h7rph" path="res://Sprites/tnytanxUI.png" id="3_wrm1d"]
 [ext_resource type="Resource" uid="uid://m2sjqkxfifmj" path="res://Scripts/Player_1_controls.tres" id="4_i6g32"]
 [ext_resource type="Resource" uid="uid://djbf4ibjvpqxp" path="res://Scripts/Player_2_controls.tres" id="5_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://ftl8f5x5g86g" path="res://Scenes/player_ui.tscn" id="5_i6g32"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -14,9 +14,9 @@ script = ExtResource("1_3dryh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 1281.0
+offset_right = 1280.0
 offset_bottom = 720.0
-theme_override_constants/separation = 5
+theme_override_constants/separation = 4
 
 [node name="Player_1" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -25,6 +25,7 @@ stretch = true
 
 [node name="player_1_view" type="SubViewport" parent="HBoxContainer/Player_1"]
 handle_input_locally = false
+canvas_item_default_texture_filter = 0
 size = Vector2i(636, 720)
 render_target_update_mode = 4
 
@@ -38,7 +39,6 @@ Controls = ExtResource("4_i6g32")
 
 [node name="Player_cam" type="Camera2D" parent="HBoxContainer/Player_1/player_1_view/Player_1/bottom_half" index="0"]
 position = Vector2(0, -1)
-ignore_rotation = false
 limit_enabled = false
 
 [node name="Player_2" type="SubViewportContainer" parent="HBoxContainer"]
@@ -46,6 +46,10 @@ layout_mode = 2
 
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/Player_2"]
 handle_input_locally = false
+msaa_2d = 2
+msaa_3d = 1
+screen_space_aa = 1
+oversampling_override = 4.0
 size = Vector2i(640, 720)
 size_2d_override_stretch = true
 render_target_update_mode = 4
@@ -57,37 +61,38 @@ Controls = ExtResource("5_1l0tm")
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/Player_2/SubViewport/Player_2/bottom_half" index="0"]
 position = Vector2(0, -1)
 
-[node name="PLAYER_UI" type="Control" parent="."]
-layout_mode = 1
+[node name="PLAYER_UI" parent="." node_paths=PackedStringArray("Observed_player") instance=ExtResource("5_i6g32")]
+layout_mode = 0
 anchors_preset = 0
-offset_left = 320.00003
-offset_top = 366.00003
-offset_right = 320.00003
-offset_bottom = 1086.0
-scale = Vector2(1.25, 1.25)
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 320.0
+offset_top = 372.0
+offset_right = 320.0
+offset_bottom = 1092.0
+Observed_player = NodePath("../HBoxContainer/Player_1/player_1_view/Player_1")
 
-[node name="UI_frame" type="Sprite2D" parent="PLAYER_UI"]
-position = Vector2(-2.4795532e-05, 214.69533)
-scale = Vector2(2, 2)
-texture = ExtResource("3_wrm1d")
-region_enabled = true
-region_rect = Rect2(0, 187, 256, 69)
-
-[node name="PLAYER_UI2" type="Control" parent="."]
-layout_mode = 1
+[node name="PLAYER_UI2" parent="." node_paths=PackedStringArray("Observed_player") instance=ExtResource("5_i6g32")]
+layout_mode = 0
 anchors_preset = 0
-offset_left = 960.0
-offset_top = 366.0
-offset_right = 960.0
-offset_bottom = 1086.0
-scale = Vector2(1.25, 1.25)
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 961.00006
+offset_top = 372.0
+offset_right = 961.00006
+offset_bottom = 1092.0
+Observed_player = NodePath("../HBoxContainer/Player_2/SubViewport/Player_2")
 
-[node name="UI_frame" type="Sprite2D" parent="PLAYER_UI2"]
-position = Vector2(-2.4795532e-05, 214.69533)
-scale = Vector2(2, 2)
-texture = ExtResource("3_wrm1d")
-region_enabled = true
-region_rect = Rect2(0, 187, 256, 69)
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 637.0
+offset_right = 645.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
 
 [editable path="HBoxContainer/Player_1/player_1_view/Player_1"]
 [editable path="HBoxContainer/Player_2/SubViewport/Player_2"]

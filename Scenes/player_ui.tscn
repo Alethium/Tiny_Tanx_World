@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ftl8f5x5g86g"]
+[gd_scene load_steps=4 format=3 uid="uid://ftl8f5x5g86g"]
 
+[ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="1_dxtgh"]
 [ext_resource type="Texture2D" uid="uid://dkgfg8q0h7rph" path="res://Sprites/tnytanxUI.png" id="1_ohrjl"]
+[ext_resource type="Script" uid="uid://bho7albwng17r" path="res://Scenes/player_ui.gd" id="1_qipxh"]
 
 [node name="PLAYER_UI" type="Control"]
 layout_mode = 3
@@ -12,15 +14,177 @@ offset_left = 255.74402
 offset_top = 228.09602
 offset_right = -255.74402
 offset_bottom = -283.824
+script = ExtResource("1_qipxh")
 
-[node name="UI_frame" type="Sprite2D" parent="."]
-position = Vector2(0, 28)
+[node name="TnytanxUiSprites" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-64.583984, -151.656)
+scale = Vector2(2, 2)
+texture = ExtResource("1_dxtgh")
+
+[node name="UI_frame_bottom" type="Sprite2D" parent="."]
+position = Vector2(0.41601563, 28.343994)
 scale = Vector2(2, 2)
 texture = ExtResource("1_ohrjl")
+offset = Vector2(0, 39)
+region_enabled = true
+region_rect = Rect2(0, 78, 320, 242)
 
-[node name="Player_view" type="SubViewportContainer" parent="."]
-layout_mode = 0
-offset_left = -250.0
-offset_top = -222.0
-offset_right = 250.0
-offset_bottom = 146.0
+[node name="frame_top" type="Sprite2D" parent="UI_frame_bottom"]
+position = Vector2(0, -132)
+texture = ExtResource("1_ohrjl")
+region_enabled = true
+region_rect = Rect2(0, 0, 320, 136)
+
+[node name="paper_target" type="Node2D" parent="UI_frame_bottom"]
+position = Vector2(126, 102.5)
+
+[node name="paper_target_bg" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.10971219, 0.10971219, 0.109712176, 1)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(198, 194, 49, 41)
+
+[node name="paper_target_cockpit" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(0, 4)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(216, 212, 13, 13)
+
+[node name="paper_target_core_L" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-11, 3.5)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(208, 212, 7, 12)
+
+[node name="paper_target_core_R" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(11, 3.5)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(230, 212, 7, 12)
+
+[node name="paper_target_weapon_R1" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(19, 8)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(238, 216, 7, 13)
+
+[node name="paper_target_weapon_R2" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(19, -3)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(238, 208, 7, 7)
+
+[node name="paper_target_weapon_R3" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-19, 8)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(238, 216, 7, 13)
+
+[node name="paper_target_weapon_R4" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-19, -3)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(238, 208, 7, 7)
+
+[node name="paper_target_front_tread_L" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-11, -10.5)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(208, 196, 7, 16)
+
+[node name="paper_target_rear_tread_L" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-10.5, 14)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(208, 224, 8, 9)
+
+[node name="paper_target_front_tread_R" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(11, -10.5)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(230, 196, 7, 16)
+
+[node name="paper_target_rear_tread_R" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(10.5, 14)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(229, 224, 8, 9)
+
+[node name="paper_target_core_rear" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(0, 15)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(216, 226, 13, 7)
+
+[node name="paper_target_core_front" type="Sprite2D" parent="UI_frame_bottom/paper_target"]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(0, -10)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(215, 198, 15, 13)
+
+[node name="Overheat" type="Control" parent="UI_frame_bottom"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -80.0
+offset_top = 139.0
+offset_right = -71.0
+offset_bottom = 199.0
+rotation = 3.1415927
+
+[node name="Heat_Bar" type="Sprite2D" parent="UI_frame_bottom/Overheat"]
+position = Vector2(4.5, 30)
+rotation = 3.1415927
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(71, 193, 7, 58)
+
+[node name="Total_health" type="Control" parent="UI_frame_bottom"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 103.18713
+offset_top = 127.5
+offset_right = 106.18713
+offset_bottom = 172.5
+rotation = 4.712389
+
+[node name="health_bar" type="Sprite2D" parent="UI_frame_bottom/Total_health"]
+position = Vector2(1.5425282, 22.524305)
+rotation = 3.1415927
+scale = Vector2(1.0286106, 15.012549)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(200, 242, 3, 3)
+
+[node name="Total_armor" type="Control" parent="UI_frame_bottom"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 103.0
+offset_top = 132.5
+offset_right = 106.0
+offset_bottom = 177.5
+rotation = 4.712389
+
+[node name="armor_bar" type="Sprite2D" parent="UI_frame_bottom/Total_armor"]
+position = Vector2(1.5425282, 22.524305)
+rotation = 3.1415927
+scale = Vector2(1.0286106, 15.012549)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(200, 237, 3, 3)

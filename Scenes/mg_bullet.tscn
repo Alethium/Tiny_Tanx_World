@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://b7x52r75q7x3o" path="res://Scenes/hitspark.tscn" id="3_d7kvd"]
 
 [node name="Mg_Bullet" instance=ExtResource("1_swc3t")]
+z_index = 1
 script = ExtResource("2_d7kvd")
 proj_name = "mg_bullet"
+speed = null
 damage = 1.0
 heat = 1.0
 impact_effect = ExtResource("3_d7kvd")

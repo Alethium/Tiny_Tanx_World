@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 			for target in caught_in_blast:
 				if target.has_method("on_damage_recieved"):
 					print("target caught in the blast :", target)
-					target.on_damage_recieved(damage)
+					target._on_damage_recieved(damage)
 func draw_blast_ring():
 	
 	queue_redraw()

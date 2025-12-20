@@ -48,9 +48,10 @@ func impact():
 
 
 func _on_impact(_area):
-	print("HIT ME")
-	if _area.has_method("on_damage_recieved"):
+	
+	if _area.has_method("_on_damage_recieved") and _area.component_owner != projectile_owner:
 		impact()
+		_area._on_damage_recieved(damage)
 	
 	
 

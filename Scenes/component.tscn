@@ -2,5 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3tewmu2hck7h" path="res://Scripts/component.gd" id="1_xqk12"]
 
-[node name="component" type="Node"]
+[node name="Area2D" type="Area2D"]
 script = ExtResource("1_xqk12")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

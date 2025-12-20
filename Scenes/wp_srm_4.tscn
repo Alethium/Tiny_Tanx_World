@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://ydce2xf53jyc"]
+
+[ext_resource type="PackedScene" uid="uid://cmcdcsgi0wple" path="res://Scenes/weapon.tscn" id="1_c52nv"]
+[ext_resource type="Script" uid="uid://bjnw7gvu1qdiu" path="res://Scripts/wp_srm_4.gd" id="2_26t47"]
+[ext_resource type="PackedScene" uid="uid://cwdmtqbybucq1" path="res://Scenes/srm.tscn" id="3_pf7tx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26t47"]
+size = Vector2(14, 12)
+
+[node name="SRM_4" instance=ExtResource("1_c52nv")]
+script = ExtResource("2_26t47")
+volly_num = 2
+num_per_volley = 2
+damage = 5.0
+speed = 300.0
+cooldown = 20.0
+heat = 10.0
+munition = ExtResource("3_pf7tx")
+
+[node name="Sprite2D" parent="." index="0"]
+region_enabled = true
+region_rect = Rect2(81, 2, 14, 12)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_26t47")

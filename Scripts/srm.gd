@@ -5,13 +5,82 @@ extends Projectile
 #MAKE the fucking rocket have a direction ya, then make it turn toward that direction right?,
  #then ya wanna have that turn speed dialed, give it a target and itll follow em, ya got it ?
 # Called when the node enters the scene tree for the first time.
+#g
+
+
+var target : Player
+var impacted = false
+@export var turn_speed = 10
+
+# Called when the node enters the scene tree for the first time.
+
+	
+
 #
+#
+func _physics_process(delta):
+	handle_tracking(delta)
+	move(delta)
 
 
-func _ready() -> void:
-	pass # Replace with function body.
+
+func handle_tracking(delta):
+	if target :
+		# Directly calculate direction to target
+		var target_direction = (target.global_position - global_position).normalized()
+		
+		# Optional: Smooth rotation by interpolating
+		direction = direction.lerp(target_direction, turn_speed * delta).normalized()
+		
+		# Update rotation to match direction
+		global_rotation = direction.angle()+90
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+#func handle_animation():
+	#sprite_index += 0.1
+	#if sprite_index > 3:
+		#sprite_index = 0
+	#sprite.frame = sprite_index
+func move(delta):
+	if !impacted:
+		global_position += direction * speed * delta	
+	
+
+
+func impact():
+	impacted = true
+	var hitspark = impact_effect.instantiate()
+	#explosion.global_position = self.global_position
+	sprite.visible = false
+	set_deferred("monitoring",false)
+	set_deferred("monitorable",false)
+	
+	get_parent().add_child(hitspark)
+	hitspark.global_position = sprite.global_transform.origin 
+	hitspark.rotation = rotation
+	queue_free()
+
+
+
+func _on_impact(_area):
+	
+	if _area.has_method("_on_damage_recieved") and _area.component_owner != projectile_owner:
+		impact()
+		_area._on_damage_recieved(damage)
+	
+	
+
+
+func _on_body_inpacted(body: Node2D) -> void:
+	impact()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D and body != projectile_owner:
+		print("player_targeted")
+		target = body
+
+
+func _on_area_2d_body_exited(_body: Node2D) -> void:
+	print("target_lost")
+	target = null

@@ -106,11 +106,11 @@ shader_parameter/implosion_speed = 1000.0
 shader_parameter/implosion_thickness = 80.0
 shader_parameter/implosion_peak_strength = 60.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_81xng"]
-size = Vector2(262, 261.5)
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6phgx"]
 polygon = PackedVector2Array(-105, -102, -366, -102, -366, 160, -104, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81xng"]
+size = Vector2(262, 261.5)
 
 [node name="level" type="Node2D"]
 script = SubResource("GDScript_tumq0")
@@ -141,6 +141,9 @@ offset_bottom = 586.0
 
 [node name="Building" type="StaticBody2D" parent="."]
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Building"]
+occluder = SubResource("OccluderPolygon2D_6phgx")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Building"]
 position = Vector2(-236, 29.25)
 shape = SubResource("RectangleShape2D_81xng")
@@ -148,6 +151,3 @@ shape = SubResource("RectangleShape2D_81xng")
 [node name="Sprite2D" type="Sprite2D" parent="Building"]
 position = Vector2(-236, 29)
 texture = ExtResource("3_6phgx")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Building"]
-occluder = SubResource("OccluderPolygon2D_6phgx")
