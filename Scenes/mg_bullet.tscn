@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ddty2wgvpl3jm" path="res://Scenes/projectile.tscn" id="1_swc3t"]
 [ext_resource type="Script" uid="uid://bt5vf1dmbcy3y" path="res://Scripts/mg_bullet.gd" id="2_d7kvd"]
-[ext_resource type="PackedScene" uid="uid://b7x52r75q7x3o" path="res://Scenes/hitspark.tscn" id="3_d7kvd"]
+[ext_resource type="PackedScene" uid="uid://chp6dfk6nfk0e" path="res://Scenes/bullet_hit.tscn" id="3_d7kvd"]
 
 [node name="Mg_Bullet" instance=ExtResource("1_swc3t")]
 z_index = 1

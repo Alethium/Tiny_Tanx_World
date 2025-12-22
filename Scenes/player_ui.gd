@@ -31,7 +31,8 @@ extends Control
 # total armor bars are out of 45
 
 
-
+#TODO
+# TIE all of the paper target pieces to the players component pieces. paper target, and component need to share the same name.
 
 
 
@@ -42,7 +43,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	handle_overheat_bar()
+	handle_health_bars()
+	
+
+func handle_overheat_bar():
 	overheat.size.y = Observed_player.overheat * 0.6
+	
+	
+func handle_health_bars():
 	total_armor.size.y = Observed_player.curr_armor/Observed_player.total_armor * 45
 	total_health.size.y = Observed_player.curr_health/Observed_player.total_health * 45
 	

@@ -15,15 +15,15 @@ offsets = PackedFloat32Array(0, 0.07777778, 0.17222223, 0.2888889, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.07999998, 0.5568628, 0.29, 0.29, 0.29, 0.14509805, 0.14767182, 0.14767182, 0.14767176, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ql8x"]
-radius = 98.0
+radius = 77.05842
 
 [node name="SRM" instance=ExtResource("1_r1rg3")]
 z_index = 1
 script = ExtResource("2_1ql8x")
 turn_speed = 7
-speed = 20.0
+speed = 10.0
 damage = 4.0
-heat = 4.0
+heat = 2.0
 impact_effect = ExtResource("3_dympo")
 
 [node name="sprite" parent="." index="0"]
@@ -62,6 +62,7 @@ color_ramp = SubResource("Gradient_87apo")
 collision_mask = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -56)
 shape = SubResource("CircleShape2D_1ql8x")
 
 [connection signal="area_entered" from="." to="." method="_on_impact"]

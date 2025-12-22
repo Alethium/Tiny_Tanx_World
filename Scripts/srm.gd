@@ -25,15 +25,16 @@ func _physics_process(delta):
 
 
 func handle_tracking(delta):
-	if target :
-		# Directly calculate direction to target
+	if target:
+		# Calculate direction to target
 		var target_direction = (target.global_position - global_position).normalized()
 		
-		# Optional: Smooth rotation by interpolating
+		# Smooth rotation by interpolating
 		direction = direction.lerp(target_direction, turn_speed * delta).normalized()
 		
-		# Update rotation to match direction
-		global_rotation = direction.angle()+90
+		# Set rotation to face the movement direction
+		# In Godot, -Y is forward, so we use atan2 on the reversed vector
+		global_rotation = atan2(direction.y, direction.x) + PI/2
 
 
 #func handle_animation():

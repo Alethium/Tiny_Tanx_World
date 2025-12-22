@@ -5,7 +5,7 @@ extends Node2D
 @export var anim_speed : float
 @export var frame_count : int
 @onready var sprite: Sprite2D = $"Vx sprite"
-
+@export var looping = false
 
 
 
@@ -34,5 +34,7 @@ func handle_animation():
 	if frame_count != null:
 		sprite_index += anim_speed/10
 		if sprite_index > frame_count:
-			queue_free()
+			if looping == true:
+				sprite_index = 0
 		sprite.frame = sprite_index
+		

@@ -12,8 +12,8 @@ script = ExtResource("2_26t47")
 volly_num = 2
 num_per_volley = 2
 damage = 5.0
-speed = 300.0
-cooldown = 20.0
+speed = 250.0
+cooldown = 100.0
 heat = 10.0
 munition = ExtResource("3_pf7tx")
 

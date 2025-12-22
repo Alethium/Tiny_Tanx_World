@@ -38,6 +38,8 @@ func _process(delta: float) -> void:
 				if target.has_method("on_damage_recieved"):
 					print("target caught in the blast :", target)
 					target._on_damage_recieved(damage)
+	if sprite_index > frame_count:
+		queue_free()
 func draw_blast_ring():
 	
 	queue_redraw()

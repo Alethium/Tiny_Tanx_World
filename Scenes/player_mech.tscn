@@ -1,12 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://cx1y1p4ehilni"]
+[gd_scene load_steps=31 format=3 uid="uid://cx1y1p4ehilni"]
 
 [ext_resource type="Texture2D" uid="uid://bu44113t6v1f8" path="res://tank tracks.png" id="1_3ll58"]
 [ext_resource type="Script" uid="uid://p1cx4nnqj5s1" path="res://Scripts/player_mech.gd" id="1_e0bbr"]
-[ext_resource type="Texture2D" uid="uid://d37j07ebsp3e5" path="res://Sprites/topdownmechbottom.png" id="2_bsmnk"]
 [ext_resource type="Texture2D" uid="uid://xdf6t2nbnlp0" path="res://smoke_cards2.png" id="3_dsq5r"]
+[ext_resource type="Texture2D" uid="uid://domgcq5fhi7yg" path="res://Sprites/Battlemech top down.png" id="3_jb6ot"]
 [ext_resource type="PackedScene" uid="uid://8qrv1ct2axpq" path="res://Scenes/wp_cannon.tscn" id="4_cidal"]
 [ext_resource type="Script" uid="uid://cnx5w81cdundo" path="res://Scripts/front_left.gd" id="4_e0bbr"]
-[ext_resource type="Texture2D" uid="uid://b6vb5bp0ntoes" path="res://topdownmechbottom2.png" id="5_cidal"]
 [ext_resource type="Script" uid="uid://b2bopcgx8l3kj" path="res://Scripts/front_right.gd" id="5_dxxpq"]
 [ext_resource type="PackedScene" uid="uid://dx11aqaggxpxn" path="res://Scenes/machine_gun.tscn" id="6_ml5r5"]
 [ext_resource type="Script" uid="uid://c3lslhnd1ieaa" path="res://Scripts/rear_left.gd" id="6_shtb6"]
@@ -89,7 +88,10 @@ color_ramp = SubResource("Gradient_lcc5e")
 [node name="mech_bottom" type="Sprite2D" parent="bottom_half"]
 modulate = Color(0.5818384, 0.5818384, 0.5818384, 1)
 texture_filter = 1
-texture = ExtResource("2_bsmnk")
+rotation = 3.1415927
+texture = ExtResource("3_jb6ot")
+region_enabled = true
+region_rect = Rect2(48, 62, 32, 49)
 
 [node name="Bottom_Armor_hitboxes" type="Node2D" parent="bottom_half"]
 
@@ -194,9 +196,12 @@ rotation = -0.0016419707
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="mech_top" type="Sprite2D" parent="top_half"]
-position = Vector2(0.10810715, -1.8948298)
+position = Vector2(0.0032839403, -1.9999975)
+rotation = 3.1415927
 scale = Vector2(1.0000001, 1.0000001)
-texture = ExtResource("5_cidal")
+texture = ExtResource("3_jb6ot")
+region_enabled = true
+region_rect = Rect2(46, 10, 36, 37)
 
 [node name="Top_Armor_Hitboxes" type="Node2D" parent="top_half"]
 scale = Vector2(1.0000001, 1.0000001)
@@ -251,7 +256,7 @@ scale = Vector2(1.0000004, 1.0000004)
 shape = SubResource("RectangleShape2D_8l82a")
 
 [node name="weapon_slots" type="Node2D" parent="top_half"]
-position = Vector2(0.108107135, -1.8948294)
+position = Vector2(0.0032839403, -1.9999975)
 scale = Vector2(1.0000001, 1.0000001)
 
 [node name="left_arm_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
@@ -259,17 +264,22 @@ position = Vector2(-17.00326, 1.9720839)
 scale = Vector2(0.9999998, 0.9999998)
 
 [node name="Cannon" parent="top_half/weapon_slots/left_arm_weapon_slot" instance=ExtResource("4_cidal")]
+z_index = -1
+position = Vector2(1.0049226, -2.9983544)
 heat = 10.0
 
 [node name="right_arm_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+position = Vector2(0, -1.1920929e-07)
 
 [node name="Laser" parent="top_half/weapon_slots/right_arm_weapon_slot" instance=ExtResource("7_v4qfu")]
-position = Vector2(18.890226, 2.9260252)
+z_index = -1
+position = Vector2(15.996691, 2.0262685)
 scale = Vector2(0.99999976, 0.99999976)
 ray_offset_x = 12
 
 [node name="right_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
 z_index = 1
+position = Vector2(0, -1.1920929e-07)
 
 [node name="Machine_gun" parent="top_half/weapon_slots/right_shoulder_weapon_slot" instance=ExtResource("6_ml5r5")]
 z_index = -2
@@ -278,7 +288,8 @@ scale = Vector2(0.99999994, 0.99999994)
 
 [node name="left_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
 z_index = 1
+position = Vector2(0, -1.1920929e-07)
 
 [node name="SRM_4" parent="top_half/weapon_slots/left_shoulder_weapon_slot" instance=ExtResource("18_6bbur")]
-position = Vector2(-5.117952, 7.8866115)
+position = Vector2(-0.02134561, 12.999982)
 scale = Vector2(0.99999994, 0.99999994)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://chp6dfk6nfk0e"]
+
+[ext_resource type="PackedScene" uid="uid://b7x52r75q7x3o" path="res://Scenes/hitspark.tscn" id="1_fvu3e"]
+[ext_resource type="PackedScene" uid="uid://chw6rgvs5jned" path="res://Scenes/particle_spark.tscn" id="2_u6n4m"]
+
+[node name="Bullet hit" type="Node2D"]
+z_index = -1
+
+[node name="hitspark" parent="." instance=ExtResource("1_fvu3e")]
+
+[node name="spark" parent="." instance=ExtResource("2_u6n4m")]
+position = Vector2(0, -2)
+lifetime = 0.3
