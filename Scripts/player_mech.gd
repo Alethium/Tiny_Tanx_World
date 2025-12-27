@@ -19,6 +19,7 @@ extends CharacterBody2D
 @onready var machine_gun: MachineGun = $top_half/weapon_slots/right_shoulder_weapon_slot/Machine_gun
 @onready var srm_4: MissileLauncher = $top_half/weapon_slots/left_shoulder_weapon_slot/SRM_4
 
+const EXPLOSION_LARGE = preload("uid://bg7xl82oy8js1")
 
 
 @onready var front_left: Area2D = %front_left
@@ -136,8 +137,17 @@ func _physics_process(delta: float) -> void:
 
 
 
-
-
+func _on_destroyed():
+	print("PLAYER DEAD : ", self.name)
+	var explosion = EXPLOSION_LARGE.instantiate()
+	#explosion.global_position = self.global_position
+	visible = false
+	set_deferred("monitoring",false)
+	set_deferred("monitorable",false)
+	
+	get_parent().add_child(explosion)
+	explosion.global_position = global_transform.origin 
+	call_deferred("queue_free")
 
 func handle_inputs(delta):
 	

@@ -9,10 +9,7 @@ extends Area2D
 @export var component_owner = Player
 var destroyed = false
 
-func _process(_delta: float) -> void:
-	if health <= 0 and destroyed == true :
 
-		on_destroyed()
 		
 func _on_ghost_damage_recieved(damage:float):
 	if armor > 0:
@@ -21,7 +18,8 @@ func _on_ghost_damage_recieved(damage:float):
 	elif health > 0:
 		health -= damage
 		print("damage : ",damage, "component ghost damaged : " , self.name,"component health and armor : ", health, " / ",armor)	
-
+	elif health <=0 and destroyed == false:
+			on_destroyed()
 
 func _on_damage_recieved(damage:float):
 				
@@ -33,8 +31,8 @@ func _on_damage_recieved(damage:float):
 	elif health > 0:
 		health -= damage
 		print("damage : ",damage, "component damaged : " , self.name,"component health and armor : ", health, " / ",armor)
-	elif health <= 0:
-		destroyed = true
+	elif health <= 0 :
+		print("COMPONENT DESTROYED:  ", self.name)
 		var num_areas = get_overlapping_areas().size()
 		for area in get_overlapping_areas():
 			if area.has_method("_on_ghost_damage_recieved") :
@@ -42,7 +40,8 @@ func _on_damage_recieved(damage:float):
 
 #		CHECK FOR OVERLAPPING BODIES< IF THOSE CAN TAKE DAMAGE SPREAD THE DAMAGE TO THEM, divide among all overlapping bodies
 func on_destroyed():
-	pass
+	print("COMPONENT DESTROYED:  ", self.name)
+	
 
 	
 	

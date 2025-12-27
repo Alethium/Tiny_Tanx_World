@@ -9,10 +9,10 @@ size = Vector2(8.5, 11.5)
 
 [node name="Machine_gun" type="Area2D"]
 script = ExtResource("1_paadf")
-damage = 5.0
-speed = 500.0
-cooldown = 5.0
-heat = 1.0
+damage = 10.0
+speed = 600.0
+cooldown = 3.0
+heat = 0.5
 munition = ExtResource("2_3yqks")
 spread = 3.0
 health = 15.0

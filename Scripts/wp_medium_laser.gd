@@ -59,7 +59,7 @@ func on_destroyed():
 
 
 func fire(_dir):
-	print("firing  laser cooldown :",cooldown_timer,"pulse time : ",pulse_timer)
+	#print("firing  laser cooldown :",cooldown_timer,"pulse time : ",pulse_timer)
 	
 	if cooldown_timer == 0:
 		cooldown_timer += cooldown

@@ -32,9 +32,10 @@ extends Control
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	handle_overheat_bar()
-	handle_health_bars()
-	update_player_stats()
+	if Observed_player != null:
+		handle_overheat_bar()
+		handle_health_bars()
+		update_player_stats()
 	
 
 func handle_overheat_bar():
