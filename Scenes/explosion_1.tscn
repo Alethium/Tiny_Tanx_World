@@ -9,8 +9,8 @@ radius = 5.0
 [node name="explosion_1" instance=ExtResource("1_yav7f")]
 z_index = 1
 script = ExtResource("2_4yk8w")
-damage = 10.0
-max_blast_size = 20.0
+damage = 5.0
+max_blast_size = 25.0
 vfx_name = "explosion_1"
 anim_speed = 2.0
 frame_count = 4

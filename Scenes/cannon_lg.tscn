@@ -6,6 +6,7 @@
 
 [node name="Cannon_LG" instance=ExtResource("1_15j8x")]
 script = ExtResource("2_iehdi")
+life = 70.0
 impact_effect = ExtResource("3_i16ec")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

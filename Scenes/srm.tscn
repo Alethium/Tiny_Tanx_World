@@ -21,6 +21,7 @@ radius = 77.05842
 z_index = 1
 script = ExtResource("2_1ql8x")
 turn_speed = 7
+life = 80.0
 speed = 10.0
 damage = 4.0
 heat = 2.0
@@ -60,6 +61,7 @@ color_ramp = SubResource("Gradient_87apo")
 
 [node name="Area2D" type="Area2D" parent="." index="3"]
 collision_mask = 3
+monitorable = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(0, -56)

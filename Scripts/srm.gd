@@ -11,7 +11,7 @@ extends Projectile
 var target : Player
 var impacted = false
 @export var turn_speed = 10
-
+@export var life : float
 # Called when the node enters the scene tree for the first time.
 
 	
@@ -19,6 +19,9 @@ var impacted = false
 #
 #
 func _physics_process(delta):
+	life -= 1
+	if life <= 0:
+		_on_airburst()
 	handle_tracking(delta)
 	move(delta)
 
@@ -54,7 +57,14 @@ func impact():
 
 	queue_free()
 
-
+func _on_airburst():
+	if impacted == false:
+		var hitspark = impact_effect.instantiate()
+		hitspark.global_position = sprite.global_transform.origin 
+		hitspark.rotation = rotation
+		get_parent().add_child(hitspark)
+		impact()
+	
 
 func _on_impact(_area):
 	if impacted == false:

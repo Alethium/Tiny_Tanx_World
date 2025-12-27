@@ -157,10 +157,10 @@ func handle_inputs(delta):
 		if !overheated:
 			if Input.is_action_pressed(Controls.rotate_bottom_left):
 				bottom_dir -= BOTTOM_TURN_SPEED * delta
-				top_dir -= BOTTOM_TURN_SPEED * delta
+				#top_dir -= BOTTOM_TURN_SPEED * delta
 			if Input.is_action_pressed(Controls.rotate_bottom_right):
 				bottom_dir += BOTTOM_TURN_SPEED * delta
-				top_dir += BOTTOM_TURN_SPEED * delta
+				#top_dir += BOTTOM_TURN_SPEED * delta
 			if Input.is_action_pressed(Controls.rotate_top_left):
 				top_dir -= TOP_TURN_SPEED * delta
 			if Input.is_action_pressed(Controls.rotate_top_right):

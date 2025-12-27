@@ -4,7 +4,7 @@ class_name CannonLG
 extends Projectile  
 
 var impacted = false
-
+@export var life : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,6 +12,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
+	life -= 1
+	if life <= 0:
+		_on_airburst()
+	
 	handle_animation()
 	
 	position += direction * speed * delta
@@ -30,7 +34,9 @@ func move(delta):
 	global_position += direction * speed * delta	
 	
 
-
+func _on_airburst():
+	if impacted == false:
+		impact()
 
 
 
