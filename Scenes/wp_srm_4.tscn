@@ -14,7 +14,7 @@ num_per_volley = 2
 damage = 5.0
 speed = 250.0
 cooldown = 100.0
-heat = 10.0
+heat = 5.0
 munition = ExtResource("3_pf7tx")
 
 [node name="Sprite2D" parent="." index="0"]

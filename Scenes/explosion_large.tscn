@@ -11,7 +11,7 @@ radius = 5.0
 script = ExtResource("2_6suf2")
 damage = 100.0
 max_blast_size = 75.0
-anim_speed = 1.0
+anim_speed = 2.0
 frame_count = 12
 
 [node name="Vx sprite" parent="." index="0"]
