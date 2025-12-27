@@ -50,30 +50,25 @@ func move(delta):
 
 func impact():
 	impacted = true
-	var hitspark = impact_effect.instantiate()
-	#explosion.global_position = self.global_position
 	sprite.visible = false
-	set_deferred("monitoring",false)
-	set_deferred("monitorable",false)
-	
-	get_parent().add_child(hitspark)
-	hitspark.global_position = sprite.global_transform.origin 
-	hitspark.rotation = rotation
+
 	queue_free()
 
 
 
 func _on_impact(_area):
+	if impacted == false:
+		if _area.has_method("_on_damage_recieved") and _area.component_owner != projectile_owner:
+			var hitspark = impact_effect.instantiate()
+			hitspark.global_position = sprite.global_transform.origin 
+			hitspark.rotation = rotation
+			get_parent().add_child(hitspark)
+			_area._on_damage_recieved(damage)
+			impact()
 	
-	if _area.has_method("_on_damage_recieved") and _area.component_owner != projectile_owner:
-		impact()
-		_area._on_damage_recieved(damage)
 	
-	
-
-
-func _on_body_inpacted(body: Node2D) -> void:
-	impact()
+#
+#
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

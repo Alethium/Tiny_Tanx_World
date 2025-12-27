@@ -4,7 +4,6 @@ extends Component
 
 
 func on_destroyed():
-	pass
+	component_owner.on_destroyed()
 	
-#	fuck up the player speed
-#	and top rotation speedextends Area2D
+ #KILL THE PLAYER

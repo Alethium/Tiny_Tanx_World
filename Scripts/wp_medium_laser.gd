@@ -52,6 +52,10 @@ func _process(delta: float) -> void:
 
 func on_destroyed():
 	pass	
+#	TODO if cockpit component reaches zero health, the pilot dies and the mech is dead,the core explodes
+# do a big explosion, leave behind the dead body of the mech. on fire and smoking or something. or maybe just explode, and fade out the player sprite 
+# fade the dead player screen to black, maybe have like a sprite sliding metal door slide shut to hide the screen,(this also would eba thing to do when you overheatt
+ #move the player to a spawn point, reset their healthh, make them visable, and then open the screen
 
 
 func fire(_dir):

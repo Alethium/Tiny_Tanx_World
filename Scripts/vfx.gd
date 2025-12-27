@@ -32,9 +32,15 @@ func _physics_process(delta):
 
 func handle_animation():
 	if frame_count != null:
-		sprite_index += anim_speed/10
+		if sprite_index < frame_count:
+			sprite_index += anim_speed/10
 		if sprite_index > frame_count:
 			if looping == true:
 				sprite_index = 0
+			
+				
+				
+			
+			
 		sprite.frame = sprite_index
 		

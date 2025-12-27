@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
+@onready var cam: Camera2D = $Player_cam
 
 
 @onready var top_half: Node2D = $top_half
@@ -31,6 +32,8 @@ extends CharacterBody2D
 @onready var core_r: Area2D = %Core_R
 @onready var core_rear: Area2D = %Core_Rear
 
+
+# TODO in future make this list populate the weapons on ready from whatever the player has selected for weapons. 
 @onready var components = [
 	front_left,
 	front_right,
@@ -99,9 +102,13 @@ var total_health : int = -1
 
 var curr_health = 0
 var curr_armor = 0
+enum ControlStyles {Complex,Simple,Twinstick}
+var control_style = ControlStyles.Complex
 
 
 
+
+	
 func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
@@ -134,37 +141,36 @@ func _physics_process(delta: float) -> void:
 
 func handle_inputs(delta):
 	
-	if !overheated:
-		if Input.is_action_pressed(Controls.rotate_bottom_left):
-			bottom_dir -= BOTTOM_TURN_SPEED * delta
-			top_dir -= BOTTOM_TURN_SPEED * delta
-		if Input.is_action_pressed(Controls.rotate_bottom_right):
-			bottom_dir += BOTTOM_TURN_SPEED * delta
-			top_dir += BOTTOM_TURN_SPEED * delta
-		if Input.is_action_pressed(Controls.rotate_top_left):
-			top_dir -= TOP_TURN_SPEED * delta
-		if Input.is_action_pressed(Controls.rotate_top_right):
-			top_dir += TOP_TURN_SPEED * delta
 	
+	
+	if control_style == ControlStyles.Complex:
+		if !overheated:
+			if Input.is_action_pressed(Controls.rotate_bottom_left):
+				bottom_dir -= BOTTOM_TURN_SPEED * delta
+				top_dir -= BOTTOM_TURN_SPEED * delta
+			if Input.is_action_pressed(Controls.rotate_bottom_right):
+				bottom_dir += BOTTOM_TURN_SPEED * delta
+				top_dir += BOTTOM_TURN_SPEED * delta
+			if Input.is_action_pressed(Controls.rotate_top_left):
+				top_dir -= TOP_TURN_SPEED * delta
+			if Input.is_action_pressed(Controls.rotate_top_right):
+				top_dir += TOP_TURN_SPEED * delta
 
-	
-	top_half.global_rotation = top_dir
-	bottom_half.global_rotation = bottom_dir
-	
-	
-		# Movement input - accelerate forward/backward
-	if !overheated:	
-		throttle = Input.get_axis(Controls.throttle_down, Controls.throttle_up)
-		current_throttle -= throttle 
-	else:
-		current_throttle = lerp(current_throttle,0.0,delta) 
+			# Movement input - accelerate forward/backward
+		if !overheated:	
+			throttle = Input.get_axis(Controls.throttle_down, Controls.throttle_up)
+			current_throttle -= throttle 
+		else:
+			current_throttle = lerp(current_throttle,0.0,delta) 
 	 
-	current_throttle = clamp(current_throttle, -50, 50)
 	
-	#print("throttle : ", throttle, " current applied throttle level : ", current_throttle)
+	
 	
 
 		# Accelerate in the direction of input
+	current_throttle = clamp(current_throttle, -50, 50)
+	top_half.global_rotation = top_dir
+	bottom_half.global_rotation = bottom_dir
 	current_speed = current_throttle 
 	current_speed = clamp(current_speed, -max_speed, max_speed)
 	#print("current speed : ",current_speed)

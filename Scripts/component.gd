@@ -7,22 +7,42 @@ extends Area2D
 @onready var starting_health = health
 @onready var starting_armor = armor
 @export var component_owner = Player
+var destroyed = false
+
+func _process(_delta: float) -> void:
+	if health <= 0 and destroyed == true :
+
+		on_destroyed()
+		
+func _on_ghost_damage_recieved(damage:float):
+	if armor > 0:
+		armor -= damage
+		print("damage : ",damage, "component ghost damaged : " , self.name,"component health and armor : ", health, " / ",armor)
+	elif health > 0:
+		health -= damage
+		print("damage : ",damage, "component ghost damaged : " , self.name,"component health and armor : ", health, " / ",armor)	
 
 
-
-	
-
-
-func _on_damage_recieved(damage:int):
-	
+func _on_damage_recieved(damage:float):
+				
+				
+#		check for overlapping boddies that are components
 	if armor > 0:
 		armor -= damage
 		print("damage : ",damage, "component damaged : " , self.name,"component health and armor : ", health, " / ",armor)
 	elif health > 0:
 		health -= damage
 		print("damage : ",damage, "component damaged : " , self.name,"component health and armor : ", health, " / ",armor)
-	if health <= 0 :
-		print("component_destroyed", self.name,"component health and armor : ", health, " / ",armor)
-		
+	elif health <= 0:
+		destroyed = true
+		var num_areas = get_overlapping_areas().size()
+		for area in get_overlapping_areas():
+			if area.has_method("_on_ghost_damage_recieved") :
+				area._on_ghost_damage_recieved(damage/num_areas)
+
+#		CHECK FOR OVERLAPPING BODIES< IF THOSE CAN TAKE DAMAGE SPREAD THE DAMAGE TO THEM, divide among all overlapping bodies
+func on_destroyed():
+	pass
+
 	
 	

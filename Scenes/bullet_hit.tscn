@@ -4,10 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://chw6rgvs5jned" path="res://Scenes/particle_spark.tscn" id="2_u6n4m"]
 
 [node name="Bullet hit" type="Node2D"]
-z_index = -1
 
 [node name="hitspark" parent="." instance=ExtResource("1_fvu3e")]
 
 [node name="spark" parent="." instance=ExtResource("2_u6n4m")]
 position = Vector2(0, -2)
+emitting = true
 lifetime = 0.3
+spread = 37.53
+initial_velocity_min = 64.71

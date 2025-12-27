@@ -19,26 +19,26 @@
 [ext_resource type="PackedScene" uid="uid://ydce2xf53jyc" path="res://Scenes/wp_srm_4.tscn" id="18_6bbur"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4qfu"]
-radius = 16.0
-height = 54.0
+radius = 20.0
+height = 60.0
 
 [sub_resource type="Gradient" id="Gradient_lcc5e"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxxpq"]
-size = Vector2(8, 10)
+size = Vector2(11, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shtb6"]
-size = Vector2(8, 10)
+size = Vector2(11, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpdlx"]
-size = Vector2(9, 6)
+size = Vector2(11.5, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4unb"]
-size = Vector2(9, 6)
+size = Vector2(11.5, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p21fq"]
-size = Vector2(10, 6)
+size = Vector2(18, 16)
 
 [sub_resource type="Curve" id="Curve_dsq5r"]
 _data = [Vector2(0, 0.25727075), 0.0, 0.38911086, 0, 0, Vector2(1, 0.901566), 1.8080378, 0.0, 0, 0]
@@ -49,16 +49,16 @@ offsets = PackedFloat32Array(0, 0.63736266, 1)
 colors = PackedColorArray(0.39607844, 0.39607844, 0.39607844, 1, 0.79369557, 0.79369676, 0.79369575, 0.7295365, 1, 1, 1, 0.14509805)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0bbr"]
-size = Vector2(5.999999, 12)
+size = Vector2(6.9999995, 13.999994)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lcc5e"]
-size = Vector2(7.999997, 7.999999)
+size = Vector2(9.999998, 7.999999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fk877"]
-size = Vector2(5.4999995, 11.999996)
+size = Vector2(6.500002, 13.999994)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8l82a"]
-size = Vector2(21.999992, 12.499991)
+size = Vector2(30.00001, 16.000004)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -68,8 +68,12 @@ script = ExtResource("1_e0bbr")
 ACCELLERATION = 10.0
 max_speed = 500.0
 
-[node name="bottom_hitbox" type="CollisionShape2D" parent="."]
+[node name="Player_cam" type="Camera2D" parent="."]
 position = Vector2(0, -1)
+limit_enabled = false
+
+[node name="bottom_hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_v4qfu")
 
 [node name="bottom_half" type="Node2D" parent="."]
@@ -86,66 +90,68 @@ gravity = Vector2(0, 0)
 color_ramp = SubResource("Gradient_lcc5e")
 
 [node name="mech_bottom" type="Sprite2D" parent="bottom_half"]
-modulate = Color(0.5818384, 0.5818384, 0.5818384, 1)
 texture_filter = 1
+position = Vector2(0, -6)
 rotation = 3.1415927
 texture = ExtResource("3_jb6ot")
 region_enabled = true
-region_rect = Rect2(48, 62, 32, 49)
+region_rect = Rect2(44, 58, 40, 53)
 
 [node name="Bottom_Armor_hitboxes" type="Node2D" parent="bottom_half"]
 
 [node name="front_left" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
 unique_name_in_owner = true
-position = Vector2(-10, -18)
+position = Vector2(-14, -25)
 script = ExtResource("4_e0bbr")
 health = 50.0
 armor = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/front_left"]
-position = Vector2(0, 1)
+position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_dxxpq")
 
 [node name="front_right" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
 unique_name_in_owner = true
-position = Vector2(10, -18)
+position = Vector2(15, -25)
 script = ExtResource("5_dxxpq")
 health = 50.0
 armor = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/front_right"]
-position = Vector2(0, 1)
+position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_shtb6")
 
 [node name="rear_left" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
 unique_name_in_owner = true
-position = Vector2(-10, 21)
+position = Vector2(-15, 10)
 script = ExtResource("6_shtb6")
 health = 50.0
 armor = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/rear_left"]
+position = Vector2(1.25, 2.5)
 shape = SubResource("RectangleShape2D_jpdlx")
 
 [node name="rear_right" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
 unique_name_in_owner = true
-position = Vector2(10, 21)
+position = Vector2(15, 10)
 script = ExtResource("7_jpdlx")
 health = 50.0
 armor = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/rear_right"]
+position = Vector2(-1.25, 2)
 shape = SubResource("RectangleShape2D_i4unb")
 
 [node name="front_mid" type="Area2D" parent="bottom_half/Bottom_Armor_hitboxes"]
 unique_name_in_owner = true
-position = Vector2(0, -19)
+position = Vector2(0, -27)
 script = ExtResource("8_shtb6")
 health = 50.0
 armor = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_half/Bottom_Armor_hitboxes/front_mid"]
-position = Vector2(0, 4)
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_p21fq")
 
 [node name="smoke3" type="CPUParticles2D" parent="bottom_half"]
@@ -196,7 +202,7 @@ rotation = -0.0016419707
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="mech_top" type="Sprite2D" parent="top_half"]
-position = Vector2(0.0032839403, -1.9999975)
+position = Vector2(0.00328394, -1.9999975)
 rotation = 3.1415927
 scale = Vector2(1.0000001, 1.0000001)
 texture = ExtResource("3_jb6ot")
@@ -214,9 +220,9 @@ health = 50.0
 armor = 100.0
 
 [node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Core_L"]
-position = Vector2(8.008202, -4.9868584)
+position = Vector2(7.509842, -5.9876757)
 rotation = 0.0016419708
-scale = Vector2(1.0000004, 1.0000004)
+scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_e0bbr")
 
 [node name="Cockpit" type="Area2D" parent="top_half/Top_Armor_Hitboxes"]
@@ -226,9 +232,8 @@ health = 100.0
 armor = 100.0
 
 [node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Cockpit"]
-position = Vector2(0.008210088, -4.9999943)
-rotation = 0.0016419708
-scale = Vector2(1.0000004, 1.0000004)
+position = Vector2(0.008209845, -4.9999905)
+rotation = 0.0016419711
 shape = SubResource("RectangleShape2D_lcc5e")
 
 [node name="Core_R" type="Area2D" parent="top_half/Top_Armor_Hitboxes"]
@@ -238,9 +243,9 @@ health = 50.0
 armor = 100.0
 
 [node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Core_R"]
-position = Vector2(-7.7417827, -5.0127196)
+position = Vector2(-7.240139, -6.0118947)
 rotation = 0.0016419708
-scale = Vector2(1.0000004, 1.0000004)
+scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_fk877")
 
 [node name="Core_Rear" type="Area2D" parent="top_half/Top_Armor_Hitboxes"]
@@ -250,9 +255,9 @@ health = 50.0
 armor = 100.0
 
 [node name="Core_hitbox" type="CollisionShape2D" parent="top_half/Top_Armor_Hitboxes/Core_Rear"]
-position = Vector2(-0.012725361, 7.749994)
-rotation = 0.0016419708
-scale = Vector2(1.0000004, 1.0000004)
+position = Vector2(-0.013136775, 7.9999895)
+rotation = 0.0016419715
+scale = Vector2(0.9999994, 0.9999994)
 shape = SubResource("RectangleShape2D_8l82a")
 
 [node name="weapon_slots" type="Node2D" parent="top_half"]
@@ -273,7 +278,7 @@ position = Vector2(0, -1.1920929e-07)
 
 [node name="Laser" parent="top_half/weapon_slots/right_arm_weapon_slot" instance=ExtResource("7_v4qfu")]
 z_index = -1
-position = Vector2(15.996691, 2.0262685)
+position = Vector2(17.998333, 1.0295542)
 scale = Vector2(0.99999976, 0.99999976)
 ray_offset_x = 12
 
@@ -283,7 +288,7 @@ position = Vector2(0, -1.1920929e-07)
 
 [node name="Machine_gun" parent="top_half/weapon_slots/right_shoulder_weapon_slot" instance=ExtResource("6_ml5r5")]
 z_index = -2
-position = Vector2(8.918152, -14.090372)
+position = Vector2(7.029546, -17.988482)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="left_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
@@ -291,5 +296,5 @@ z_index = 1
 position = Vector2(0, -1.1920929e-07)
 
 [node name="SRM_4" parent="top_half/weapon_slots/left_shoulder_weapon_slot" instance=ExtResource("18_6bbur")]
-position = Vector2(-0.02134561, 12.999982)
+position = Vector2(-10.014763, 8.983567)
 scale = Vector2(0.99999994, 0.99999994)
