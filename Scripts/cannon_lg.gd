@@ -58,6 +58,7 @@ func impact():
 	get_parent().add_child(hitspark)
 	hitspark.global_position = sprite.global_transform.origin 
 	hitspark.rotation = rotation
+	hitspark.damage = damage
 	queue_free()
 		
 func _on_area_entered(area):

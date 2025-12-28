@@ -14,6 +14,25 @@ extends Control
 @onready var total_health: Control = $UI_frame_bottom/Total_health
 @onready var total_armor: Control = $UI_frame_bottom/Total_armor
 
+
+@onready var weapon_cooldown_r_1: Control = $UI_frame_bottom/Laser/Weapon_cooldown_r1
+@onready var weapon_cooldown_r_2: Control = $UI_frame_bottom/MachineGun/Weapon_cooldown_r2
+@onready var weapon_cooldown_r_3: Control = $UI_frame_bottom/Cannon/Weapon_cooldown_r3
+@onready var weapon_cooldown_r_4: Control = $UI_frame_bottom/rockets/Weapon_cooldown_r4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # overheat is a value out of 60.
 # players max heat is 100.
 
@@ -49,4 +68,5 @@ func handle_health_bars():
 func update_player_stats():
 #	for each of the components, get the shields and health, and disabled states and use that to change the associated 
 	components = Observed_player.components
+	paper_target.update_display(Observed_player)
 	

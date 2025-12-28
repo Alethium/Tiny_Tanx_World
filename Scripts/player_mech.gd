@@ -1,16 +1,12 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var cam: Camera2D = $Player_cam
+
 
 
 @onready var top_half: Node2D = $top_half
 @onready var bottom_half: Node2D = $bottom_half
 
-@export var SPEED = 30.0
-@export var TOP_TURN_SPEED = 3.0
-@export var BOTTOM_TURN_SPEED = 2.0
-@export var ACCELLERATION = 40.0
 
 
 @onready var bottom_hitbox: CollisionShape2D = $bottom_hitbox
@@ -32,7 +28,7 @@ const EXPLOSION_LARGE = preload("uid://bg7xl82oy8js1")
 @onready var cockpit: Area2D = %Cockpit
 @onready var core_r: Area2D = %Core_R
 @onready var core_rear: Area2D = %Core_Rear
-
+var top_locked = true
 
 # TODO in future make this list populate the weapons on ready from whatever the player has selected for weapons. 
 @onready var components = [
@@ -46,19 +42,14 @@ const EXPLOSION_LARGE = preload("uid://bg7xl82oy8js1")
 	core_r,
 	cockpit,
 	laser,
-	cannon,
 	machine_gun,
-	srm_4
+	srm_4,
+	cannon,
 ]
 
 
 
 
-func _ready():
-	for part in components:
-		part.component_owner = self
-	
-	
 @onready var hitboxes = [
 	front_left,
 	front_right,
@@ -80,9 +71,9 @@ func _ready():
 @onready var left_shoulder_weapon_slot: Node2D = $top_half/weapon_slots/left_shoulder_weapon_slot
 
 var weapon_slots = [
-	left_arm_weapon_slot,
 	right_arm_weapon_slot,
 	right_shoulder_weapon_slot,
+	left_arm_weapon_slot,
 	left_shoulder_weapon_slot
 ]
 
@@ -90,8 +81,16 @@ var bottom_dir = 0.0
 var top_dir = 0.0
 var throttle = 0.0
 
-@export var max_speed : float
-var acceleration = 400.0
+#MODDIFIABLE STATS FROM COMPONENT DAMAGE
+@export var SPEED = 30.0
+@export var TOP_TURN_SPEED = 3.0
+@export var BOTTOM_TURN_SPEED = 2.0
+var max_speed = 100
+var left_damage_mod = 1
+var right_damage_mod = 1
+
+
+#CURRENT STATE OF STATS
 var current_speed = 0.0
 var current_throttle : float = 0.0
 @export var health : int
@@ -108,6 +107,11 @@ var control_style = ControlStyles.Complex
 
 
 
+func _ready():
+	for part in components:
+		part.component_owner = self
+	
+	
 
 	
 func _physics_process(delta: float) -> void:
@@ -116,6 +120,7 @@ func _physics_process(delta: float) -> void:
 	
 	handle_inputs(delta)
 	apply_movement(delta)
+	handle_damaged_components(delta)
 	
 
 	# Handle heat
@@ -156,11 +161,13 @@ func handle_inputs(delta):
 	if control_style == ControlStyles.Complex:
 		if !overheated:
 			if Input.is_action_pressed(Controls.rotate_bottom_left):
-				bottom_dir -= BOTTOM_TURN_SPEED * delta
-				#top_dir -= BOTTOM_TURN_SPEED * delta
+				bottom_dir -= BOTTOM_TURN_SPEED * left_damage_mod * right_damage_mod * delta
+				if top_locked == true:
+					top_dir -= BOTTOM_TURN_SPEED * left_damage_mod * right_damage_mod * delta
 			if Input.is_action_pressed(Controls.rotate_bottom_right):
-				bottom_dir += BOTTOM_TURN_SPEED * delta
-				#top_dir += BOTTOM_TURN_SPEED * delta
+				bottom_dir += BOTTOM_TURN_SPEED * left_damage_mod * right_damage_mod * delta
+				if top_locked == true:
+					top_dir += BOTTOM_TURN_SPEED * left_damage_mod * right_damage_mod * delta
 			if Input.is_action_pressed(Controls.rotate_top_left):
 				top_dir -= TOP_TURN_SPEED * delta
 			if Input.is_action_pressed(Controls.rotate_top_right):
@@ -182,7 +189,7 @@ func handle_inputs(delta):
 	top_half.global_rotation = top_dir
 	bottom_half.global_rotation = bottom_dir
 	current_speed = current_throttle 
-	current_speed = clamp(current_speed, -max_speed, max_speed)
+	current_speed = clamp(current_speed, -max_speed*0.8, max_speed)
 	#print("current speed : ",current_speed)
 	if Input.is_action_pressed(Controls.brake):
 		current_throttle = lerp(current_throttle,0.0,delta) 
@@ -228,7 +235,34 @@ func update_total_health_bars():
 		
 	curr_armor = temp_armor
 	curr_health = temp_health
-
+func handle_damaged_components(delta):
+	
+	if front_left.destroyed:
+		
+		if current_speed > 15:
+			bottom_dir += BOTTOM_TURN_SPEED/20 * delta 
+		elif current_speed < -15:
+			bottom_dir -= BOTTOM_TURN_SPEED/20 * delta
+			 
+	if front_right.destroyed:
+		if current_speed > 15:
+			bottom_dir -= BOTTOM_TURN_SPEED/20 * delta 
+		elif current_speed < -15:
+			bottom_dir += BOTTOM_TURN_SPEED/20 * delta 
+			
+	#if rear_right.destroyed:
+		#print("rear tread destroyed  speed reduced to : ",max_speed)
+	#if rear_left.destroyed:
+		#print("rear tread destroyed  speed reduced to : ",max_speed)
+	#rear_left,
+	#rear_right,
+#	if tracks are destroyed on left when abs current speed > 0 , make the tank pull to the left. slight bottom rotation to left
+#
+#
+#
+#
+#
+#
 	
 	
 	

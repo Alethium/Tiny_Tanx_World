@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://biuxabifjrngx"]
+
+[ext_resource type="Script" uid="uid://bmbajomkrio0t" path="res://Scripts/spawn_point.gd" id="1_smmfa"]
+[ext_resource type="Texture2D" uid="uid://c1reorwk7piin" path="res://Sprites/All.png" id="2_u0vkt"]
+
+[node name="Spawn_point" type="Node2D"]
+script = ExtResource("1_smmfa")
+anim_speed = 1.0
+frame_count = 4
+
+[node name="spawn_point_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_u0vkt")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(448, 128, 128, 32)
+
+[node name="Direction" type="Sprite2D" parent="spawn_point_sprite"]
+texture = ExtResource("2_u0vkt")
+region_enabled = true
+region_rect = Rect2(304, 33, 16, 14)

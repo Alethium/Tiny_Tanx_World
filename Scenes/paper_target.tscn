@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1vamfjyqnhsd"]
+
+[ext_resource type="Script" uid="uid://donbivsbw8rx" path="res://Scripts/paper_target.gd" id="1_nf2tr"]
+[ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="2_jmjku"]
+
+[node name="paper_target" type="Node2D"]
+script = ExtResource("1_nf2tr")
+
+[node name="paper_target_bg" type="Sprite2D" parent="."]
+modulate = Color(0.10971219, 0.10971219, 0.109712176, 1)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(263, 242, 46, 43)
+
+[node name="paper_target_cockpit" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(0, 3)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(279, 260, 14, 13)
+
+[node name="paper_target_core_R" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(11.5, 2.5)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(294, 260, 7, 12)
+
+[node name="paper_target_core_L" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-11.5, 2.5)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(271, 260, 7, 12)
+
+[node name="paper_target_weapon_R1" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(19.5, 10)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(302, 267, 7, 13)
+
+[node name="paper_target_weapon_R2" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(19.5, -4)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(302, 253, 7, 13)
+
+[node name="paper_target_weapon_R3" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-19.5, 10)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(263, 267, 7, 13)
+
+[node name="paper_target_weapon_R4" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-19.5, -4)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(263, 253, 7, 13)
+
+[node name="paper_target_front_tread_L" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-11.5, -12)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(271, 243, 7, 17)
+
+[node name="paper_target_rear_tread_L" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-11.5, 14.5)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(271, 272, 7, 12)
+
+[node name="paper_target_front_tread_R" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(11.5, -12)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(294, 243, 7, 17)
+
+[node name="paper_target_rear_tread_R" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(11.5, 14.5)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(294, 272, 7, 12)
+
+[node name="paper_target_core_rear" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(0, 14)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(278, 274, 16, 7)
+
+[node name="paper_target_core_front" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(0, -11)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(278, 246, 16, 13)

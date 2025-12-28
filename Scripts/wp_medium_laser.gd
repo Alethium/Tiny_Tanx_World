@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 		cooldown_timer -= 1
 	if firing:
 		pulse_timer -= 1
-		if raycast.get_collider() != null:
+		if raycast.get_collider() != null and !raycast.get_collider().is_in_group("sensor"):
 			hit_point = to_local(raycast.get_collision_point())
 			#print("colliding")
 			#print(raycast.get_collider())
@@ -50,8 +50,8 @@ func _process(delta: float) -> void:
 		
 		
 
-func on_destroyed():
-	pass	
+#func on_destroyed():
+	#pass	
 #	TODO if cockpit component reaches zero health, the pilot dies and the mech is dead,the core explodes
 # do a big explosion, leave behind the dead body of the mech. on fire and smoking or something. or maybe just explode, and fade out the player sprite 
 # fade the dead player screen to black, maybe have like a sprite sliding metal door slide shut to hide the screen,(this also would eba thing to do when you overheatt
@@ -60,15 +60,15 @@ func on_destroyed():
 
 func fire(_dir):
 	#print("firing  laser cooldown :",cooldown_timer,"pulse time : ",pulse_timer)
-	
-	if cooldown_timer == 0:
-		cooldown_timer += cooldown
-		pulse_timer = pulse_length
-		firing = true
-# 		instantiate a raycast straight out of the laser at the distance of the range of the laser
-# 		do a draw of a line between the target point of the laser 
-# 		if raycast collides with an area, it needs to make that distance the end of the laser. cant have it passing through things.
-# 		laser confers damage per frame, it turns on, then turns off.
+	if !destroyed:
+		if cooldown_timer == 0:
+			cooldown_timer += cooldown
+			pulse_timer = pulse_length
+			firing = true
+	# 		instantiate a raycast straight out of the laser at the distance of the range of the laser
+	# 		do a draw of a line between the target point of the laser 
+	# 		if raycast collides with an area, it needs to make that distance the end of the laser. cant have it passing through things.
+	# 		laser confers damage per frame, it turns on, then turns off.
 
 
 	

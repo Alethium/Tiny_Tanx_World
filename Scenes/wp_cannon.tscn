@@ -18,7 +18,7 @@ cooldown = 60.0
 heat = 100.0
 munition = ExtResource("1_l0sxq")
 spread = 1.0
-health = 25.0
+health = 50.0
 armor = 50.0
 metadata/_edit_horizontal_guides_ = [-34.0]
 

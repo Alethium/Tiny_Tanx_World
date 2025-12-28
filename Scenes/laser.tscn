@@ -36,10 +36,10 @@ effective_range = 300
 pulse_length = 20.0
 ray_offset_x = 9
 ray_offset_y = -5
-damage = 4.0
-cooldown = 100.0
-heat = 1.0
-health = 25.0
+damage = 15.0
+cooldown = 200.0
+heat = 0.7
+health = 50.0
 armor = 50.0
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="0"]

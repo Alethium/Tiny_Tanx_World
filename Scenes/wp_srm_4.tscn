@@ -11,11 +11,13 @@ size = Vector2(14, 12)
 script = ExtResource("2_26t47")
 volly_num = 2
 num_per_volley = 2
-damage = 2.0
+damage = 10.0
 speed = 250.0
 cooldown = 100.0
-heat = 5.0
+heat = 4.0
 munition = ExtResource("3_pf7tx")
+health = 50.0
+armor = 50.0
 
 [node name="Sprite2D" parent="." index="0"]
 region_enabled = true

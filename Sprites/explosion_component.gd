@@ -1,9 +1,13 @@
-class_name Explosion1
+class_name ExplosionComponent
 extends Vfx
+
+
+
+
 @onready var vx_sprite: Sprite2D = $"Vx sprite"
 
 
-var damage : float
+@export var damage : float
 @export var max_blast_size : float
 @onready var blast_radius: Area2D = $blast_radius
 @onready var blast_shape: CollisionShape2D = $blast_radius/blast_shape
@@ -37,7 +41,7 @@ func _process(delta: float) -> void:
 			for target in caught_in_blast:
 				if target.has_method("_on_damage_recieved"):
 					print("target caught in the blast :  ", target, "  components owner :" ,target.component_owner)
-					target._on_damage_recieved(damage/4)
+					target._on_damage_recieved(damage)
 	if sprite_index > frame_count:
 		queue_free()
 func draw_blast_ring():

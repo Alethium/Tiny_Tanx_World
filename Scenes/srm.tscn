@@ -59,7 +59,7 @@ scale_amount_max = 15.0
 scale_amount_curve = SubResource("Curve_7fqiw")
 color_ramp = SubResource("Gradient_87apo")
 
-[node name="Area2D" type="Area2D" parent="." index="3"]
+[node name="Area2D" type="Area2D" parent="." index="3" groups=["sensor"]]
 collision_mask = 3
 monitorable = false
 

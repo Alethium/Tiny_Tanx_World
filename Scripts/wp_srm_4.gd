@@ -18,22 +18,20 @@ func _physics_process(_delta: float) -> void:
 		fire_volleys()
 	
 
-func on_destroyed():
-	pass
-
 
 func fire(dir :float):
-	direction = dir
-	
-
-	
-	if cooldown_timer == 0:
-		
-		cooldown_timer += cooldown
-		volly_timer += 10
-		firing = true
+	if !destroyed:
 		direction = dir
-		volly_num = 2
+		
+
+		
+		if cooldown_timer == 0:
+			
+			cooldown_timer += cooldown
+			volly_timer += 10
+			firing = true
+			direction = dir
+			volly_num = 2
 		#var new_shot2 = munition.instantiate()
 		#new_shot2.global_rotation = dir 
 		#new_shot2.global_position = to_global(Vector2(position.x-8,position.y))
@@ -42,23 +40,24 @@ func fire(dir :float):
 		#new_shot2.direction = -move_direction
 		#get_parent().get_parent().get_parent().get_parent().get_parent().spawned_projectiles.add_child(new_shot2)
 func fire_volleys():
-	var adjusted_angle = direction + deg_to_rad(90 + randf_range(-spread,spread))  # Assuming bottom_dir is in radians
-	var move_direction = Vector2(cos(adjusted_angle), sin(adjusted_angle))
-	
-	if volly_timer == 0 and volly_num > 0:
-		volly_num -= 1
-		volly_timer += 15
-		for i in range(0,2):
-			var new_shot = munition.instantiate()
-			gun_owner.overheat += heat
-			new_shot.global_rotation = direction
-			new_shot.global_position = to_global(Vector2(position.x + ( 9 * i )-4,position.y))
-			new_shot.projectile_owner = gun_owner
-			new_shot.damage = damage
-			new_shot.speed = speed
-			new_shot.direction = -move_direction
-			new_shot.projectile_owner = gun_owner
-			get_parent().get_parent().get_parent().get_parent().get_parent().add_child(new_shot)
+	if !destroyed:
+		var adjusted_angle = direction + deg_to_rad(90 + randf_range(-spread,spread))  # Assuming bottom_dir is in radians
+		var move_direction = Vector2(cos(adjusted_angle), sin(adjusted_angle))
 		
-	if volly_num == 0:	
-		firing = false
+		if volly_timer == 0 and volly_num > 0:
+			volly_num -= 1
+			volly_timer += 15
+			for i in range(0,2):
+				var new_shot = munition.instantiate()
+				gun_owner.overheat += heat
+				new_shot.global_rotation = direction
+				new_shot.global_position = to_global(Vector2(position.x + ( 9 * i )-4,position.y))
+				new_shot.projectile_owner = gun_owner
+				new_shot.damage = damage
+				new_shot.speed = speed
+				new_shot.direction = -move_direction
+				new_shot.projectile_owner = gun_owner
+				get_parent().get_parent().get_parent().get_parent().get_parent().add_child(new_shot)
+			
+		if volly_num == 0:	
+			firing = false
