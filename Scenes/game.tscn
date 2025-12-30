@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpl20eb6x6t14"]
+[gd_scene load_steps=9 format=3 uid="uid://dpl20eb6x6t14"]
 
 [ext_resource type="Script" uid="uid://dvockkcnjdenb" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://jhho1u3orutm" path="res://Scenes/level.tscn" id="1_ebmjs"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://m2sjqkxfifmj" path="res://Scripts/Player_1_controls.tres" id="4_i6g32"]
 [ext_resource type="Resource" uid="uid://djbf4ibjvpqxp" path="res://Scripts/Player_2_controls.tres" id="5_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://ftl8f5x5g86g" path="res://Scenes/player_ui.tscn" id="5_i6g32"]
+[ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="7_v158k"]
+[ext_resource type="PackedScene" uid="uid://b2tkalj45xknl" path="res://Scenes/life_counter_bulb.tscn" id="8_h4fw4"]
 
 [node name="Game" type="Control" node_paths=PackedStringArray("player_1", "player_2")]
 layout_mode = 3
@@ -93,4 +95,36 @@ layout_mode = 0
 offset_left = 637.0
 offset_right = 645.0
 offset_bottom = 720.0
-color = Color(0, 0, 0, 1)
+color = Color(0.25490198, 0.23921569, 0.25882354, 1)
+
+[node name="life_meter" type="Node2D" parent="."]
+position = Vector2(640, 514.35297)
+scale = Vector2(2, 2)
+
+[node name="Life_meter" type="Sprite2D" parent="life_meter"]
+texture = ExtResource("7_v158k")
+region_enabled = true
+region_rect = Rect2(148, 190, 24, 36)
+
+[node name="Player_1 bulbs" type="Node2D" parent="life_meter/Life_meter"]
+
+[node name="Life_counter_bulb" parent="life_meter/Life_meter/Player_1 bulbs" instance=ExtResource("8_h4fw4")]
+position = Vector2(-6, -12)
+
+[node name="Life_counter_bulb2" parent="life_meter/Life_meter/Player_1 bulbs" instance=ExtResource("8_h4fw4")]
+position = Vector2(-6, 0)
+
+[node name="Life_counter_bulb3" parent="life_meter/Life_meter/Player_1 bulbs" instance=ExtResource("8_h4fw4")]
+position = Vector2(-6, 12)
+
+[node name="Player_2 bulbs" type="Node2D" parent="life_meter/Life_meter"]
+position = Vector2(12, 0)
+
+[node name="Life_counter_bulb" parent="life_meter/Life_meter/Player_2 bulbs" instance=ExtResource("8_h4fw4")]
+position = Vector2(-6, -12)
+
+[node name="Life_counter_bulb2" parent="life_meter/Life_meter/Player_2 bulbs" instance=ExtResource("8_h4fw4")]
+position = Vector2(-6, 0)
+
+[node name="Life_counter_bulb3" parent="life_meter/Life_meter/Player_2 bulbs" instance=ExtResource("8_h4fw4")]
+position = Vector2(-6, 12)

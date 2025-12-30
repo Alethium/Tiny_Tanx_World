@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2j5df3u135am"]
-
-[ext_resource type="Script" uid="uid://cc868troowg0k" path="res://Scripts/stacked_sprite.gd" id="1_13dey"]
-[ext_resource type="Texture2D" uid="uid://b1tb1bxhcvrrf" path="res://Sprites/test stack.png" id="2_nom8k"]
-
-[node name="Stacked_sprite" type="Node2D"]
-script = ExtResource("1_13dey")
-sprite_sheet = ExtResource("2_nom8k")

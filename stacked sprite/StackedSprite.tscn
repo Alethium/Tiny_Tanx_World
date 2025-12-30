@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkjldeue11132"]
+
+[ext_resource type="Texture2D" uid="uid://b1tb1bxhcvrrf" path="res://Sprites/test stack.png" id="1_y3me4"]
+[ext_resource type="Script" uid="uid://bqcpdf23io4uf" path="res://stacked sprite/StackedSprite.gd" id="2"]
+
+[node name="StackedSprite" type="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("1_y3me4")
+hframes = 26
+frame = 5
+script = ExtResource("2")

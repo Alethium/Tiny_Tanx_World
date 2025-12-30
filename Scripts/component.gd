@@ -34,11 +34,11 @@ func _on_damage_recieved(damage:float):
 		health -= damage
 		print("damage : ",damage, "component damaged : " , self.name,"component health and armor : ", health, " / ",armor)
 	elif health <= 0 :
-		print("COMPONENT DESTROYED:  ", self.name)
+		#print("COMPONENT DESTROYED:  ", self.name)
 		var num_areas = get_overlapping_areas().size()
 		for area in get_overlapping_areas():
 			if area.has_method("_on_ghost_damage_recieved") :
-				area._on_ghost_damage_recieved(damage/num_areas/2)
+				area._on_ghost_damage_recieved(damage/num_areas)
 
 #		CHECK FOR OVERLAPPING BODIES< IF THOSE CAN TAKE DAMAGE SPREAD THE DAMAGE TO THEM, divide among all overlapping bodies
 func on_destruction():

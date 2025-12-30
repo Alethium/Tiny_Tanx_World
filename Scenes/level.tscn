@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://jhho1u3orutm"]
+[gd_scene load_steps=10 format=4 uid="uid://jhho1u3orutm"]
 
 [ext_resource type="Texture2D" uid="uid://khysrdg83v1a" path="res://Sprites/Builing 9block template.png" id="2_6phgx"]
 [ext_resource type="Shader" uid="uid://cebet10lqwu4h" path="res://Scenes/gridfloor.gdshader" id="2_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://biuxabifjrngx" path="res://Scenes/spawn_point.tscn" id="3_6phgx"]
+[ext_resource type="PackedScene" uid="uid://dkjldeue11132" path="res://stacked sprite/StackedSprite.tscn" id="4_wqkje"]
+[ext_resource type="Texture2D" uid="uid://b1tb1bxhcvrrf" path="res://Sprites/test stack.png" id="5_0f350"]
 
 [sub_resource type="GDScript" id="GDScript_tumq0"]
 resource_name = "Level"
@@ -680,3 +682,11 @@ position = Vector2(-110, 441)
 [node name="Spawn_point17" parent="spawn_points" instance=ExtResource("3_6phgx")]
 position = Vector2(-645, 441)
 rotation = -1.5707964
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="StackedSprite" parent="." instance=ExtResource("4_wqkje")]
+position = Vector2(-205, 395)
+scale = Vector2(2, 2)
+texture = ExtResource("5_0f350")
+hframes = 26

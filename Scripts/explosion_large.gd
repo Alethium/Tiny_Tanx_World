@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	
 	if blast_size < max_blast_size:
 		#print("blast size : ", blast_size)
-		print("LARGE EXPLOSION")
+		#print("LARGE EXPLOSION")
 		blast_size += 3.0
 		draw_blast_ring()
 	
@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 	if blast_radius.monitoring == true:
 		if blast_radius.get_overlapping_areas().size() > 0:
 			var caught_in_blast = blast_radius.get_overlapping_areas()
-			print(caught_in_blast)
+			#print(caught_in_blast)
 			for target in caught_in_blast:
 				if target.has_method("_on_damage_recieved"):
 					print("target caught in the blast :  ", target, "  components owner :" ,target.component_owner)

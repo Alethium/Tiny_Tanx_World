@@ -11,10 +11,10 @@ anchor_left = -0.22200002
 anchor_top = -0.35200003
 anchor_right = 0.22200002
 anchor_bottom = 0.43800002
-offset_left = 255.74402
-offset_top = 228.09602
-offset_right = -255.74402
-offset_bottom = -283.824
+offset_left = 256.16003
+offset_top = 228.44002
+offset_right = -255.328
+offset_bottom = -283.48
 script = ExtResource("1_qipxh")
 
 [node name="TnytanxUiSprites" type="Sprite2D" parent="."]

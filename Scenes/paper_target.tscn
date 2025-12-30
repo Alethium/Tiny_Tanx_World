@@ -115,7 +115,7 @@ modulate = Color(0.49019608, 1, 0.4, 1)
 position = Vector2(0, 3)
 texture = ExtResource("2_jmjku")
 region_enabled = true
-region_rect = Rect2(227, 260, 10, 9)
+region_rect = Rect2(227, 260, 10, 10)
 
 [node name="core_R_health" type="Sprite2D" parent="."]
 modulate = Color(0.49019608, 1, 0.4, 1)

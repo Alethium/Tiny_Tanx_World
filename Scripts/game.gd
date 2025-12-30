@@ -11,6 +11,8 @@ const PLAYER_2_CONTROLS = preload("uid://djbf4ibjvpqxp")
 const PLAYER_1_CONTROLS = preload("uid://m2sjqkxfifmj")
 @onready var player_2_ui: Control = $PLAYER_UI2
 @onready var player_1_ui: Control = $PLAYER_UI
+@onready var player_1_bulbs: Node2D = $"life_meter/Life_meter/Player_1 bulbs"
+@onready var player_2_bulbs: Node2D = $"life_meter/Life_meter/Player_2 bulbs"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,7 +29,12 @@ func _process(_delta: float) -> void:
 
 
 
-func on_player_death(player):
+func on_player_death(player,lives_remaining):
+	if player == "Player_2":
+		player_2_bulbs.get_child(lives_remaining-1).toggle_light()
+	elif player == "Player_1":
+		player_1_bulbs.get_child(lives_remaining-1).toggle_light()
+	
 	print("RESPAWNING DEAD PLAYER : ", player)
 	var respawning_player = PLAYER_MECH.instantiate()
 	
@@ -57,6 +64,7 @@ func on_player_death(player):
 		respawning_player.global_position = new_spawn.global_position
 		respawning_player.bottom_dir = (new_spawn.global_rotation)
 		respawning_player.top_dir = (new_spawn.global_rotation)
+		respawning_player.current_lives = lives_remaining
 		print("respawning player 2 at : ", new_spawn.global_position)
 		player_2_ui.Observed_player = player_2
 		player_2.player_name = "Player_2"
@@ -69,6 +77,7 @@ func on_player_death(player):
 		respawning_player.global_position = new_spawn.global_position
 		respawning_player.bottom_dir = (new_spawn.global_rotation)
 		respawning_player.top_dir = (new_spawn.global_rotation)
+		respawning_player.current_lives = lives_remaining
 		print("respawning player 1", new_spawn.global_position) 
 		player_1_ui.Observed_player = player_1
 		player_1.player_name = "Player_1"

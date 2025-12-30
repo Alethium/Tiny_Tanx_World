@@ -93,6 +93,7 @@ var right_damage_mod = 1
 
 
 #CURRENT STATE OF STATS
+var current_lives = 4
 var current_speed = 0.0
 var current_throttle : float = 0.0
 @export var health : int
@@ -124,7 +125,8 @@ func _physics_process(delta: float) -> void:
 	apply_movement(delta)
 	handle_damaged_components(delta)
 	
-
+	if cockpit.health <= 0:
+		_on_destroyed()
 	# Handle heat
 	overheat -= 0.1
 	overheat = clamp(overheat,0,max_heat)
@@ -155,7 +157,9 @@ func _on_destroyed():
 	get_parent().add_child(explosion)
 	explosion.global_position = global_transform.origin 
 	call_deferred("queue_free")
-	on_death.emit(player_name)
+	current_lives -= 1
+	if current_lives > 0:
+		on_death.emit(player_name,current_lives)
 
 func handle_inputs(delta):
 	

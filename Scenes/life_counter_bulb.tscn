@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2tkalj45xknl"]
+
+[ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="1_n4jga"]
+[ext_resource type="Script" uid="uid://ce32uu3vvury7" path="res://Scripts/life_counter_bulb.gd" id="2_of0d5"]
+
+[node name="Life_counter_bulb" type="Sprite2D"]
+texture = ExtResource("1_n4jga")
+hframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(124, 192, 16, 8)
+script = ExtResource("2_of0d5")
