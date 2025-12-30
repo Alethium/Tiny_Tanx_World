@@ -7,10 +7,12 @@
 [ext_resource type="Resource" uid="uid://djbf4ibjvpqxp" path="res://Scripts/Player_2_controls.tres" id="5_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://ftl8f5x5g86g" path="res://Scenes/player_ui.tscn" id="5_i6g32"]
 
-[node name="Game" type="Control"]
+[node name="Game" type="Control" node_paths=PackedStringArray("player_1", "player_2")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_3dryh")
+player_1 = NodePath("HBoxContainer/Player_1/player_1_view/Player_1")
+player_2 = NodePath("HBoxContainer/Player_2/player_2_view/Player_2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -38,12 +40,13 @@ position = Vector2(480, 275)
 
 [node name="Player_1" parent="HBoxContainer/Player_1/player_1_view" instance=ExtResource("2_qxrlw")]
 position = Vector2(221, 529)
+player_name = "Player_1"
 Controls = ExtResource("4_i6g32")
 
 [node name="Player_2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/Player_2"]
+[node name="player_2_view" type="SubViewport" parent="HBoxContainer/Player_2"]
 handle_input_locally = false
 msaa_2d = 3
 msaa_3d = 3
@@ -54,8 +57,9 @@ size = Vector2i(640, 720)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Player_2" parent="HBoxContainer/Player_2/SubViewport" instance=ExtResource("2_qxrlw")]
+[node name="Player_2" parent="HBoxContainer/Player_2/player_2_view" instance=ExtResource("2_qxrlw")]
 position = Vector2(327, 529)
+player_name = "Player_2"
 Controls = ExtResource("5_1l0tm")
 
 [node name="PLAYER_UI" parent="." node_paths=PackedStringArray("Observed_player") instance=ExtResource("5_i6g32")]
@@ -82,7 +86,7 @@ offset_left = 961.00006
 offset_top = 372.0
 offset_right = 961.00006
 offset_bottom = 1092.0
-Observed_player = NodePath("../HBoxContainer/Player_2/SubViewport/Player_2")
+Observed_player = NodePath("../HBoxContainer/Player_2/player_2_view/Player_2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

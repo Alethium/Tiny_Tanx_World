@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 
-
+@export var player_name : String
 
 @onready var top_half: Node2D = $top_half
 @onready var bottom_half: Node2D = $bottom_half
@@ -29,6 +29,8 @@ const EXPLOSION_LARGE = preload("uid://bg7xl82oy8js1")
 @onready var core_r: Area2D = %Core_R
 @onready var core_rear: Area2D = %Core_Rear
 var top_locked = true
+signal on_death()
+
 
 # TODO in future make this list populate the weapons on ready from whatever the player has selected for weapons. 
 @onready var components = [
@@ -139,7 +141,7 @@ func _physics_process(delta: float) -> void:
 
 	update_total_health_bars()
 	move_and_slide()
-
+	
 
 
 func _on_destroyed():
@@ -153,6 +155,7 @@ func _on_destroyed():
 	get_parent().add_child(explosion)
 	explosion.global_position = global_transform.origin 
 	call_deferred("queue_free")
+	on_death.emit(player_name)
 
 func handle_inputs(delta):
 	
@@ -207,7 +210,8 @@ func handle_inputs(delta):
 			right_shoulder_weapon_slot.get_children()[0].fire(top_dir)
 		if Input.is_action_pressed(Controls.fire_right_weapon_1): 
 			right_arm_weapon_slot.get_children()[0].fire(top_dir)
-		
+	if Input.is_action_just_pressed(Controls.self_destruct):
+		_on_destroyed()
 func apply_movement(delta):
 	
 	# Add 90 degrees to align with sprite's forward

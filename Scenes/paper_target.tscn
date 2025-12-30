@@ -47,14 +47,14 @@ texture = ExtResource("2_jmjku")
 region_enabled = true
 region_rect = Rect2(302, 253, 7, 13)
 
-[node name="paper_target_weapon_R3" type="Sprite2D" parent="."]
+[node name="paper_target_weapon_L1" type="Sprite2D" parent="."]
 modulate = Color(0.49019608, 1, 0.4, 1)
 position = Vector2(-19.5, 10)
 texture = ExtResource("2_jmjku")
 region_enabled = true
 region_rect = Rect2(263, 267, 7, 13)
 
-[node name="paper_target_weapon_R4" type="Sprite2D" parent="."]
+[node name="paper_target_weapon_L2" type="Sprite2D" parent="."]
 modulate = Color(0.49019608, 1, 0.4, 1)
 position = Vector2(-19.5, -4)
 texture = ExtResource("2_jmjku")
@@ -102,3 +102,94 @@ position = Vector2(0, -11)
 texture = ExtResource("2_jmjku")
 region_enabled = true
 region_rect = Rect2(278, 246, 16, 13)
+
+[node name="core_front_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(0, -10.5)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(227, 277, 8, 1)
+
+[node name="cockpit_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(0, 3)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(227, 260, 10, 9)
+
+[node name="core_R_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(11.5, 2.5)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(242, 262, 1, 8)
+
+[node name="core_L_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-11.5, 2.5)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(219, 262, 1, 8)
+
+[node name="weapon_R1_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(19.5, 9.5)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(250, 269, 1, 8)
+
+[node name="weapon_r2_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(19.5, -3.5179296)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(250, 256, 1, 8)
+
+[node name="weapon_l1_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-19.5, 9.5)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(211, 269, 1, 8)
+
+[node name="Weapon_l2_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-19.5, -3.5)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(211, 256, 1, 8)
+
+[node name="tread_front_l_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-11.510468, -9.47725)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(219, 250, 1, 8)
+
+[node name="tread_rear_l_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(-11.510468, 14.488416)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(219, 250, 1, 8)
+
+[node name="tread_front_r_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(11.50359, -9.469005)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(219, 250, 1, 8)
+
+[node name="tread_rear_r_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(11.487688, 14.488416)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(219, 250, 1, 8)
+
+[node name="core_rear_health" type="Sprite2D" parent="."]
+modulate = Color(0.49019608, 1, 0.4, 1)
+position = Vector2(0, 14)
+texture = ExtResource("2_jmjku")
+region_enabled = true
+region_rect = Rect2(227, 277, 8, 1)
