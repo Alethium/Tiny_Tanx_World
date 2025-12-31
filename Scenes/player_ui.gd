@@ -21,8 +21,9 @@ extends Control
 @onready var weapon_cooldown_r_4: Control = $UI_frame_bottom/rockets/Weapon_cooldown_r4
 
 
+@onready var enemy_paper_target: Node2D = $UI_frame_bottom/enemy_target/enemy_paper_target
 
-
+@export var locked_on_player : Player
 
 
 
@@ -55,7 +56,13 @@ func _process(_delta: float) -> void:
 		handle_overheat_bar()
 		handle_health_bars()
 		update_player_stats()
-	
+	if locked_on_player != null:
+		%enemy_target.visible = true
+		#print("locked on player  : ", locked_on_player)
+		update_enemy_paper_target(locked_on_player)
+	else:
+		%enemy_target.visible = false
+		
 
 func handle_overheat_bar():
 	overheat.size.y = Observed_player.overheat * 0.6
@@ -69,4 +76,10 @@ func update_player_stats():
 #	for each of the components, get the shields and health, and disabled states and use that to change the associated 
 	components = Observed_player.components
 	paper_target.update_display(Observed_player)
+
+
+
+
 	
+func update_enemy_paper_target(enemy):
+	enemy_paper_target.update_display(enemy)

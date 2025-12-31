@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1pqxjre8j6ib"]
+
+[ext_resource type="Script" uid="uid://c5ydboqx5ku80" path="res://Scripts/pilot_portrait.gd" id="1_ltgq1"]
+[ext_resource type="Texture2D" uid="uid://fsofjw36c72v" path="res://Sprites/interdictor.png" id="2_7llkd"]
+
+[node name="Pilot_portrait" type="Node2D"]
+script = ExtResource("1_ltgq1")
+
+[node name="main_body" type="Sprite2D" parent="."]
+texture = ExtResource("2_7llkd")
+hframes = 8
+region_enabled = true
+region_rect = Rect2(0, 64, 128, 16)
+
+[node name="facial_expression" type="Sprite2D" parent="main_body"]
+texture = ExtResource("2_7llkd")
+hframes = 2
+vframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 80, 16, 16)

@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @onready var top_half: Node2D = $top_half
 @onready var bottom_half: Node2D = $bottom_half
+@onready var targeting_laser: RayCast2D = $top_half/targeting_laser
 
 
 
@@ -107,7 +108,7 @@ var curr_health = 0
 var curr_armor = 0
 enum ControlStyles {Complex,Simple,Twinstick}
 var control_style = ControlStyles.Complex
-
+var targeted_player : Player = null
 
 
 func _ready():

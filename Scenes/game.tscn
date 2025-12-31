@@ -64,7 +64,7 @@ position = Vector2(327, 529)
 player_name = "Player_2"
 Controls = ExtResource("5_1l0tm")
 
-[node name="PLAYER_UI" parent="." node_paths=PackedStringArray("Observed_player") instance=ExtResource("5_i6g32")]
+[node name="PLAYER_UI" parent="." node_paths=PackedStringArray("Observed_player", "locked_on_player") instance=ExtResource("5_i6g32")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -76,8 +76,9 @@ offset_top = 372.0
 offset_right = 320.0
 offset_bottom = 1092.0
 Observed_player = NodePath("../HBoxContainer/Player_1/player_1_view/Player_1")
+locked_on_player = NodePath("../HBoxContainer/Player_2/player_2_view/Player_2")
 
-[node name="PLAYER_UI2" parent="." node_paths=PackedStringArray("Observed_player") instance=ExtResource("5_i6g32")]
+[node name="PLAYER_UI2" parent="." node_paths=PackedStringArray("Observed_player", "locked_on_player") instance=ExtResource("5_i6g32")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -89,6 +90,7 @@ offset_top = 372.0
 offset_right = 961.00006
 offset_bottom = 1092.0
 Observed_player = NodePath("../HBoxContainer/Player_2/player_2_view/Player_2")
+locked_on_player = NodePath("../HBoxContainer/Player_1/player_1_view/Player_1")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

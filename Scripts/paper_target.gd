@@ -35,7 +35,7 @@ extends Node2D
 
 
 
-@onready var player_ui: Control = $"../.."
+
 const UI_GLOW_COLORS_PALETTE = preload("uid://bo5yombeylwhr")
 
 

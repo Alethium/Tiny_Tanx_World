@@ -60,11 +60,12 @@ size = Vector2(10.000004, 18.000002)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8l82a"]
 size = Vector2(30.000015, 18.000008)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_e0bbr")
+TOP_TURN_SPEED = 2.0
 
 [node name="bottom_hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
@@ -194,6 +195,12 @@ color_ramp = SubResource("Gradient_dsq5r")
 z_index = 1
 rotation = -0.0016419707
 scale = Vector2(0.99999994, 0.99999994)
+
+[node name="targeting_laser" type="RayCast2D" parent="top_half"]
+rotation = 0.0016419707
+scale = Vector2(1.0000001, 1.0000001)
+target_position = Vector2(0, -122)
+collision_mask = 2
 
 [node name="Player_cam" type="Camera2D" parent="top_half"]
 position = Vector2(0.1986784, -120.99985)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ftl8f5x5g86g"]
+[gd_scene load_steps=7 format=3 uid="uid://ftl8f5x5g86g"]
 
 [ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="1_dxtgh"]
 [ext_resource type="Texture2D" uid="uid://dkgfg8q0h7rph" path="res://Sprites/tnytanxUI.png" id="1_ohrjl"]
 [ext_resource type="Script" uid="uid://bho7albwng17r" path="res://Scenes/player_ui.gd" id="1_qipxh"]
 [ext_resource type="PackedScene" uid="uid://c1vamfjyqnhsd" path="res://Scenes/paper_target.tscn" id="4_46yqn"]
+[ext_resource type="Script" uid="uid://dpw6iakub8ehl" path="res://Scripts/enemy_target.gd" id="5_vi3dy"]
+[ext_resource type="PackedScene" uid="uid://b1pqxjre8j6ib" path="res://Scenes/pilot_portrait.tscn" id="6_jbpjp"]
 
 [node name="PLAYER_UI" type="Control"]
 layout_mode = 3
@@ -13,8 +15,8 @@ anchor_right = 0.22200002
 anchor_bottom = 0.43800002
 offset_left = 256.16003
 offset_top = 228.44002
-offset_right = -255.328
-offset_bottom = -283.48
+offset_right = -256.16003
+offset_bottom = -284.36002
 script = ExtResource("1_qipxh")
 
 [node name="TnytanxUiSprites" type="Sprite2D" parent="."]
@@ -24,7 +26,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_dxtgh")
 
 [node name="UI_frame_bottom" type="Sprite2D" parent="."]
-position = Vector2(0.41601563, 28.343994)
+position = Vector2(0, 28)
 scale = Vector2(2, 2)
 texture = ExtResource("1_ohrjl")
 offset = Vector2(0, 39)
@@ -39,6 +41,18 @@ region_rect = Rect2(0, 0, 320, 136)
 
 [node name="paper_target" parent="UI_frame_bottom" instance=ExtResource("4_46yqn")]
 position = Vector2(126, 102.5)
+
+[node name="enemy_target" type="Sprite2D" parent="UI_frame_bottom"]
+unique_name_in_owner = true
+position = Vector2(78.5, 93.261)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ohrjl")
+region_enabled = true
+region_rect = Rect2(255, 238, 61, 61)
+script = ExtResource("5_vi3dy")
+
+[node name="enemy_paper_target" parent="UI_frame_bottom/enemy_target" instance=ExtResource("4_46yqn")]
+position = Vector2(0, -6)
 
 [node name="Overheat" type="Control" parent="UI_frame_bottom"]
 clip_contents = true
@@ -75,106 +89,48 @@ texture = ExtResource("1_dxtgh")
 region_enabled = true
 region_rect = Rect2(263, 290, 3, 3)
 
-[node name="Laser" type="Sprite2D" parent="UI_frame_bottom"]
-position = Vector2(-70, 85)
+[node name="weapon_slot_l1" type="Node2D" parent="UI_frame_bottom"]
+
+[node name="Cannon" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l1"]
+position = Vector2(-70.5, 85.5)
 texture = ExtResource("1_dxtgh")
 region_enabled = true
-region_rect = Rect2(136, 238, 12, 12)
+region_rect = Rect2(136, 271, 11, 11)
 
-[node name="Weapon_cooldown_r1" type="Control" parent="UI_frame_bottom/Laser"]
+[node name="Weapon_cooldown_r3" type="Control" parent="UI_frame_bottom/weapon_slot_l1/Cannon"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = 10.0
+offset_left = 10.5
 offset_top = -1.5
-offset_right = 15.051872
-offset_bottom = 29.440636
-rotation = 4.712389
-
-[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/Laser/Weapon_cooldown_r1"]
-position = Vector2(2.4661927, 15.253706)
-rotation = 4.712389
-scale = Vector2(1, 1.175)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(101, 256, 29, 3)
-
-[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/Laser"]
-visible = false
-position = Vector2(17.5, 0)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(83, 238, 49, 14)
-
-[node name="MachineGun" type="Sprite2D" parent="UI_frame_bottom"]
-position = Vector2(-70, 101)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(136, 254, 12, 12)
-
-[node name="Weapon_cooldown_r2" type="Control" parent="UI_frame_bottom/MachineGun"]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 9.5
-offset_top = -1.5
-offset_right = 14.551872
+offset_right = 15.551872
 offset_bottom = 29.440643
 rotation = 4.712389
 
-[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/MachineGun/Weapon_cooldown_r2"]
-position = Vector2(2.4661927, 15.253706)
+[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l1/Cannon/Weapon_cooldown_r3"]
+position = Vector2(2.9999986, 14.999998)
 rotation = 4.712389
 scale = Vector2(1, 1.175)
 texture = ExtResource("1_dxtgh")
 region_enabled = true
 region_rect = Rect2(101, 256, 29, 3)
 
-[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/MachineGun"]
-visible = false
-position = Vector2(17.5, 0)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(83, 238, 49, 14)
-
-[node name="Cannon" type="Sprite2D" parent="UI_frame_bottom"]
-position = Vector2(-71, 118)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(136, 272, 10, 10)
-
-[node name="Weapon_cooldown_r3" type="Control" parent="UI_frame_bottom/Cannon"]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 11.0
-offset_top = -2.5
-offset_right = 16.051872
-offset_bottom = 28.440643
-rotation = 4.712389
-
-[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/Cannon/Weapon_cooldown_r3"]
-position = Vector2(2.4661927, 15.253706)
-rotation = 4.712389
-scale = Vector2(1, 1.175)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(101, 256, 29, 3)
-
-[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/Cannon"]
+[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l1/Cannon"]
 visible = false
 position = Vector2(18.5, -1)
 texture = ExtResource("1_dxtgh")
 region_enabled = true
 region_rect = Rect2(83, 238, 49, 14)
 
-[node name="rockets" type="Sprite2D" parent="UI_frame_bottom"]
-position = Vector2(-70, 133)
+[node name="weapon_slot_l2" type="Node2D" parent="UI_frame_bottom"]
+
+[node name="rockets" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l2"]
+position = Vector2(-70, 101)
 texture = ExtResource("1_dxtgh")
 region_enabled = true
 region_rect = Rect2(136, 286, 12, 12)
 
-[node name="Weapon_cooldown_r4" type="Control" parent="UI_frame_bottom/rockets"]
+[node name="Weapon_cooldown_r4" type="Control" parent="UI_frame_bottom/weapon_slot_l2/rockets"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -184,7 +140,7 @@ offset_right = 14.551872
 offset_bottom = 29.940643
 rotation = 4.712389
 
-[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/rockets/Weapon_cooldown_r4"]
+[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l2/rockets/Weapon_cooldown_r4"]
 position = Vector2(2.4661927, 15.253706)
 rotation = 4.712389
 scale = Vector2(1, 1.175)
@@ -192,7 +148,73 @@ texture = ExtResource("1_dxtgh")
 region_enabled = true
 region_rect = Rect2(101, 256, 29, 3)
 
-[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/rockets"]
+[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l2/rockets"]
+visible = false
+position = Vector2(17.5, 0)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(83, 238, 49, 14)
+
+[node name="Weapon_slot_r1" type="Node2D" parent="UI_frame_bottom"]
+
+[node name="Laser" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r1"]
+position = Vector2(-70, 117)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(136, 238, 12, 12)
+
+[node name="Weapon_cooldown_r1" type="Control" parent="UI_frame_bottom/Weapon_slot_r1/Laser"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = -1.5
+offset_right = 15.051872
+offset_bottom = 29.440636
+rotation = 4.712389
+
+[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r1/Laser/Weapon_cooldown_r1"]
+position = Vector2(2.4661927, 15.253706)
+rotation = 4.712389
+scale = Vector2(1, 1.175)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(101, 256, 29, 3)
+
+[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r1/Laser"]
+visible = false
+position = Vector2(17.5, 0)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(83, 238, 49, 14)
+
+[node name="Weapon_slot_r2" type="Node2D" parent="UI_frame_bottom"]
+
+[node name="MachineGun" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r2"]
+position = Vector2(-70, 133)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(136, 254, 12, 12)
+
+[node name="Weapon_cooldown_r2" type="Control" parent="UI_frame_bottom/Weapon_slot_r2/MachineGun"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 9.5
+offset_top = -1.5
+offset_right = 14.551872
+offset_bottom = 29.440643
+rotation = 4.712389
+
+[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r2/MachineGun/Weapon_cooldown_r2"]
+position = Vector2(2.4661927, 15.253706)
+rotation = 4.712389
+scale = Vector2(1, 1.175)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(101, 256, 29, 3)
+
+[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r2/MachineGun"]
 visible = false
 position = Vector2(17.5, 0)
 texture = ExtResource("1_dxtgh")
@@ -216,3 +238,7 @@ scale = Vector2(1.0286106, 15.012549)
 texture = ExtResource("1_dxtgh")
 region_enabled = true
 region_rect = Rect2(263, 285, 3, 3)
+
+[node name="Pilot_portrait" parent="UI_frame_bottom" instance=ExtResource("6_jbpjp")]
+position = Vector2(-124, 107)
+scale = Vector2(2, 2)

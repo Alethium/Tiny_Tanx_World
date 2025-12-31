@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyeooo2afjfuk"]
+
+[ext_resource type="Theme" uid="uid://766f67hs6wm8" path="res://Tanx_ui_theme.tres" id="1_ak2if"]
+[ext_resource type="Texture2D" uid="uid://crx0h4il8c8wi" path="res://Sprites/tiny tanks title image.png" id="2_ig5kc"]
+
+[node name="Title_screen" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ak2if")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_right = 574.52124
+offset_bottom = 323.16473
+scale = Vector2(2.227965, 2.227965)
+
+[node name="Panel" type="Panel" parent="Control/PanelContainer"]
+layout_mode = 2
+
+[node name="TinyTanksTitleImage" type="Sprite2D" parent="Control/PanelContainer/Panel"]
+position = Vector2(242.44287, 163.05899)
+scale = Vector2(0.37971103, 0.37971106)
+texture = ExtResource("2_ig5kc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/Panel"]
+layout_mode = 0
+offset_left = 476.73425
+offset_top = 12.028931
+offset_right = 734.73425
+offset_bottom = 188.02893
+scale = Vector2(0.37389725, 0.37389725)
+
+[node name="Button" type="Button" parent="Control/PanelContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="Button2" type="Button" parent="Control/PanelContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "settings"
+
+[node name="Button3" type="Button" parent="Control/PanelContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "exit"
+
+[node name="Button4" type="Button" parent="Control/PanelContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Instructions"
