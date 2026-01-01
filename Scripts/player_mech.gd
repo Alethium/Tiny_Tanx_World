@@ -29,8 +29,9 @@ const EXPLOSION_LARGE = preload("uid://bg7xl82oy8js1")
 @onready var cockpit: Area2D = %Cockpit
 @onready var core_r: Area2D = %Core_R
 @onready var core_rear: Area2D = %Core_Rear
-var top_locked = true
+@export var top_locked = true
 signal on_death()
+@onready var cam: Camera2D = $top_half/Player_cam
 
 
 # TODO in future make this list populate the weapons on ready from whatever the player has selected for weapons. 
@@ -272,7 +273,8 @@ func handle_damaged_components(delta):
 #
 #
 #
-	
+
+		
 	
 	
 	

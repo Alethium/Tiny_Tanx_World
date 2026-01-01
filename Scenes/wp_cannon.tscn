@@ -30,6 +30,7 @@ region_enabled = true
 region_rect = Rect2(20, 7, 9, 25)
 
 [node name="weapon1L_hitbox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.0049261516, 2.9999971)
 scale = Vector2(1.000001, 1.000001)
 shape = SubResource("RectangleShape2D_ml5r5")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ftl8f5x5g86g"]
+[gd_scene load_steps=9 format=3 uid="uid://ftl8f5x5g86g"]
 
 [ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="1_dxtgh"]
 [ext_resource type="Texture2D" uid="uid://dkgfg8q0h7rph" path="res://Sprites/tnytanxUI.png" id="1_ohrjl"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://dpw6iakub8ehl" path="res://Scripts/enemy_target.gd" id="5_vi3dy"]
 [ext_resource type="PackedScene" uid="uid://b1pqxjre8j6ib" path="res://Scenes/pilot_portrait.tscn" id="6_jbpjp"]
 [ext_resource type="Texture2D" uid="uid://bj2ngx6o2gso5" path="res://Sprites/tank blueprint side.png" id="7_uflt7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uflt7"]
+bg_color = Color(0.09019608, 0.078431375, 0.101960786, 1)
 
 [node name="PLAYER_UI" type="Control"]
 layout_mode = 3
@@ -247,39 +250,22 @@ position = Vector2(-139, 96)
 scale = Vector2(1.8743364, 1.8743364)
 
 [node name="mechbuilder" type="Node2D" parent="."]
+visible = false
 
-[node name="TankBlueprintSide" type="Sprite2D" parent="mechbuilder"]
-position = Vector2(-41, -92.999985)
-scale = Vector2(4.2, 4.2)
+[node name="PanelContainer" type="PanelContainer" parent="mechbuilder"]
+offset_left = -310.0
+offset_top = -362.0
+offset_right = 310.0
+offset_bottom = 176.0
+
+[node name="Panel" type="Panel" parent="mechbuilder/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uflt7")
+
+[node name="TankBlueprintSide" type="Sprite2D" parent="mechbuilder/PanelContainer/Panel"]
+position = Vector2(310, 265)
+scale = Vector2(4, 4)
 texture = ExtResource("7_uflt7")
-
-[node name="Cannon" type="Sprite2D" parent="mechbuilder"]
-position = Vector2(-274, -322)
-scale = Vector2(4.2, 4.2)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(136, 271, 11, 11)
-
-[node name="MG" type="Sprite2D" parent="mechbuilder"]
-position = Vector2(-202.99998, -326)
-scale = Vector2(4.2, 4.2)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(136, 253, 13, 13)
-
-[node name="SRM" type="Sprite2D" parent="mechbuilder"]
-position = Vector2(-138.00002, -324)
-scale = Vector2(4.2, 4.2)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(136, 286, 12, 12)
-
-[node name="laser" type="Sprite2D" parent="mechbuilder"]
-position = Vector2(-69.99999, -324)
-scale = Vector2(4.2, 4.2)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(136, 238, 12, 12)
 
 [node name="Builder_ui" type="Control" parent="mechbuilder"]
 layout_mode = 3
@@ -291,29 +277,56 @@ offset_bottom = 176.0
 
 [node name="Button" type="Button" parent="mechbuilder/Builder_ui"]
 layout_mode = 0
-offset_left = 143.0
-offset_top = 135.0
-offset_right = 193.0
-offset_bottom = 185.0
-text = "choose_weapon"
+offset_left = 189.0
+offset_top = 136.0
+offset_right = 239.0
+offset_bottom = 186.0
+
+[node name="laser" type="Sprite2D" parent="mechbuilder/Builder_ui/Button"]
+position = Vector2(25, 25)
+scale = Vector2(4, 4)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(136, 238, 12, 12)
 
 [node name="Button2" type="Button" parent="mechbuilder/Builder_ui"]
 layout_mode = 0
-offset_left = 143.0
-offset_top = 198.0
-offset_right = 193.0
-offset_bottom = 248.0
+offset_left = 189.0
+offset_top = 196.0
+offset_right = 239.0
+offset_bottom = 246.0
+
+[node name="SRM" type="Sprite2D" parent="mechbuilder/Builder_ui/Button2"]
+position = Vector2(25, 25)
+scale = Vector2(4, 4)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(136, 286, 12, 12)
 
 [node name="Button3" type="Button" parent="mechbuilder/Builder_ui"]
 layout_mode = 0
-offset_left = 143.0
-offset_top = 260.0
-offset_right = 193.0
-offset_bottom = 310.0
+offset_left = 189.0
+offset_top = 256.0
+offset_right = 239.0
+offset_bottom = 306.0
+
+[node name="Cannon" type="Sprite2D" parent="mechbuilder/Builder_ui/Button3"]
+position = Vector2(24.000015, 27.00003)
+scale = Vector2(4, 4)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(136, 271, 11, 11)
 
 [node name="Button4" type="Button" parent="mechbuilder/Builder_ui"]
 layout_mode = 0
-offset_left = 143.0
-offset_top = 324.0
-offset_right = 193.0
-offset_bottom = 374.0
+offset_left = 189.0
+offset_top = 316.0
+offset_right = 239.0
+offset_bottom = 366.0
+
+[node name="MG" type="Sprite2D" parent="mechbuilder/Builder_ui/Button4"]
+position = Vector2(27, 23)
+scale = Vector2(4, 4)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(136, 253, 13, 13)

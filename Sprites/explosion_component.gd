@@ -42,6 +42,7 @@ func _process(delta: float) -> void:
 				if target.has_method("_on_damage_recieved"):
 					print("target caught in the blast :  ", target, "  components owner :" ,target.component_owner)
 					target._on_damage_recieved(damage)
+					target.component_owner.cam.shake(2,1)
 	if sprite_index > frame_count:
 		queue_free()
 func draw_blast_ring():

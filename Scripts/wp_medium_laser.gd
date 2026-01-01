@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 			#print(raycast.get_collider())
 			if raycast.get_collider().has_method("_on_damage_recieved"):
 				raycast.get_collider()._on_damage_recieved(damage)
+				raycast.get_collider().component_owner.cam.shake(1,1)
 			#if raycast.get_collider().has_method("on_damage_recieved"):
 				#raycast.get_collider().get_parent().on_damage_recieved(damage)
 		else:
@@ -62,6 +63,7 @@ func fire(_dir):
 	#print("firing  laser cooldown :",cooldown_timer,"pulse time : ",pulse_timer)
 	if !destroyed:
 		if cooldown_timer == 0:
+			
 			cooldown_timer += cooldown
 			pulse_timer = pulse_length
 			firing = true

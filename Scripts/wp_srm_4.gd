@@ -50,6 +50,7 @@ func fire_volleys():
 			for i in range(0,2):
 				var new_shot = munition.instantiate()
 				gun_owner.overheat += heat
+				gun_owner.cam.shake(2,1)
 				new_shot.global_rotation = direction
 				new_shot.global_position = to_global(Vector2(position.x + ( 9 * i )-4,position.y))
 				new_shot.projectile_owner = gun_owner

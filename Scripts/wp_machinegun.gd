@@ -26,7 +26,7 @@ func fire(dir :float):
 			gun_owner.overheat += heat
 			var new_shot = munition.instantiate()
 			var spark = BULLET_HIT.instantiate()
-			
+			gun_owner.cam.shake(0.5,1)
 			spark.global_rotation = dir+deg_to_rad(-180)
 			spark.global_position = global_position
 			

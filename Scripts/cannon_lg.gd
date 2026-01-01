@@ -4,6 +4,7 @@ class_name CannonLG
 extends Projectile  
 
 var impacted = false
+var impacted_player : Player
 @export var life : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,12 +45,14 @@ func _on_airburst():
 func _on_body_entered(body):
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
+
 		queue_free()
 
 
 func impact():
 	impacted = true
 	var hitspark = impact_effect.instantiate()
+	
 	#explosion.global_position = self.global_position
 	sprite.visible = false
 	set_deferred("monitoring",false)
@@ -59,11 +62,15 @@ func impact():
 	hitspark.global_position = sprite.global_transform.origin 
 	hitspark.rotation = rotation
 	hitspark.damage = damage
+	
 	queue_free()
 		
 func _on_area_entered(area):
 	if area.has_method("_on_damage_recieved") and area.component_owner != projectile_owner:
 		area._on_damage_recieved(damage)
+		impacted_player = area.component_owner 
+		impacted_player.cam.shake(5,2)
+		print("impacted player : ", impacted_player)
 		impact()
 	
 	
