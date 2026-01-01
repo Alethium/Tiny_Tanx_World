@@ -51,6 +51,7 @@ func fire_volleys():
 				var new_shot = munition.instantiate()
 				gun_owner.overheat += heat
 				gun_owner.cam.shake(2,1)
+				Input.start_joy_vibration(gun_owner.player_device,1.0,0.5,0.1)
 				new_shot.global_rotation = direction
 				new_shot.global_position = to_global(Vector2(position.x + ( 9 * i )-4,position.y))
 				new_shot.projectile_owner = gun_owner

@@ -16,7 +16,8 @@ func fire(dir :float):
 		var adjusted_angle = dir + deg_to_rad(90 + randf_range(-spread,spread))  # Assuming bottom_dir is in radians
 		var move_direction = Vector2(cos(adjusted_angle), sin(adjusted_angle))
 		if cooldown_timer == 0:
-			gun_owner.cam.shake(3,1)
+			gun_owner.cam.shake(2,1)
+			Input.start_joy_vibration(gun_owner.player_device,0.9,0.9,0.2)
 			gun_owner.overheat += heat
 			cooldown_timer += cooldown
 			var new_shot = munition.instantiate()

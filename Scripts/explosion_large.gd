@@ -40,6 +40,7 @@ func _process(delta: float) -> void:
 				if target.has_method("_on_damage_recieved"):
 					print("target caught in the blast :  ", target, "  components owner :" ,target.component_owner)
 					target._on_damage_recieved(damage)
+					Input.start_joy_vibration(target.component_owner.player_device,0.9,0.9,1)
 	
 	
 	if blast_size >= max_blast_size:

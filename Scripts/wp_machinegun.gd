@@ -27,6 +27,7 @@ func fire(dir :float):
 			var new_shot = munition.instantiate()
 			var spark = BULLET_HIT.instantiate()
 			gun_owner.cam.shake(0.5,1)
+			Input.start_joy_vibration(gun_owner.player_device,0.1,0.1,0.2)
 			spark.global_rotation = dir+deg_to_rad(-180)
 			spark.global_position = global_position
 			

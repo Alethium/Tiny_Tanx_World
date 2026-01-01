@@ -1,4 +1,5 @@
 extends Camera2D
+@onready var player: Player = $"../.."
 
 var shake_intensity: float = 0.0
 var active_shake_time: float = 0.0
@@ -30,5 +31,7 @@ func shake(intensity: float,time: float):
 	
 	shake_intensity = intensity
 	active_shake_time = time
-	shake_time = 0.0 
-	 
+	shake_time = 0.0
+
+		
+	

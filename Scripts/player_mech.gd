@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 
 @export var player_name : String
-
+@export var player_device : int
 @onready var top_half: Node2D = $top_half
 @onready var bottom_half: Node2D = $bottom_half
 @onready var targeting_laser: RayCast2D = $top_half/targeting_laser
@@ -99,7 +99,7 @@ var current_lives = 4
 var current_speed = 0.0
 var current_throttle : float = 0.0
 @export var health : int
-@export var overheat = 0
+@export var overheat : float = 0.0
 var max_heat = 100
 var overheated = false
 var total_armor : int = -1
@@ -121,6 +121,16 @@ func _ready():
 	
 func _physics_process(delta: float) -> void:
 	
+	
+	if overheat > 75:
+		$top_half/engine_fire.visible = true
+		$top_half/engine_fire2.visible = true
+		Input.start_joy_vibration(player_device,1.0,1.0,delta)
+	else:
+		#Input.stop_joy_vibration(player_device)
+		$top_half/engine_fire.visible = false
+		$top_half/engine_fire2.visible = false
+		
 	# Add the gravity.
 	
 	handle_inputs(delta)

@@ -22,5 +22,5 @@ region_enabled = false
 [node name="blast_radius" type="Area2D" parent="." index="1"]
 position = Vector2(1, 0)
 
-[node name="blast_shape" type="CollisionShape2D" parent="blast_radius" index="0"]
+[node name="blast_shape" type="CollisionShape2D" parent="blast_radius" index="0" groups=["sensor"]]
 shape = SubResource("CircleShape2D_asiri")

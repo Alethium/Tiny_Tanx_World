@@ -73,6 +73,7 @@ func _on_impact(_area):
 			hitspark.global_position = sprite.global_transform.origin 
 			hitspark.rotation = rotation
 			hitspark.damage = damage
+			
 			get_parent().add_child(hitspark)
 			_area._on_damage_recieved(damage)
 			impact()

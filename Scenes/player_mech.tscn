@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cx1y1p4ehilni"]
+[gd_scene load_steps=37 format=3 uid="uid://cx1y1p4ehilni"]
 
 [ext_resource type="Texture2D" uid="uid://bu44113t6v1f8" path="res://tank tracks.png" id="1_3ll58"]
 [ext_resource type="Script" uid="uid://p1cx4nnqj5s1" path="res://Scripts/player_mech.gd" id="1_e0bbr"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dgxw3ow82ruaw" path="res://Scenes/laser.tscn" id="7_v4qfu"]
 [ext_resource type="Script" uid="uid://b300sjtksbva4" path="res://Scripts/front_mid.gd" id="8_shtb6"]
 [ext_resource type="Script" uid="uid://bi0uqtgcxxdvw" path="res://Scenes/player_cam.gd" id="10_6bbur"]
+[ext_resource type="Texture2D" uid="uid://bxd4ufgoeaudw" path="res://Sprites/firecard.png" id="11_fj6lv"]
 [ext_resource type="Script" uid="uid://v6wst15cbwgh" path="res://Scripts/core_l.gd" id="11_i4unb"]
 [ext_resource type="Script" uid="uid://4ttit432d21s" path="res://Scripts/cockpit.gd" id="12_p21fq"]
 [ext_resource type="Script" uid="uid://dulaaixjsglyo" path="res://Scripts/core_r.gd" id="13_p21fq"]
@@ -21,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ydce2xf53jyc" path="res://Scenes/wp_srm_4.tscn" id="18_6bbur"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4qfu"]
-radius = 20.0
+radius = 19.0
 height = 60.0
 
 [sub_resource type="Gradient" id="Gradient_lcc5e"]
@@ -49,6 +50,16 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_dsq5r"]
 offsets = PackedFloat32Array(0, 0.63736266, 1)
 colors = PackedColorArray(0.39607844, 0.39607844, 0.39607844, 1, 0.79369557, 0.79369676, 0.79369575, 0.7295365, 1, 1, 1, 0.14509805)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ym03w"]
+
+[sub_resource type="Curve" id="Curve_p5i7k"]
+_data = [Vector2(0.026024364, 0.22309959), 0.0, 1.584455, 0, 0, Vector2(0.9651163, 0.06208396), -1.8931932, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8cvv8"]
+offsets = PackedFloat32Array(0, 0.07777778, 0.17222223, 0.2888889, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.07999998, 0.5568628, 0.29, 0.29, 0.29, 0.14509805, 0.14767182, 0.14767182, 0.14767176, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0bbr"]
 size = Vector2(10, 17.999996)
@@ -215,6 +226,7 @@ position = Vector2(0, 7.1054274e-15)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="smoke3" type="CPUParticles2D" parent="top_half"]
+modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(12, 16)
 rotation = -0.5235988
 amount = 50
@@ -256,6 +268,58 @@ scale_amount_min = 0.2
 scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_dsq5r")
 color_ramp = SubResource("Gradient_dsq5r")
+
+[node name="engine_fire" type="CPUParticles2D" parent="top_half"]
+material = SubResource("ShaderMaterial_ym03w")
+position = Vector2(-9.000001, 14.000002)
+scale = Vector2(0.99999976, 0.99999976)
+amount = 10
+texture = ExtResource("11_fj6lv")
+lifetime = 0.46
+speed_scale = 2.0
+randomness = 0.56
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(2, 1)
+direction = Vector2(0, 1)
+spread = 4.26
+gravity = Vector2(0, 0)
+initial_velocity_min = 27.74
+initial_velocity_max = 45.0
+damping_min = 20.0
+damping_max = 20.0
+angle_min = -180.0
+angle_max = 168.0
+scale_amount_min = 0.6
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_p5i7k")
+color_ramp = SubResource("Gradient_8cvv8")
+
+[node name="engine_fire2" type="CPUParticles2D" parent="top_half"]
+material = SubResource("ShaderMaterial_ym03w")
+position = Vector2(8.999999, 14.000002)
+scale = Vector2(0.99999976, 0.99999976)
+amount = 10
+texture = ExtResource("11_fj6lv")
+lifetime = 0.46
+speed_scale = 2.0
+randomness = 0.56
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(2, 1)
+direction = Vector2(0, 1)
+spread = 4.26
+gravity = Vector2(0, 0)
+initial_velocity_min = 27.74
+initial_velocity_max = 45.0
+damping_min = 20.0
+damping_max = 20.0
+angle_min = -180.0
+angle_max = 168.0
+scale_amount_min = 0.6
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_p5i7k")
+color_ramp = SubResource("Gradient_8cvv8")
 
 [node name="targeting_laser" type="RayCast2D" parent="top_half"]
 rotation = 0.0016419707

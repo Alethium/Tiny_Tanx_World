@@ -69,7 +69,7 @@ func _on_area_entered(area):
 	if area.has_method("_on_damage_recieved") and area.component_owner != projectile_owner:
 		area._on_damage_recieved(damage)
 		impacted_player = area.component_owner 
-		impacted_player.cam.shake(5,2)
+		impacted_player.cam.shake(1,2)
 		print("impacted player : ", impacted_player)
 		impact()
 	

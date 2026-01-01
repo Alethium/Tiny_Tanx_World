@@ -25,6 +25,8 @@ func _process(delta: float) -> void:
 		cooldown_timer -= 1
 		cooldown_timer -= 1
 	if firing:
+		gun_owner.cam.shake(0.5,0.5)
+		Input.start_joy_vibration(gun_owner.player_device,0.1,0.1,0.1)
 		pulse_timer -= 1
 		if raycast.get_collider() != null and !raycast.get_collider().is_in_group("sensor"):
 			hit_point = to_local(raycast.get_collision_point())

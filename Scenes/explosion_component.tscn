@@ -7,3 +7,5 @@
 script = ExtResource("2_isd4d")
 damage = 2.0
 max_blast_size = 5.0
+
+[node name="blast_shape" parent="blast_radius" index="0" groups=["sensor"]]
