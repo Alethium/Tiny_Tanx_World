@@ -18,6 +18,7 @@ var blast_size : float = 0
 
 func _ready() -> void:
 	queue_redraw()
+	$AudioStreamPlayer.play()
 func _draw() -> void:
 	draw_circle(vx_sprite.position,blast_size,Color.DARK_SALMON,false,2.0,false)
 	

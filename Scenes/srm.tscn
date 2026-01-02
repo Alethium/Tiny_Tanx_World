@@ -1,13 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwdmtqbybucq1"]
+[gd_scene load_steps=9 format=3 uid="uid://cwdmtqbybucq1"]
 
 [ext_resource type="PackedScene" uid="uid://ddty2wgvpl3jm" path="res://Scenes/projectile.tscn" id="1_r1rg3"]
 [ext_resource type="Script" uid="uid://bldtxj3i722xr" path="res://Scripts/srm.gd" id="2_1ql8x"]
 [ext_resource type="PackedScene" uid="uid://cn25vrrfdwenv" path="res://Scenes/explosion_1.tscn" id="3_dympo"]
+[ext_resource type="Texture2D" uid="uid://d0300gf38t6ms" path="res://Sprites/smoke_cards3.png" id="4_dympo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dympo"]
 
 [sub_resource type="Curve" id="Curve_7fqiw"]
-_data = [Vector2(0.007042259, 0.25727075), 0.0, -0.12760086, 0, 0, Vector2(1, 0.84787476), 1.433902, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 2.4925911, 0, 0, Vector2(1, 0.84787476), 1.433902, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_87apo"]
@@ -35,21 +36,40 @@ region_rect = Rect2(32, 70, 16, 5)
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 0)
 
-[node name="smoke3" type="CPUParticles2D" parent="." index="2"]
+[node name="smoke4" type="CPUParticles2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_dympo")
 position = Vector2(0.50000024, 7)
 amount = 50
-lifetime = 3.29
+texture = ExtResource("4_dympo")
+lifetime = 3.5
+speed_scale = 2.0
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(1.375, 2.855)
+direction = Vector2(0, 1)
+spread = 23.72
+gravity = Vector2(0, 0)
+damping_min = 20.0
+damping_max = 20.0
+angle_min = -180.0
+angle_max = 168.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_7fqiw")
+
+[node name="smoke3" type="CPUParticles2D" parent="." index="3"]
+material = SubResource("ShaderMaterial_dympo")
+amount = 50
+lifetime = 0.3
 speed_scale = 2.0
 randomness = 0.5
 draw_order = 1
 emission_shape = 3
-emission_rect_extents = Vector2(1, 1)
+emission_rect_extents = Vector2(1.375, 2.855)
 direction = Vector2(0, 1)
-spread = 0.0
+spread = 20.48
 gravity = Vector2(0, 0)
-initial_velocity_min = 30.0
-initial_velocity_max = 30.0
+initial_velocity_min = 50.0
+initial_velocity_max = 60.0
 damping_min = 20.0
 damping_max = 20.0
 angle_min = -180.0
@@ -59,7 +79,7 @@ scale_amount_max = 15.0
 scale_amount_curve = SubResource("Curve_7fqiw")
 color_ramp = SubResource("Gradient_87apo")
 
-[node name="Area2D" type="Area2D" parent="." index="3" groups=["sensor"]]
+[node name="Area2D" type="Area2D" parent="." index="4" groups=["sensor"]]
 collision_mask = 3
 monitorable = false
 

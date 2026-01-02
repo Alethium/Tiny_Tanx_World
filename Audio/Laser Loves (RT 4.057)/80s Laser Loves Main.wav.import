@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://j2qi05cxor6n"
+path="res://.godot/imported/80s Laser Loves Main.wav-a3efeb3f58d9680ea97d3ca55400448d.sample"
+
+[deps]
+
+source_file="res://Audio/Laser Loves (RT 4.057)/80s Laser Loves Main.wav"
+dest_files=["res://.godot/imported/80s Laser Loves Main.wav-a3efeb3f58d9680ea97d3ca55400448d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

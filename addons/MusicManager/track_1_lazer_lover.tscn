@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://4povtsf6o70l"]
+
+[ext_resource type="AudioStream" uid="uid://j2qi05cxor6n" path="res://Audio/Laser Loves (RT 4.057)/80s Laser Loves Main.wav" id="2_yqihl"]
+
+[sub_resource type="GDScript" id="GDScript_xmbsa"]
+script/source = "class_name MusicTrack
+extends Resource
+
+## Name for the song
+@export var name: String = \"\"
+
+## Artist's name for the song
+@export var artist: String = \"\"
+
+## Audiostream file for the song: .ogg or .wav are recommended with Godot. Other file types may work but are not recommended.
+@export var track: AudioStream
+"
+
+[node name="track_1 Lazer Lover" type="Node"]
+script = SubResource("GDScript_xmbsa")
+name = "LAZER LOVER"
+artist = "royalty free 80's pack"
+track = ExtResource("2_yqihl")

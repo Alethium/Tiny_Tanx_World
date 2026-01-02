@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b5saksjjypeid"
+path="res://.godot/imported/BLLTRico_Metallic_11.wav-e384d7b97bd1128ea8585a785c63f1c6.sample"
+
+[deps]
+
+source_file="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/BLLTRico_Metallic_11.wav"
+dest_files=["res://.godot/imported/BLLTRico_Metallic_11.wav-e384d7b97bd1128ea8585a785c63f1c6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

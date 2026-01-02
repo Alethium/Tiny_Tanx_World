@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b8di2ereltkyw"
+path="res://.godot/imported/Synthwave Lazer Cut 60.wav-4347f5b2a8d45226a1623ffccc07e3d5.sample"
+
+[deps]
+
+source_file="res://Audio/Lazer (RT 6.0)/Synthwave Lazer Cut 60.wav"
+dest_files=["res://.godot/imported/Synthwave Lazer Cut 60.wav-4347f5b2a8d45226a1623ffccc07e3d5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

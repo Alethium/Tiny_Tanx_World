@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://jhho1u3orutm"]
+[gd_scene load_steps=10 format=4 uid="uid://jhho1u3orutm"]
 
 [ext_resource type="Texture2D" uid="uid://khysrdg83v1a" path="res://Sprites/Builing 9block template.png" id="2_6phgx"]
 [ext_resource type="Shader" uid="uid://cebet10lqwu4h" path="res://Scenes/gridfloor.gdshader" id="2_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://biuxabifjrngx" path="res://Scenes/spawn_point.tscn" id="3_6phgx"]
 [ext_resource type="PackedScene" uid="uid://dkjldeue11132" path="res://stacked sprite/StackedSprite.tscn" id="4_wqkje"]
+[ext_resource type="AudioStream" uid="uid://bq2525qcl8jka" path="res://Audio/Other/Floating Behemoths Loop A.wav" id="5_wqkje"]
 
 [sub_resource type="GDScript" id="GDScript_tumq0"]
 resource_name = "Level"
@@ -688,3 +689,8 @@ rotation = -1.5707964
 visible = false
 position = Vector2(-205, 395)
 scale = Vector2(2, 2)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_wqkje")
+autoplay = true
+bus = &"SFX"

@@ -20,14 +20,16 @@ func fire(dir :float):
 	if !destroyed:
 		var adjusted_angle = dir + deg_to_rad(90 + randf_range(-spread,spread))  # Assuming bottom_dir is in radians
 		var move_direction = Vector2(cos(adjusted_angle), sin(adjusted_angle))
-		
+		#if cooldown_timer == :
+			#$shell_eject.play()
 		if cooldown_timer == 0:
+			$AudioStreamPlayer.play()
 			cooldown_timer += cooldown
 			gun_owner.overheat += heat
 			var new_shot = munition.instantiate()
 			var spark = BULLET_HIT.instantiate()
 			gun_owner.cam.shake(0.5,1)
-			Input.start_joy_vibration(gun_owner.player_device,0.1,0.1,0.2)
+			Input.start_joy_vibration(gun_owner.player_device,0.0,0.2,0.2)
 			spark.global_rotation = dir+deg_to_rad(-180)
 			spark.global_position = global_position
 			

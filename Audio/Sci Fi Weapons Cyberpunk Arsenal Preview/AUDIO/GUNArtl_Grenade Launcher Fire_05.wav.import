@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://beppykepj7cxa"
+path="res://.godot/imported/GUNArtl_Grenade Launcher Fire_05.wav-ea9ccdc230cdfa2c54c6887a5bf94f7a.sample"
+
+[deps]
+
+source_file="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GUNArtl_Grenade Launcher Fire_05.wav"
+dest_files=["res://.godot/imported/GUNArtl_Grenade Launcher Fire_05.wav-ea9ccdc230cdfa2c54c6887a5bf94f7a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

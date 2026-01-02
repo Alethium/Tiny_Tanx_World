@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dx11aqaggxpxn"]
+
+[ext_resource type="Script" uid="uid://sfm63si7qqb2" path="res://Scripts/wp_machinegun.gd" id="1_g01qi"]
+[ext_resource type="PackedScene" uid="uid://rrn85d8k5pvo" path="res://Scenes/mg_bullet.tscn" id="2_musi1"]
+[ext_resource type="Texture2D" uid="uid://cnm8ncbbhj46o" path="res://topdownmechweapons.png" id="3_bj7ie"]
+[ext_resource type="AudioStream" uid="uid://776ko438jjxu" path="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GUNAuto_Assault Rifle A Fire_01.wav" id="4_sktd4"]
+[ext_resource type="AudioStream" uid="uid://c0l2g7hl3y012" path="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/BLLTShel_Shell Eject_02.wav" id="5_c04t5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8cdk"]
+size = Vector2(8.5, 11.75)
+
+[node name="Machine_gun" type="Area2D"]
+script = ExtResource("1_g01qi")
+damage = 1.0
+speed = 600.0
+cooldown = 3.0
+heat = 1.0
+munition = ExtResource("2_musi1")
+spread = 3.0
+health = 50.0
+armor = 50.0
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 4.5)
+texture = ExtResource("3_bj7ie")
+region_enabled = true
+region_rect = Rect2(51, 1, 9, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.875)
+shape = SubResource("RectangleShape2D_f8cdk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sktd4")
+volume_db = -13.705
+pitch_scale = 2.03
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="shell_eject" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_c04t5")
+bus = &"SFX"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

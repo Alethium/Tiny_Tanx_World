@@ -20,6 +20,14 @@ config/icon="res://Sprites/icon.svg"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
+window/fps=60
+window/video_quality=0.5
+window/movie_file="F:/ART PROGRAM PROJECT FOLDERS/Godot/Godot_Steam/Tiny_Tanx_World/Videos renders/testrener.avi"
+
+[editor]
+
+movie_writer/video_quality=0.5
+movie_writer/movie_file="F:/ART PROGRAM PROJECT FOLDERS/Godot/Godot_Steam/Tiny_Tanx_World/Videos renders/testrener.avi"
 
 [global_group]
 

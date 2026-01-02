@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://df6g1wrek45x7"
+path="res://.godot/imported/GUNAuto_Plasmid Machinegun Burst_07.wav-39e781a05cbe1d09489b70b12481fef3.sample"
+
+[deps]
+
+source_file="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GUNAuto_Plasmid Machinegun Burst_07.wav"
+dest_files=["res://.godot/imported/GUNAuto_Plasmid Machinegun Burst_07.wav-39e781a05cbe1d09489b70b12481fef3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

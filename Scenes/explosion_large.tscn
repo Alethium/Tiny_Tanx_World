@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg7xl82oy8js1"]
+[gd_scene load_steps=6 format=3 uid="uid://bg7xl82oy8js1"]
 
 [ext_resource type="PackedScene" uid="uid://cxqi6gped8ijk" path="res://Scenes/vfx.tscn" id="1_asiri"]
 [ext_resource type="Script" uid="uid://c1rwcs4wgdrh" path="res://Scripts/explosion_large.gd" id="2_6suf2"]
 [ext_resource type="Texture2D" uid="uid://cpd0bbjm14slm" path="res://Sprites/explosion_large.png" id="3_l6na1"]
+[ext_resource type="AudioStream" uid="uid://bx3qn1ycabljq" path="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/EXPLDsgn_Implode_15.wav" id="4_6suf2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_asiri"]
 radius = 5.0
@@ -19,8 +20,14 @@ texture = ExtResource("3_l6na1")
 hframes = 12
 region_enabled = false
 
-[node name="blast_radius" type="Area2D" parent="." index="1"]
+[node name="blast_radius" type="Area2D" parent="." index="1" groups=["sensor"]]
 position = Vector2(1, 0)
 
 [node name="blast_shape" type="CollisionShape2D" parent="blast_radius" index="0" groups=["sensor"]]
 shape = SubResource("CircleShape2D_asiri")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource("4_6suf2")
+volume_db = 1.605
+pitch_scale = 1.57
+bus = &"SFX"

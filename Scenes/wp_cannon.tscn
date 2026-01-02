@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://8qrv1ct2axpq"]
+[gd_scene load_steps=6 format=3 uid="uid://8qrv1ct2axpq"]
 
 [ext_resource type="PackedScene" uid="uid://b1ho04fxtvp8l" path="res://Scenes/cannon_lg.tscn" id="1_l0sxq"]
 [ext_resource type="Script" uid="uid://clvh5vo58d6wm" path="res://Scripts/wp_cannon.gd" id="1_la6kp"]
 [ext_resource type="Texture2D" uid="uid://cnm8ncbbhj46o" path="res://topdownmechweapons.png" id="1_n7oph"]
+[ext_resource type="AudioStream" uid="uid://dtmm5gu64t7xd" path="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/LASRGun_Plasma Rifle Fire_03.wav" id="4_0au2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ml5r5"]
 size = Vector2(7.9999833, 12.749994)
@@ -34,5 +35,10 @@ visible = false
 position = Vector2(0.0049261516, 2.9999971)
 scale = Vector2(1.000001, 1.000001)
 shape = SubResource("RectangleShape2D_ml5r5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0au2x")
+volume_db = -8.32
+pitch_scale = 0.5
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -51,11 +51,11 @@ extends Control
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if Observed_player != null:
 		handle_overheat_bar()
 		handle_health_bars()
-		update_player_stats()
+		update_player_stats(delta)
 	if locked_on_player != null:
 		%enemy_target.visible = true
 		#print("locked on player  : ", locked_on_player)
@@ -72,14 +72,24 @@ func handle_health_bars():
 	total_armor.size.y = Observed_player.curr_armor/Observed_player.total_armor * 45
 	total_health.size.y = Observed_player.curr_health/Observed_player.total_health * 45
 	
-func update_player_stats():
+func update_player_stats(delta):
 #	for each of the components, get the shields and health, and disabled states and use that to change the associated 
 	components = Observed_player.components
 	paper_target.update_display(Observed_player)
-
-
-
-
+	
+	if Observed_player.overheat > 90.0:
+		$Heat_vignette.modulate.a = lerpf($Heat_vignette.modulate.a,0.90,delta*0.5)
+	elif Observed_player.overheat > 75.0:
+		$Heat_vignette.modulate.a = lerpf($Heat_vignette.modulate.a,0.75,delta*0.5)
+	elif Observed_player.overheat > 50.0:
+		$Heat_vignette.modulate.a = lerpf($Heat_vignette.modulate.a,0.50,delta*0.5)
+	else:
+		$Heat_vignette.modulate.a = lerpf($Heat_vignette.modulate.a,0.0,delta)
+	
+	$Overheat_warning.visible = Observed_player.overheated
+	if Observed_player.overheat >= 100:
+		$Overheat_warning/overheat_warning.play()
+		$Overheat_warning/overheat_warning2.play()
 	
 func update_enemy_paper_target(enemy):
 	enemy_paper_target.update_display(enemy)

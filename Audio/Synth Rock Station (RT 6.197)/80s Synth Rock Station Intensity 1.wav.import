@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vd1wfo3vm18e"
+path="res://.godot/imported/80s Synth Rock Station Intensity 1.wav-b492a365a8c25a6a4022bbb5e70dfaf1.sample"
+
+[deps]
+
+source_file="res://Audio/Synth Rock Station (RT 6.197)/80s Synth Rock Station Intensity 1.wav"
+dest_files=["res://.godot/imported/80s Synth Rock Station Intensity 1.wav-b492a365a8c25a6a4022bbb5e70dfaf1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

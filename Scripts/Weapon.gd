@@ -10,7 +10,7 @@ extends Component
 
 var gun_owner 
 
-var cooldown_timer = 0
+var cooldown_timer = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

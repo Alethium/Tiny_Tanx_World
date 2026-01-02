@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://buu3hkpr04xx"
+path="res://.godot/imported/80s Laser Loves Intensity 2.wav-e8406e5c94be408bd957f4032b528bf1.sample"
+
+[deps]
+
+source_file="res://Audio/Laser Loves (RT 4.057)/80s Laser Loves Intensity 2.wav"
+dest_files=["res://.godot/imported/80s Laser Loves Intensity 2.wav-e8406e5c94be408bd957f4032b528bf1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

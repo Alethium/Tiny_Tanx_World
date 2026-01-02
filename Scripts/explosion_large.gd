@@ -15,8 +15,10 @@ var blast_size : float = 0
 
 func _ready() -> void:
 	queue_redraw()
+	$AudioStreamPlayer.play()
 func _draw() -> void:
-	draw_circle(vx_sprite.position,blast_size,Color.DARK_SALMON,false,2.0,false)
+	if blast_size < max_blast_size:
+		draw_circle(vx_sprite.position,blast_size,Color.DARK_SALMON,false,2.0,false)
 	
 	
 	
@@ -50,6 +52,7 @@ func _process(delta: float) -> void:
 					
 					
 	if sprite_index > frame_count:
+		await $AudioStreamPlayer.finished
 		queue_free()
 		
 		

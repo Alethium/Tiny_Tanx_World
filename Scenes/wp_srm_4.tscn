@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ydce2xf53jyc"]
+[gd_scene load_steps=6 format=3 uid="uid://ydce2xf53jyc"]
 
 [ext_resource type="PackedScene" uid="uid://cmcdcsgi0wple" path="res://Scenes/weapon.tscn" id="1_c52nv"]
 [ext_resource type="Script" uid="uid://bjnw7gvu1qdiu" path="res://Scripts/wp_srm_4.gd" id="2_26t47"]
 [ext_resource type="PackedScene" uid="uid://cwdmtqbybucq1" path="res://Scenes/srm.tscn" id="3_pf7tx"]
+[ext_resource type="AudioStream" uid="uid://djkfcnvy3w7ne" path="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GUNArtl_Rocket Launcher Fire_02.wav" id="4_37hsd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26t47"]
 size = Vector2(14, 12)
@@ -25,3 +26,8 @@ region_rect = Rect2(81, 2, 14, 12)
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_26t47")
+
+[node name="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource("4_37hsd")
+volume_db = -9.788
+pitch_scale = 1.17

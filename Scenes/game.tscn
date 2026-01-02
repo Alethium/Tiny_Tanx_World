@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpl20eb6x6t14"]
+[gd_scene load_steps=11 format=3 uid="uid://dpl20eb6x6t14"]
 
 [ext_resource type="Script" uid="uid://dvockkcnjdenb" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://jhho1u3orutm" path="res://Scenes/level.tscn" id="1_ebmjs"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ftl8f5x5g86g" path="res://Scenes/player_ui.tscn" id="5_i6g32"]
 [ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="7_v158k"]
 [ext_resource type="PackedScene" uid="uid://b2tkalj45xknl" path="res://Scenes/life_counter_bulb.tscn" id="8_h4fw4"]
+[ext_resource type="Script" uid="uid://ce6011hj5sy22" path="res://Scripts/The_game_music.gd" id="10_ldgsr"]
+[ext_resource type="AudioStream" uid="uid://dqlm06ws6kp05" path="res://Audio/Lazer (RT 6.0)/Synthwave Lazer Intensity 1.wav" id="11_rku1e"]
 
 [node name="Game" type="Control" node_paths=PackedStringArray("player_1", "player_2")]
 layout_mode = 3
@@ -131,3 +133,9 @@ position = Vector2(-6, 0)
 
 [node name="Life_counter_bulb3" parent="life_meter/Life_meter/Player_2 bulbs" instance=ExtResource("8_h4fw4")]
 position = Vector2(-6, 12)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_rku1e")
+autoplay = true
+bus = &"Music"
+script = ExtResource("10_ldgsr")

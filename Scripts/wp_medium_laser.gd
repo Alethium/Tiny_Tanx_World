@@ -25,6 +25,7 @@ func _process(delta: float) -> void:
 		cooldown_timer -= 1
 		cooldown_timer -= 1
 	if firing:
+		
 		gun_owner.cam.shake(0.5,0.5)
 		Input.start_joy_vibration(gun_owner.player_device,0.1,0.1,0.1)
 		pulse_timer -= 1
@@ -65,7 +66,7 @@ func fire(_dir):
 	#print("firing  laser cooldown :",cooldown_timer,"pulse time : ",pulse_timer)
 	if !destroyed:
 		if cooldown_timer == 0:
-			
+			$AudioStreamPlayer.play(0.1)
 			cooldown_timer += cooldown
 			pulse_timer = pulse_length
 			firing = true

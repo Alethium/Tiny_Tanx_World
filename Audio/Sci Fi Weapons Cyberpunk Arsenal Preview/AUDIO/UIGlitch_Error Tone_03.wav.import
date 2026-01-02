@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://mk3jk7k0iv5r"
+path="res://.godot/imported/UIGlitch_Error Tone_03.wav-f5eb71f90e6a2451e53824813635e13d.sample"
+
+[deps]
+
+source_file="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/UIGlitch_Error Tone_03.wav"
+dest_files=["res://.godot/imported/UIGlitch_Error Tone_03.wav-f5eb71f90e6a2451e53824813635e13d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -110,7 +110,7 @@ var curr_armor = 0
 enum ControlStyles {Complex,Simple,Twinstick}
 var control_style = ControlStyles.Complex
 var targeted_player : Player = null
-
+var cool_speed : float = 0.2
 
 func _ready():
 	for part in components:
@@ -121,16 +121,23 @@ func _ready():
 	
 func _physics_process(delta: float) -> void:
 	
-	
-	if overheat > 75:
-		$top_half/engine_fire.visible = true
-		$top_half/engine_fire2.visible = true
-		Input.start_joy_vibration(player_device,1.0,1.0,delta)
+	if !overheated:
+		if overheat > 80:
+			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire2.emitting  = true
+			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire.emitting = true
+			Input.start_joy_vibration(player_device,1.0,1.0,delta)
+		elif overheat > 60:
+			#$top_half/engine_fire.visible = true
+			#$top_half/engine_fire2.visible = true
+			Input.start_joy_vibration(player_device,0.5,0.3,delta)
+		else:
+			#Input.stop_joy_vibration(player_device)
+			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire.emitting = false
+			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire2.emitting = false
 	else:
-		#Input.stop_joy_vibration(player_device)
-		$top_half/engine_fire.visible = false
-		$top_half/engine_fire2.visible = false
-		
+		Input.start_joy_vibration(player_device,0.05,0.0,delta)
+		for component in components:
+			component._on_damage_recieved(0.3)
 	# Add the gravity.
 	
 	handle_inputs(delta)
@@ -140,12 +147,12 @@ func _physics_process(delta: float) -> void:
 	if cockpit.health <= 0:
 		_on_destroyed()
 	# Handle heat
-	overheat -= 0.1
+	overheat -= cool_speed
 	overheat = clamp(overheat,0,max_heat)
 	if overheat == max_heat:
 		overheated = true
 		
-	if overheated and overheat <= 50:
+	if overheated and overheat <= 65:
 		overheated = false	
 
 	# Get the input direction and handle the movement/deceleration.

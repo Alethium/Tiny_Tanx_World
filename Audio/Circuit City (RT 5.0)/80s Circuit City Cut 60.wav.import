@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cf7ar7pk41768"
+path="res://.godot/imported/80s Circuit City Cut 60.wav-28b797cab1c7372d28bb2b2606b9f000.sample"
+
+[deps]
+
+source_file="res://Audio/Circuit City (RT 5.0)/80s Circuit City Cut 60.wav"
+dest_files=["res://.godot/imported/80s Circuit City Cut 60.wav-28b797cab1c7372d28bb2b2606b9f000.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

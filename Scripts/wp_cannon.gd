@@ -18,6 +18,7 @@ func fire(dir :float):
 		if cooldown_timer == 0:
 			gun_owner.cam.shake(2,1)
 			Input.start_joy_vibration(gun_owner.player_device,0.9,0.9,0.2)
+			$AudioStreamPlayer.play()
 			gun_owner.overheat += heat
 			cooldown_timer += cooldown
 			var new_shot = munition.instantiate()

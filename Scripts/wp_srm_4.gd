@@ -45,6 +45,7 @@ func fire_volleys():
 		var move_direction = Vector2(cos(adjusted_angle), sin(adjusted_angle))
 		
 		if volly_timer == 0 and volly_num > 0:
+			
 			volly_num -= 1
 			volly_timer += 15
 			for i in range(0,2):
@@ -52,11 +53,13 @@ func fire_volleys():
 				gun_owner.overheat += heat
 				gun_owner.cam.shake(2,1)
 				Input.start_joy_vibration(gun_owner.player_device,1.0,0.5,0.1)
+				$AudioStreamPlayer.play()
 				new_shot.global_rotation = direction
 				new_shot.global_position = to_global(Vector2(position.x + ( 9 * i )-4,position.y))
 				new_shot.projectile_owner = gun_owner
 				new_shot.damage = damage
 				new_shot.speed = speed
+				
 				new_shot.direction = -move_direction
 				new_shot.projectile_owner = gun_owner
 				get_parent().get_parent().get_parent().get_parent().get_parent().add_child(new_shot)

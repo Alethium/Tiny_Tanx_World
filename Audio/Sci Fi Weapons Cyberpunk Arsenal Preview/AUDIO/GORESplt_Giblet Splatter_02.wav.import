@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c7xge0v0qtq2e"
+path="res://.godot/imported/GORESplt_Giblet Splatter_02.wav-3dbdae5d0f564a009d128357cb5179af.sample"
+
+[deps]
+
+source_file="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GORESplt_Giblet Splatter_02.wav"
+dest_files=["res://.godot/imported/GORESplt_Giblet Splatter_02.wav-3dbdae5d0f564a009d128357cb5179af.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
