@@ -14,7 +14,7 @@ const PLAYER_1_CONTROLS = preload("uid://m2sjqkxfifmj")
 @onready var player_1_bulbs: Node2D = $"life_meter/Life_meter/Player_1 bulbs"
 @onready var player_2_bulbs: Node2D = $"life_meter/Life_meter/Player_2 bulbs"
 var spawned_in = false
-@onready var music_manager: Node = $MusicManager
+
 
 
 # Called when the node enters the scene tree for the first time.
