@@ -5,7 +5,7 @@ extends Weapon
 const BULLET_HIT = preload("uid://chp6dfk6nfk0e")
 
 var has_overheat = true
-var overheat = 0
+var overheat = 0.0
 var max_overheat = 100
 
 # Called when the node enters the scene tree for the first time.

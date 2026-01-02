@@ -14,20 +14,18 @@ script = ExtResource("1_g01qi")
 damage = 1.0
 speed = 600.0
 cooldown = 3.0
-heat = 1.0
+heat = 0.4
 munition = ExtResource("2_musi1")
 spread = 3.0
 health = 50.0
 armor = 50.0
 
 [node name="sprite" type="Sprite2D" parent="."]
-position = Vector2(0, 4.5)
 texture = ExtResource("3_bj7ie")
 region_enabled = true
 region_rect = Rect2(51, 1, 9, 15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4.875)
 shape = SubResource("RectangleShape2D_f8cdk")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

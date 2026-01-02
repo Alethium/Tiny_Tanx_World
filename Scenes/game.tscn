@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpl20eb6x6t14"]
+[gd_scene load_steps=14 format=3 uid="uid://dpl20eb6x6t14"]
 
 [ext_resource type="Script" uid="uid://dvockkcnjdenb" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://jhho1u3orutm" path="res://Scenes/level.tscn" id="1_ebmjs"]
@@ -6,8 +6,11 @@
 [ext_resource type="Resource" uid="uid://m2sjqkxfifmj" path="res://Scripts/Player_1_controls.tres" id="4_i6g32"]
 [ext_resource type="Resource" uid="uid://djbf4ibjvpqxp" path="res://Scripts/Player_2_controls.tres" id="5_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://ftl8f5x5g86g" path="res://Scenes/player_ui.tscn" id="5_i6g32"]
+[ext_resource type="PackedScene" uid="uid://ydce2xf53jyc" path="res://Scenes/wp_srm_4.tscn" id="6_rku1e"]
+[ext_resource type="PackedScene" uid="uid://8qrv1ct2axpq" path="res://Scenes/wp_cannon.tscn" id="7_rfjv2"]
 [ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="7_v158k"]
 [ext_resource type="PackedScene" uid="uid://b2tkalj45xknl" path="res://Scenes/life_counter_bulb.tscn" id="8_h4fw4"]
+[ext_resource type="PackedScene" uid="uid://dx11aqaggxpxn" path="res://Scenes/wp_machinegun.tscn" id="8_rfjv2"]
 [ext_resource type="Script" uid="uid://ce6011hj5sy22" path="res://Scripts/The_game_music.gd" id="10_ldgsr"]
 [ext_resource type="AudioStream" uid="uid://dqlm06ws6kp05" path="res://Audio/Lazer (RT 6.0)/Synthwave Lazer Intensity 1.wav" id="11_rku1e"]
 
@@ -44,8 +47,8 @@ position = Vector2(480, 275)
 
 [node name="Player_1" parent="HBoxContainer/Player_1/player_1_view" instance=ExtResource("2_qxrlw")]
 position = Vector2(221, 529)
-player_name = "Player_1"
 Controls = ExtResource("4_i6g32")
+player_name = "Player_1"
 
 [node name="Player_2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -63,9 +66,14 @@ render_target_update_mode = 4
 
 [node name="Player_2" parent="HBoxContainer/Player_2/player_2_view" instance=ExtResource("2_qxrlw")]
 position = Vector2(327, 529)
+Controls = ExtResource("5_1l0tm")
 player_name = "Player_2"
 player_device = 1
-Controls = ExtResource("5_1l0tm")
+WP_R1 = ExtResource("6_rku1e")
+WP_R2 = ExtResource("6_rku1e")
+WP_L1 = ExtResource("7_rfjv2")
+WP_L2 = ExtResource("7_rfjv2")
+chosen_weapons = [ExtResource("7_rfjv2"), ExtResource("7_rfjv2"), ExtResource("8_rfjv2"), ExtResource("8_rfjv2")]
 
 [node name="PLAYER_UI" parent="." node_paths=PackedStringArray("Observed_player", "locked_on_player") instance=ExtResource("5_i6g32")]
 layout_mode = 0

@@ -21,6 +21,7 @@ health = 50.0
 armor = 50.0
 
 [node name="Sprite2D" parent="." index="0"]
+position = Vector2(-7, -6)
 region_enabled = true
 region_rect = Rect2(81, 2, 14, 12)
 

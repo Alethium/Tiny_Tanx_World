@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 
+@export var Controls: Resource = null
 @export var player_name : String
 @export var player_device : int
 @onready var top_half: Node2D = $top_half
@@ -11,10 +12,7 @@ extends CharacterBody2D
 
 
 @onready var bottom_hitbox: CollisionShape2D = $bottom_hitbox
-@onready var cannon: Cannon = $top_half/weapon_slots/left_arm_weapon_slot/Cannon
-@onready var laser: Laser = $top_half/weapon_slots/right_arm_weapon_slot/Laser
-@onready var machine_gun: MachineGun = $top_half/weapon_slots/right_shoulder_weapon_slot/Machine_gun
-@onready var srm_4: MissileLauncher = $top_half/weapon_slots/left_shoulder_weapon_slot/SRM_4
+
 
 const EXPLOSION_LARGE = preload("uid://bg7xl82oy8js1")
 
@@ -29,7 +27,6 @@ const EXPLOSION_LARGE = preload("uid://bg7xl82oy8js1")
 @onready var cockpit: Area2D = %Cockpit
 @onready var core_r: Area2D = %Core_R
 @onready var core_rear: Area2D = %Core_Rear
-@export var top_locked = true
 signal on_death()
 @onready var cam: Camera2D = $top_half/Player_cam
 
@@ -45,12 +42,9 @@ signal on_death()
 	core_l,
 	core_r,
 	cockpit,
-	laser,
-	machine_gun,
-	srm_4,
-	cannon,
-]
 
+]
+#add the weapons here ^^^ in code when player is built
 
 
 
@@ -66,7 +60,10 @@ signal on_death()
 	cockpit,
 ]
 
-@export var Controls: Resource = null
+
+
+
+
 
 
 @onready var left_arm_weapon_slot: Node2D = $top_half/weapon_slots/left_arm_weapon_slot
@@ -74,12 +71,46 @@ signal on_death()
 @onready var right_shoulder_weapon_slot: Node2D = $top_half/weapon_slots/right_shoulder_weapon_slot
 @onready var left_shoulder_weapon_slot: Node2D = $top_half/weapon_slots/left_shoulder_weapon_slot
 
-var weapon_slots = [
+@export var WP_R1 : PackedScene 
+@export var WP_R2 : PackedScene 
+@export var WP_L1 : PackedScene 
+@export var WP_L2 : PackedScene 
+
+const WP_CANNON = preload("uid://8qrv1ct2axpq")
+const WP_LASER = preload("uid://dgxw3ow82ruaw")
+const WP_MACHINEGUN = preload("uid://dx11aqaggxpxn")
+const WP_SRM_4 = preload("uid://ydce2xf53jyc")
+
+@onready var equippable_weapons = [
+	WP_CANNON,
+	WP_LASER,
+	WP_MACHINEGUN,
+	WP_SRM_4
+]
+
+@onready var weapon_slots = [
 	right_arm_weapon_slot,
 	right_shoulder_weapon_slot,
 	left_arm_weapon_slot,
 	left_shoulder_weapon_slot
 ]
+
+var weapons = []
+@export var chosen_weapons = [
+	WP_LASER,
+	WP_LASER,
+	WP_LASER,
+	WP_LASER
+]
+
+
+
+
+
+
+
+
+
 
 var bottom_dir = 0.0
 var top_dir = 0.0
@@ -107,12 +138,36 @@ var total_health : int = -1
 
 var curr_health = 0
 var curr_armor = 0
-enum ControlStyles {Complex,Simple,Twinstick}
-var control_style = ControlStyles.Complex
 var targeted_player : Player = null
 var cool_speed : float = 0.2
 
+
+# -----PLAYER CONTROLLED SETTINGS------------
+@export var top_locked = true
+var control_style = ControlStyles.Complex
+enum ControlStyles {Complex,Simple,Twinstick}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 func _ready():
+	for i in range(0,chosen_weapons.size()):
+		var chosen_weap = chosen_weapons[i].instantiate()
+		weapon_slots[i].add_child(chosen_weap)
+		
+	for slot in weapon_slots:
+		weapons.append(slot.get_children()[0])
+		components.append(slot.get_children()[0])
 	for part in components:
 		part.component_owner = self
 	
