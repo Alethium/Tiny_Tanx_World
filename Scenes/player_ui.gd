@@ -86,7 +86,45 @@ func handle_weapon_cooldown_bars():
 	weapon_slots[1].cooldown_bar.size.y = Observed_player.weapons[1].get_meter() * 29
 	weapon_slots[2].cooldown_bar.size.y = Observed_player.weapons[2].get_meter() * 29
 	weapon_slots[3].cooldown_bar.size.y = Observed_player.weapons[3].get_meter() * 29
+	weapon_slots[0].set_icon(Observed_player.weapons[0])
+	weapon_slots[1].set_icon(Observed_player.weapons[1])
+	weapon_slots[2].set_icon(Observed_player.weapons[2])
+	weapon_slots[3].set_icon(Observed_player.weapons[3])
+	if Observed_player.weapons[0].disabled:
+		weapon_slots[0].weapon_disabled.visible = true
+	elif Observed_player.weapons[0].destroyed:
+		weapon_slots[0].weapon_disabled.visible = true
+		weapon_slots[0].weapon_destroyed.visible = true
+	else:
+		weapon_slots[0].weapon_disabled.visible = false
+		weapon_slots[0].weapon_destroyed.visible = false
+	
+	if Observed_player.weapons[1].disabled:
+		weapon_slots[1].weapon_disabled.visible = true
+	elif Observed_player.weapons[1].destroyed:
+		weapon_slots[1].weapon_disabled.visible = true
+		weapon_slots[1].weapon_destroyed.visible = true
+	else:
+		weapon_slots[1].weapon_disabled.visible = false
+		weapon_slots[1].weapon_destroyed.visible = false
+		
+	if Observed_player.weapons[2].disabled:
+		weapon_slots[2].weapon_disabled.visible = true
+	elif Observed_player.weapons[2].destroyed:
+		weapon_slots[2].weapon_disabled.visible = true
+		weapon_slots[2].weapon_destroyed.visible = true
+	else:
+		weapon_slots[2].weapon_disabled.visible = false
+		weapon_slots[2].weapon_destroyed.visible = false		
 
+	if Observed_player.weapons[3].disabled:
+		weapon_slots[3].weapon_disabled.visible = true
+	elif Observed_player.weapons[3].destroyed:
+		weapon_slots[3].weapon_disabled.visible = true
+		weapon_slots[3].weapon_destroyed.visible = true
+	else:
+		weapon_slots[3].weapon_disabled.visible = false
+		weapon_slots[3].weapon_destroyed.visible = false
 func handle_overheat_bar():
 	overheat.size.y = Observed_player.overheat * 0.6
 	

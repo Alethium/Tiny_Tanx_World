@@ -7,7 +7,7 @@ extends Component
 @export var heat : float
 @export var munition : PackedScene
 @export var spread: float
-
+@export var icon_index : int
 var gun_owner 
 
 var cooldown_timer = 0.0

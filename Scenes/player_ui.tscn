@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ftl8f5x5g86g"]
+[gd_scene load_steps=22 format=3 uid="uid://ftl8f5x5g86g"]
 
 [ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="1_dxtgh"]
 [ext_resource type="Texture2D" uid="uid://dkgfg8q0h7rph" path="res://Sprites/tnytanxUI.png" id="1_ohrjl"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cvscfggkjswnj" path="res://Scripts/UI_text_display.gd" id="9_cfvot"]
 [ext_resource type="AudioStream" uid="uid://dh2xp0gced1da" path="res://Audio/Other/power-down-45784.mp3" id="10_slp1l"]
 [ext_resource type="FontFile" uid="uid://daqp8uaec7q1w" path="res://Gameplaya.ttf" id="11_i0isd"]
+[ext_resource type="PackedScene" uid="uid://b2tkalj45xknl" path="res://Scenes/life_counter_bulb.tscn" id="15_2l008"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uflt7"]
 bg_color = Color(0.09019608, 0.078431375, 0.101960786, 1)
@@ -83,14 +84,15 @@ grow_vertical = 2
 color = Color(0.12941177, 0.11372549, 0.14509805, 1)
 
 [node name="Pilot_portrait_UI" parent="UI_frame_bottom" instance=ExtResource("6_jbpjp")]
-position = Vector2(122, 77.5)
+position = Vector2(-157, 77.5)
 
 [node name="enemy_paper_target" parent="UI_frame_bottom" instance=ExtResource("4_46yqn")]
-position = Vector2(-121.5, 77.5)
+position = Vector2(118, 79)
 scale = Vector2(0.5, 0.5)
 
 [node name="Enemy_pilot_portrait_UI" parent="UI_frame_bottom" instance=ExtResource("6_jbpjp")]
-position = Vector2(-157, 77.5)
+position = Vector2(129.25, 89)
+scale = Vector2(0.25, 0.25)
 
 [node name="weapon_slot_UI_1" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
 position = Vector2(94, 95.5)
@@ -212,6 +214,10 @@ region_enabled = true
 region_rect = Rect2(17, 80, 33, 30)
 metadata/_edit_lock_ = true
 
+[node name="Throttle_display" type="Sprite2D" parent="UI_frame_bottom"]
+texture = ExtResource("5_byt00")
+region_enabled = true
+
 [node name="mechbuilder" type="Node2D" parent="."]
 visible = false
 position = Vector2(320, -176)
@@ -331,3 +337,15 @@ theme_override_fonts/font = ExtResource("11_i0isd")
 theme_override_font_sizes/font_size = 200
 text = "OVERHEAT!"
 label_settings = SubResource("LabelSettings_dneem")
+
+[node name="Life_counter_bulb" parent="." instance=ExtResource("15_2l008")]
+position = Vector2(317, 74)
+
+[node name="Life_counter_bulb2" parent="." instance=ExtResource("15_2l008")]
+position = Vector2(317, 127)
+
+[node name="Life_counter_bulb3" parent="." instance=ExtResource("15_2l008")]
+position = Vector2(546, 74)
+
+[node name="Life_counter_bulb4" parent="." instance=ExtResource("15_2l008")]
+position = Vector2(546, 127)

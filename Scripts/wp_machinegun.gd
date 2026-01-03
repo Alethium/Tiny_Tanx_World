@@ -8,7 +8,7 @@ const BULLET_HIT = preload("uid://chp6dfk6nfk0e")
 
 var has_overheat = true
 var overheat := 0.0
-var cooling := 0.1
+var cooling := 0.2
 var max_overheat := 100
 
 # Called when the node enters the scene tree for the first time.
@@ -16,6 +16,7 @@ var max_overheat := 100
 	
 func _process(delta: float) -> void:
 	super._process(delta)
+	disabled = jammed
 	if overheat > 0:
 		overheat -= cooling
 	overheat = clampf(overheat,0,max_overheat)
@@ -35,14 +36,14 @@ func _process(delta: float) -> void:
 
 func fire(dir :float):
 	if !destroyed and !jammed:
-		print("overheat / max overheat", overheat, "  :  ", max_overheat)
+		#print("overheat / max overheat", overheat, "  :  ", max_overheat)
 		var adjusted_angle = dir + deg_to_rad(90 + randf_range(-spread,spread))  # Assuming bottom_dir is in radians
 		var move_direction = Vector2(cos(adjusted_angle), sin(adjusted_angle))
 		#if cooldown_timer == :
 			#$shell_eject.play()
 		if cooldown_timer == 0:
 			$AudioStreamPlayer.play()
-			overheat += 1.0
+			overheat += 1.5
 			cooldown_timer += cooldown
 			gun_owner.overheat += heat
 			var new_shot = munition.instantiate()

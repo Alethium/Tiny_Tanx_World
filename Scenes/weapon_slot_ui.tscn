@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dadv1dl70yfki"]
+[gd_scene load_steps=5 format=3 uid="uid://dadv1dl70yfki"]
 
 [ext_resource type="Script" uid="uid://brmj002cupo85" path="res://Scripts/weapon_slot_UI.gd" id="1_qlpp3"]
 [ext_resource type="Texture2D" uid="uid://di1krihlk1okg" path="res://Sprites/tnytanxUI_new.png" id="2_06d6d"]
 [ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="3_qle8s"]
+[ext_resource type="Script" uid="uid://c6rqbjrnxdsx5" path="res://Scripts/weapon_icon.gd" id="4_06d6d"]
 
 [node name="weapon_slot_UI" type="Node2D"]
 script = ExtResource("1_qlpp3")
@@ -32,28 +33,31 @@ centered = false
 region_enabled = true
 region_rect = Rect2(101, 256, 29, 3)
 
-[node name="Icon_frame" type="Sprite2D" parent="."]
+[node name="Weapon_Icon" type="Node2D" parent="."]
+script = ExtResource("4_06d6d")
+
+[node name="Icon_frame" type="Sprite2D" parent="Weapon_Icon"]
 texture = ExtResource("2_06d6d")
 centered = false
 region_enabled = true
 region_rect = Rect2(192, 80, 16, 17)
 
-[node name="Weapon_sprite" type="Sprite2D" parent="."]
+[node name="Weapon_sprite" type="Sprite2D" parent="Weapon_Icon"]
 position = Vector2(1, -1)
 texture = ExtResource("2_06d6d")
 centered = false
 hframes = 4
-frame = 2
+frame = 1
 region_enabled = true
 region_rect = Rect2(144, 112, 64, 16)
 
 [node name="Cooldown_disabled" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(17, 0)
+position = Vector2(1, 19)
 texture = ExtResource("2_06d6d")
 centered = false
 region_enabled = true
-region_rect = Rect2(32, 18, 33, 7)
+region_rect = Rect2(33, 18, 31, 5)
 
 [node name="Weapon_disabled" type="Sprite2D" parent="."]
 visible = false
@@ -62,3 +66,11 @@ texture = ExtResource("2_06d6d")
 centered = false
 region_enabled = true
 region_rect = Rect2(17, 17, 14, 14)
+
+[node name="Health bar" type="Sprite2D" parent="."]
+position = Vector2(14, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_06d6d")
+centered = false
+region_enabled = true
+region_rect = Rect2(98, 7, 1, 8)

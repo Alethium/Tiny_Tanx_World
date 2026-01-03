@@ -17,6 +17,7 @@ cooldown = 3.0
 heat = 0.4
 munition = ExtResource("2_musi1")
 spread = 3.0
+icon_index = 1
 health = 50.0
 armor = 50.0
 

@@ -122,6 +122,7 @@ func on_player_death(player,lives_remaining):
 		player_2.Controls = PLAYER_2_CONTROLS.duplicate()
 		player_1.Controls.player_index = 2
 		player_2.player_color = Color.LIGHT_SKY_BLUE
+		player_2.player_device = 1
 		player_2_view.add_child((respawning_player))
 		respawning_player.global_position = new_spawn.global_position
 		respawning_player.bottom_dir = (new_spawn.global_rotation)
@@ -136,6 +137,7 @@ func on_player_death(player,lives_remaining):
 		player_1 = respawning_player
 		player_1.Controls = PLAYER_1_CONTROLS.duplicate()
 		player_1.Controls.player_index = 1
+		player_2.player_device = 0
 		player_1.player_color = Color.HOT_PINK
 		player_1_view.add_child((respawning_player))
 		respawning_player.global_position = new_spawn.global_position
