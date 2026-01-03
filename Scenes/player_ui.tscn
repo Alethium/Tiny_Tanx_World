@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ftl8f5x5g86g"]
+[gd_scene load_steps=21 format=3 uid="uid://ftl8f5x5g86g"]
 
 [ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="1_dxtgh"]
 [ext_resource type="Texture2D" uid="uid://dkgfg8q0h7rph" path="res://Sprites/tnytanxUI.png" id="1_ohrjl"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ceebksldp3424" path="res://Sprites/overheat.png" id="8_6jssq"]
 [ext_resource type="PackedScene" uid="uid://ba6dy5lj1emvv" path="res://Scenes/enemy_radar.tscn" id="8_dneem"]
 [ext_resource type="AudioStream" uid="uid://djvwjmevgjp06" path="res://Audio/Other/Error Triplet-5.wav" id="9_3nrpj"]
+[ext_resource type="Script" uid="uid://cvscfggkjswnj" path="res://Scripts/UI_text_display.gd" id="9_cfvot"]
 [ext_resource type="AudioStream" uid="uid://dh2xp0gced1da" path="res://Audio/Other/power-down-45784.mp3" id="10_slp1l"]
 [ext_resource type="FontFile" uid="uid://daqp8uaec7q1w" path="res://Gameplaya.ttf" id="11_i0isd"]
 
@@ -45,6 +46,7 @@ anchor_bottom = 0.24200001
 offset_top = 537.12006
 offset_bottom = -0.2400055
 script = ExtResource("1_qipxh")
+metadata/_edit_lock_ = true
 
 [node name="UI_frame_bottom" type="Sprite2D" parent="."]
 position = Vector2(320, -147)
@@ -53,6 +55,13 @@ texture = ExtResource("1_ohrjl")
 offset = Vector2(0, 117)
 region_enabled = true
 region_rect = Rect2(0, 233, 320, 87)
+metadata/_edit_lock_ = true
+
+[node name="Coin slot" type="Sprite2D" parent="UI_frame_bottom"]
+position = Vector2(143, 136)
+texture = ExtResource("5_byt00")
+region_enabled = true
+region_rect = Rect2(199, 135, 16, 40)
 
 [node name="frame_top" type="Sprite2D" parent="UI_frame_bottom"]
 visible = false
@@ -74,24 +83,31 @@ grow_vertical = 2
 color = Color(0.12941177, 0.11372549, 0.14509805, 1)
 
 [node name="Pilot_portrait_UI" parent="UI_frame_bottom" instance=ExtResource("6_jbpjp")]
-position = Vector2(-155.5, 77.5)
+position = Vector2(122, 77.5)
+
+[node name="enemy_paper_target" parent="UI_frame_bottom" instance=ExtResource("4_46yqn")]
+position = Vector2(-121.5, 77.5)
+scale = Vector2(0.5, 0.5)
+
+[node name="Enemy_pilot_portrait_UI" parent="UI_frame_bottom" instance=ExtResource("6_jbpjp")]
+position = Vector2(-157, 77.5)
 
 [node name="weapon_slot_UI_1" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(7, 77.5)
+position = Vector2(94, 95.5)
 
 [node name="weapon_slot_UI_2" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(7, 97.5)
+position = Vector2(94, 123.5)
 
 [node name="weapon_slot_UI_3" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(-69.5, 77.5)
+position = Vector2(17.5, 95.5)
 scale = Vector2(-1, 1)
 
 [node name="weapon_slot_UI_4" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(-69.5, 97.5)
+position = Vector2(17.5, 122.5)
 scale = Vector2(-1, 1)
 
 [node name="paper_target" parent="UI_frame_bottom" instance=ExtResource("4_46yqn")]
-position = Vector2(-67, 77.5)
+position = Vector2(20, 77.5)
 
 [node name="Overheat_bar" type="Node2D" parent="UI_frame_bottom/paper_target"]
 position = Vector2(61, 0)
@@ -111,6 +127,7 @@ offset_top = 61.0
 offset_right = 19.0
 offset_bottom = 120.99999
 rotation = 3.1415927
+metadata/_edit_use_anchors_ = true
 
 [node name="Heat_Bar" type="Sprite2D" parent="UI_frame_bottom/paper_target/Overheat_bar/Overheat"]
 position = Vector2(4.500004, 31)
@@ -157,17 +174,43 @@ texture = ExtResource("1_dxtgh")
 region_enabled = true
 region_rect = Rect2(263, 290, 3, 3)
 
-[node name="enemy_paper_target" parent="UI_frame_bottom" instance=ExtResource("4_46yqn")]
-position = Vector2(26.499996, 109)
-scale = Vector2(0.49155053, 0.49155053)
-
 [node name="Radar_frame" type="Sprite2D" parent="UI_frame_bottom"]
-position = Vector2(89.5, 108.5)
+position = Vector2(-48.5, 117.5)
 texture = ExtResource("5_byt00")
 region_enabled = true
 region_rect = Rect2(129, 129, 62, 62)
 
 [node name="Enemy_Radar" parent="UI_frame_bottom/Radar_frame" instance=ExtResource("8_dneem")]
+
+[node name="speaker" type="Sprite2D" parent="UI_frame_bottom"]
+position = Vector2(-140, 120.5)
+texture = ExtResource("5_byt00")
+region_enabled = true
+region_rect = Rect2(16, 64, 34, 12)
+
+[node name="Text_display" type="Node2D" parent="UI_frame_bottom"]
+position = Vector2(-157, 128)
+script = ExtResource("9_cfvot")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI_frame_bottom/Text_display"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 64.0
+offset_bottom = 27.0
+
+[node name="Text_box" type="Sprite2D" parent="UI_frame_bottom/Text_display"]
+position = Vector2(17, 15)
+texture = ExtResource("5_byt00")
+region_enabled = true
+region_rect = Rect2(16, 80, 34, 30)
+metadata/_edit_lock_ = true
+
+[node name="Text_box2" type="Sprite2D" parent="UI_frame_bottom/Text_display/Text_box"]
+position = Vector2(32.5, 0)
+texture = ExtResource("5_byt00")
+region_enabled = true
+region_rect = Rect2(17, 80, 33, 30)
+metadata/_edit_lock_ = true
 
 [node name="mechbuilder" type="Node2D" parent="."]
 visible = false
@@ -258,6 +301,7 @@ layout_mode = 0
 offset_top = -549.0
 offset_right = 640.0
 texture = SubResource("GradientTexture2D_6jssq")
+metadata/_edit_lock_ = true
 
 [node name="Overheat_warning" type="Sprite2D" parent="."]
 visible = false

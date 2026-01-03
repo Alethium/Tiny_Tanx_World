@@ -1,7 +1,7 @@
 #front mid
 # this is engine compartment
 extends Component
-var disabled = false
+
 
 
 func _process(delta: float) -> void:

@@ -22,11 +22,13 @@ func _process(delta: float) -> void:
 	if jam_timer > 0 and jammed:
 		jam_timer -= 1.0
 		
-	if overheat > max_overheat and !jammed:
+	if overheat == max_overheat and !jammed:
+		jam_timer = jam_length
 		jammed = true
 	
 	if jam_timer <= 0 and jammed:
-		jammed = false	
+		jammed = false
+		jam_timer = jam_length	
 
 
 

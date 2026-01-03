@@ -47,6 +47,7 @@ position = Vector2(221, 529)
 Controls = ExtResource("4_i6g32")
 player_name = "Player_1"
 chosen_weapons = [ExtResource("8_rfjv2"), ExtResource("8_rfjv2"), ExtResource("8_rfjv2"), ExtResource("8_rfjv2")]
+player_color = Color(1, 0.4117647, 0.7058824, 1)
 
 [node name="Player_2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -68,6 +69,7 @@ Controls = ExtResource("5_1l0tm")
 player_name = "Player_2"
 player_device = 1
 chosen_weapons = [ExtResource("8_rfjv2"), ExtResource("8_rfjv2"), ExtResource("8_rfjv2"), ExtResource("8_rfjv2")]
+player_color = Color(0.5294118, 0.80784315, 0.98039216, 1)
 
 [node name="PLAYER_UI" parent="." node_paths=PackedStringArray("Observed_player", "locked_on_player") instance=ExtResource("5_i6g32")]
 layout_mode = 0

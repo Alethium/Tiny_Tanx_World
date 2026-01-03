@@ -112,9 +112,6 @@ var weapons = []
 
 
 
-var bottom_dir = 0.0
-var top_dir = 0.0
-var throttle = 0.0
 
 #MODDIFIABLE STATS FROM COMPONENT DAMAGE
 @export var SPEED = 30.0
@@ -140,12 +137,18 @@ var curr_health = 0
 var curr_armor = 0
 var targeted_player : Player = null
 var cool_speed : float = 0.2
-
+var target_dir = 0.0
+var target_distance = 0.0
+var target_visible = false
+var bottom_dir = 0.0
+var top_dir = 0.0
+var throttle = 0.0
 
 # -----PLAYER CONTROLLED SETTINGS------------
 @export var top_locked = true
 var control_style = ControlStyles.Complex
 enum ControlStyles {Complex,Simple,Twinstick}
+@export var player_color:Color
 
 
 
@@ -161,6 +164,7 @@ enum ControlStyles {Complex,Simple,Twinstick}
 
 
 func _ready():
+	%Cockpit.modulate = player_color
 	for i in range(0,chosen_weapons.size()):
 		var chosen_weap = chosen_weapons[i].instantiate()
 		weapon_slots[i].add_child(chosen_weap)
@@ -216,8 +220,9 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
-	
-
+	if targeted_player:
+		target_dir = rad_to_deg(get_angle_to(targeted_player.global_position)) 
+		target_distance = global_position.distance_to(targeted_player.global_position)
 	update_total_health_bars()
 	move_and_slide()
 	

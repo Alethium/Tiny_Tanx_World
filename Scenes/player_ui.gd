@@ -70,12 +70,17 @@ func _process(delta: float) -> void:
 		update_player_stats(delta)
 		handle_radar()
 		handle_weapon_cooldown_bars()
-	if locked_on_player != null:
-		$UI_frame_bottom/enemy_paper_target.visible = true
-		#print("locked on player  : ", locked_on_player)
-		update_enemy_paper_target(locked_on_player)
-	else:
-		%enemy_target.visible = false
+		if locked_on_player != null:
+			$UI_frame_bottom/enemy_paper_target.visible = true
+			#print("locked on player  : ", locked_on_player)
+			Observed_player.targeted_player = locked_on_player
+			update_enemy_paper_target(locked_on_player)
+			enemy_radar.display_tracked_enemies(Observed_player.target_dir,Observed_player.target_distance)
+			if !enemy_radar.tracked_enemies.has(locked_on_player):
+				enemy_radar.tracked_enemies.append(locked_on_player)
+				
+		else:
+			$UI_frame_bottom/enemy_paper_target.visible = false
 func handle_weapon_cooldown_bars():	
 	weapon_slots[0].cooldown_bar.size.y = Observed_player.weapons[0].get_meter() * 29
 	weapon_slots[1].cooldown_bar.size.y = Observed_player.weapons[1].get_meter() * 29
@@ -89,6 +94,8 @@ func handle_radar():
 	enemy_radar.bottom_direction.rotation = Observed_player.bottom_dir
 	enemy_radar.top_view.rotation = Observed_player.top_dir
 	enemy_radar.rotation = -Observed_player.top_dir
+	#print("target dir/dist : ", Observed_player.target_dir,"  ::  ",Observed_player.target_distance)
+	
 
 
 func handle_health_bars():

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqapjwetxq5t"]
+
+[ext_resource type="Texture2D" uid="uid://di1krihlk1okg" path="res://Sprites/tnytanxUI_new.png" id="1_kvste"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kvste"]
+blend_mode = 1
+
+[node name="Radar dot" type="Sprite2D"]
+modulate = Color(0.21699995, 1, 0.19, 0.7254902)
+material = SubResource("CanvasItemMaterial_kvste")
+texture = ExtResource("1_kvste")
+region_enabled = true
+region_rect = Rect2(100, 20, 7, 7)

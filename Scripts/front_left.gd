@@ -1,6 +1,6 @@
 #front left
 extends Component
-var disabled = false
+
 
 
 func _process(delta: float) -> void:

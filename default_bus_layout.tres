@@ -4,7 +4,6 @@
 resource_name = "Compressor"
 
 [resource]
-bus/0/mute = true
 bus/0/volume_db = 1.5360031
 bus/1/name = &"Music"
 bus/1/solo = false

@@ -275,6 +275,27 @@ limit_enabled = false
 rotation_smoothing_speed = 3.0
 script = ExtResource("10_6bbur")
 
+[node name="weapon_slots" type="Node2D" parent="top_half"]
+position = Vector2(0.00328394, -1.9999974)
+
+[node name="left_arm_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+position = Vector2(-17.003284, 1.9999974)
+scale = Vector2(0.9999998, 0.9999998)
+script = ExtResource("16_p21fq")
+
+[node name="left_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+z_index = 1
+position = Vector2(-0.00328394, 4.9999976)
+script = ExtResource("16_p21fq")
+
+[node name="right_arm_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+position = Vector2(15.9967165, 1.9999974)
+script = ExtResource("16_p21fq")
+
+[node name="right_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
+position = Vector2(7.996716, -9.000003)
+script = ExtResource("16_p21fq")
+
 [node name="Top_Armor_Hitboxes" type="Node2D" parent="top_half"]
 scale = Vector2(1.0000001, 1.0000001)
 
@@ -486,25 +507,3 @@ visible = false
 position = Vector2(-3.0597974e-07, 6.750006)
 scale = Vector2(0.9999988, 0.9999988)
 shape = SubResource("RectangleShape2D_8l82a")
-
-[node name="weapon_slots" type="Node2D" parent="top_half"]
-position = Vector2(0.0032839403, -1.9999975)
-scale = Vector2(1.0000001, 1.0000001)
-
-[node name="left_arm_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
-position = Vector2(-17.003284, 1.9999974)
-scale = Vector2(0.9999998, 0.9999998)
-script = ExtResource("16_p21fq")
-
-[node name="left_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
-z_index = 1
-position = Vector2(-0.00328394, 4.9999976)
-script = ExtResource("16_p21fq")
-
-[node name="right_arm_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
-position = Vector2(15.9967165, 1.9999974)
-script = ExtResource("16_p21fq")
-
-[node name="right_shoulder_weapon_slot" type="Node2D" parent="top_half/weapon_slots"]
-position = Vector2(7.996716, -9.000003)
-script = ExtResource("16_p21fq")

@@ -8,7 +8,7 @@ extends Area2D
 @onready var starting_armor = armor
 @export var component_owner : Player
 var destroyed = false
-
+var disabled = false
 const EXPLOSION_COMPONENT = preload("uid://t148unhpctq0")
 
 
