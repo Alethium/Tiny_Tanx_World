@@ -39,8 +39,8 @@ signal on_death()
 	rear_right,
 	front_mid,
 	core_rear,
-	core_l,
 	core_r,
+	core_l,
 	cockpit,
 
 ]
@@ -55,8 +55,8 @@ signal on_death()
 	rear_right,
 	front_mid,
 	core_rear,
-	core_l,
 	core_r,
+	core_l,
 	cockpit,
 ]
 
@@ -71,10 +71,10 @@ signal on_death()
 @onready var right_shoulder_weapon_slot: Node2D = $top_half/weapon_slots/right_shoulder_weapon_slot
 @onready var left_shoulder_weapon_slot: Node2D = $top_half/weapon_slots/left_shoulder_weapon_slot
 
-@export var WP_R1 : PackedScene 
-@export var WP_R2 : PackedScene 
-@export var WP_L1 : PackedScene 
-@export var WP_L2 : PackedScene 
+#@export var WP_R1 : PackedScene 
+#@export var WP_R2 : PackedScene 
+#@export var WP_L1 : PackedScene 
+#@export var WP_L2 : PackedScene 
 
 const WP_CANNON = preload("uid://8qrv1ct2axpq")
 const WP_LASER = preload("uid://dgxw3ow82ruaw")
@@ -164,6 +164,7 @@ func _ready():
 	for i in range(0,chosen_weapons.size()):
 		var chosen_weap = chosen_weapons[i].instantiate()
 		weapon_slots[i].add_child(chosen_weap)
+		weapon_slots[i].equipped_weapon = chosen_weap 
 		
 	for slot in weapon_slots:
 		weapons.append(slot.get_children()[0])
@@ -180,6 +181,7 @@ func _physics_process(delta: float) -> void:
 		if overheat > 80:
 			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire2.emitting  = true
 			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire.emitting = true
+			$bottom_half/engine_fire.emitting = true
 			Input.start_joy_vibration(player_device,1.0,1.0,delta)
 		elif overheat > 60:
 			#$top_half/engine_fire.visible = true
@@ -187,6 +189,7 @@ func _physics_process(delta: float) -> void:
 			Input.start_joy_vibration(player_device,0.5,0.3,delta)
 		else:
 			#Input.stop_joy_vibration(player_device)
+			$bottom_half/engine_fire.emitting = false
 			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire.emitting = false
 			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire2.emitting = false
 	else:

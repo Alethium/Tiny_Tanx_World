@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba6dy5lj1emvv"]
+
+[ext_resource type="Script" uid="uid://bfc28a4u4dmxn" path="res://Scripts/enemy_radar.gd" id="1_3wsdn"]
+[ext_resource type="Texture2D" uid="uid://di1krihlk1okg" path="res://Sprites/tnytanxUI_new.png" id="1_e6w4j"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3wsdn"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e6w4j"]
+blend_mode = 1
+
+[node name="Enemy_Radar" type="Node2D"]
+script = ExtResource("1_3wsdn")
+
+[node name="Radar_screen" type="Sprite2D" parent="."]
+texture = ExtResource("1_e6w4j")
+region_enabled = true
+region_rect = Rect2(65, 49, 62, 62)
+
+[node name="Radar_screen_marks" type="Sprite2D" parent="."]
+modulate = Color(0.88516665, 1, 0.47000003, 0.6156863)
+material = SubResource("CanvasItemMaterial_3wsdn")
+texture = ExtResource("1_e6w4j")
+region_enabled = true
+region_rect = Rect2(65, 113, 62, 62)
+
+[node name="Top_view" type="Sprite2D" parent="."]
+modulate = Color(0.31249997, 0.75, 0, 0.1254902)
+material = SubResource("CanvasItemMaterial_e6w4j")
+texture = ExtResource("1_e6w4j")
+centered = false
+offset = Vector2(-17, -23)
+region_enabled = true
+region_rect = Rect2(15, 37, 34, 25)
+
+[node name="Bottom_direction" type="Sprite2D" parent="."]
+modulate = Color(0.31249997, 0.75, 0, 0.1254902)
+material = SubResource("CanvasItemMaterial_e6w4j")
+texture = ExtResource("1_e6w4j")
+offset = Vector2(0, -12)
+region_enabled = true
+region_rect = Rect2(51, 48, 11, 16)

@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdvtjucvrr360"]
+
+[ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="1_076ha"]
+[ext_resource type="PackedScene" uid="uid://b2tkalj45xknl" path="res://Scenes/life_counter_bulb.tscn" id="2_q2l7g"]
+
+[node name="life_meter" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="Life_meter" type="Sprite2D" parent="."]
+position = Vector2(12, 18)
+texture = ExtResource("1_076ha")
+region_enabled = true
+region_rect = Rect2(148, 190, 24, 36)
+
+[node name="Player_1 bulbs" type="Node2D" parent="Life_meter"]
+
+[node name="Life_counter_bulb" parent="Life_meter/Player_1 bulbs" instance=ExtResource("2_q2l7g")]
+position = Vector2(-6, -12)
+
+[node name="Life_counter_bulb2" parent="Life_meter/Player_1 bulbs" instance=ExtResource("2_q2l7g")]
+position = Vector2(-6, 0)
+
+[node name="Life_counter_bulb3" parent="Life_meter/Player_1 bulbs" instance=ExtResource("2_q2l7g")]
+position = Vector2(-6, 12)
+
+[node name="Player_2 bulbs" type="Node2D" parent="Life_meter"]
+position = Vector2(12, 0)
+
+[node name="Life_counter_bulb" parent="Life_meter/Player_2 bulbs" instance=ExtResource("2_q2l7g")]
+position = Vector2(-6, -12)
+
+[node name="Life_counter_bulb2" parent="Life_meter/Player_2 bulbs" instance=ExtResource("2_q2l7g")]
+position = Vector2(-6, 0)
+
+[node name="Life_counter_bulb3" parent="Life_meter/Player_2 bulbs" instance=ExtResource("2_q2l7g")]
+position = Vector2(-6, 12)

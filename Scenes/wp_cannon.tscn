@@ -9,6 +9,7 @@
 size = Vector2(7.9999833, 12.749994)
 
 [node name="Cannon" type="Area2D"]
+z_index = -1
 position = Vector2(-2.3841858e-07, -7.1525574e-07)
 rotation = 0.0016419711
 scale = Vector2(0.9999998, 0.9999998)
@@ -16,7 +17,7 @@ script = ExtResource("1_la6kp")
 damage = 20.0
 speed = 500.0
 cooldown = 60.0
-heat = 100.0
+heat = 20.0
 munition = ExtResource("1_l0sxq")
 spread = 1.0
 health = 50.0

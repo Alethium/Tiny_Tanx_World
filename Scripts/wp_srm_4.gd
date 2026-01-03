@@ -66,3 +66,5 @@ func fire_volleys():
 			
 		if volly_num == 0:	
 			firing = false
+func get_meter():
+	return cooldown_timer/cooldown

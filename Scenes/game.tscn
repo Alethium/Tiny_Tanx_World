@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dpl20eb6x6t14"]
+[gd_scene load_steps=11 format=3 uid="uid://dpl20eb6x6t14"]
 
 [ext_resource type="Script" uid="uid://dvockkcnjdenb" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://jhho1u3orutm" path="res://Scenes/level.tscn" id="1_ebmjs"]
@@ -6,10 +6,7 @@
 [ext_resource type="Resource" uid="uid://m2sjqkxfifmj" path="res://Scripts/Player_1_controls.tres" id="4_i6g32"]
 [ext_resource type="Resource" uid="uid://djbf4ibjvpqxp" path="res://Scripts/Player_2_controls.tres" id="5_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://ftl8f5x5g86g" path="res://Scenes/player_ui.tscn" id="5_i6g32"]
-[ext_resource type="PackedScene" uid="uid://ydce2xf53jyc" path="res://Scenes/wp_srm_4.tscn" id="6_rku1e"]
-[ext_resource type="PackedScene" uid="uid://8qrv1ct2axpq" path="res://Scenes/wp_cannon.tscn" id="7_rfjv2"]
-[ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="7_v158k"]
-[ext_resource type="PackedScene" uid="uid://b2tkalj45xknl" path="res://Scenes/life_counter_bulb.tscn" id="8_h4fw4"]
+[ext_resource type="PackedScene" uid="uid://bdvtjucvrr360" path="res://Scenes/life_meter.tscn" id="8_ldgsr"]
 [ext_resource type="PackedScene" uid="uid://dx11aqaggxpxn" path="res://Scenes/wp_machinegun.tscn" id="8_rfjv2"]
 [ext_resource type="Script" uid="uid://ce6011hj5sy22" path="res://Scripts/The_game_music.gd" id="10_ldgsr"]
 [ext_resource type="AudioStream" uid="uid://dqlm06ws6kp05" path="res://Audio/Lazer (RT 6.0)/Synthwave Lazer Intensity 1.wav" id="11_rku1e"]
@@ -49,6 +46,7 @@ position = Vector2(480, 275)
 position = Vector2(221, 529)
 Controls = ExtResource("4_i6g32")
 player_name = "Player_1"
+chosen_weapons = [ExtResource("8_rfjv2"), ExtResource("8_rfjv2"), ExtResource("8_rfjv2"), ExtResource("8_rfjv2")]
 
 [node name="Player_2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -69,78 +67,43 @@ position = Vector2(327, 529)
 Controls = ExtResource("5_1l0tm")
 player_name = "Player_2"
 player_device = 1
-WP_R1 = ExtResource("6_rku1e")
-WP_R2 = ExtResource("6_rku1e")
-WP_L1 = ExtResource("7_rfjv2")
-WP_L2 = ExtResource("7_rfjv2")
-chosen_weapons = [ExtResource("7_rfjv2"), ExtResource("7_rfjv2"), ExtResource("8_rfjv2"), ExtResource("8_rfjv2")]
+chosen_weapons = [ExtResource("8_rfjv2"), ExtResource("8_rfjv2"), ExtResource("8_rfjv2"), ExtResource("8_rfjv2")]
 
 [node name="PLAYER_UI" parent="." node_paths=PackedStringArray("Observed_player", "locked_on_player") instance=ExtResource("5_i6g32")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 320.0
-offset_top = 372.0
-offset_right = 320.0
-offset_bottom = 1092.0
+offset_top = 546.0
+offset_bottom = 1266.0
 Observed_player = NodePath("../HBoxContainer/Player_1/player_1_view/Player_1")
 locked_on_player = NodePath("../HBoxContainer/Player_2/player_2_view/Player_2")
 
 [node name="PLAYER_UI2" parent="." node_paths=PackedStringArray("Observed_player", "locked_on_player") instance=ExtResource("5_i6g32")]
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 961.00006
-offset_top = 372.0
-offset_right = 961.00006
-offset_bottom = 1092.0
+offset_left = 640.0
+offset_top = 546.0
+offset_right = 640.0
+offset_bottom = 1266.0
 Observed_player = NodePath("../HBoxContainer/Player_2/player_2_view/Player_2")
 locked_on_player = NodePath("../HBoxContainer/Player_1/player_1_view/Player_1")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 637.0
-offset_right = 645.0
-offset_bottom = 720.0
+offset_left = 636.7123
+offset_top = -0.1439209
+offset_right = 644.7123
+offset_bottom = 719.8561
 color = Color(0.25490198, 0.23921569, 0.25882354, 1)
 
-[node name="life_meter" type="Node2D" parent="."]
-position = Vector2(640, 514.35297)
-scale = Vector2(2, 2)
-
-[node name="Life_meter" type="Sprite2D" parent="life_meter"]
-texture = ExtResource("7_v158k")
-region_enabled = true
-region_rect = Rect2(148, 190, 24, 36)
-
-[node name="Player_1 bulbs" type="Node2D" parent="life_meter/Life_meter"]
-
-[node name="Life_counter_bulb" parent="life_meter/Life_meter/Player_1 bulbs" instance=ExtResource("8_h4fw4")]
-position = Vector2(-6, -12)
-
-[node name="Life_counter_bulb2" parent="life_meter/Life_meter/Player_1 bulbs" instance=ExtResource("8_h4fw4")]
-position = Vector2(-6, 0)
-
-[node name="Life_counter_bulb3" parent="life_meter/Life_meter/Player_1 bulbs" instance=ExtResource("8_h4fw4")]
-position = Vector2(-6, 12)
-
-[node name="Player_2 bulbs" type="Node2D" parent="life_meter/Life_meter"]
-position = Vector2(12, 0)
-
-[node name="Life_counter_bulb" parent="life_meter/Life_meter/Player_2 bulbs" instance=ExtResource("8_h4fw4")]
-position = Vector2(-6, -12)
-
-[node name="Life_counter_bulb2" parent="life_meter/Life_meter/Player_2 bulbs" instance=ExtResource("8_h4fw4")]
-position = Vector2(-6, 0)
-
-[node name="Life_counter_bulb3" parent="life_meter/Life_meter/Player_2 bulbs" instance=ExtResource("8_h4fw4")]
-position = Vector2(-6, 12)
+[node name="life_meter" parent="." instance=ExtResource("8_ldgsr")]
+position = Vector2(616, 478)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_rku1e")

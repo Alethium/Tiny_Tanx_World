@@ -2,6 +2,7 @@ extends Node2D
 
 
 
+
 @onready var front_left: Sprite2D = $paper_target_front_tread_L
 @onready var front_right: Sprite2D = $paper_target_front_tread_R
 @onready var rear_left: Sprite2D = $paper_target_rear_tread_L

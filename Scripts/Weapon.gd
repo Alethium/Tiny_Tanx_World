@@ -21,3 +21,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if cooldown_timer > 0 :
 		cooldown_timer -= 1
+
+
+func get_meter():
+	return cooldown_timer/cooldown

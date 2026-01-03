@@ -1,15 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://ftl8f5x5g86g"]
+[gd_scene load_steps=20 format=3 uid="uid://ftl8f5x5g86g"]
 
 [ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="1_dxtgh"]
 [ext_resource type="Texture2D" uid="uid://dkgfg8q0h7rph" path="res://Sprites/tnytanxUI.png" id="1_ohrjl"]
 [ext_resource type="Script" uid="uid://bho7albwng17r" path="res://Scenes/player_ui.gd" id="1_qipxh"]
 [ext_resource type="PackedScene" uid="uid://c1vamfjyqnhsd" path="res://Scenes/paper_target.tscn" id="4_46yqn"]
-[ext_resource type="Script" uid="uid://dpw6iakub8ehl" path="res://Scripts/enemy_target.gd" id="5_vi3dy"]
+[ext_resource type="Texture2D" uid="uid://di1krihlk1okg" path="res://Sprites/tnytanxUI_new.png" id="5_byt00"]
+[ext_resource type="PackedScene" uid="uid://dadv1dl70yfki" path="res://Scenes/weapon_slot_ui.tscn" id="6_byt00"]
 [ext_resource type="PackedScene" uid="uid://b1pqxjre8j6ib" path="res://Scenes/pilot_portrait.tscn" id="6_jbpjp"]
 [ext_resource type="Texture2D" uid="uid://bj2ngx6o2gso5" path="res://Sprites/tank blueprint side.png" id="7_uflt7"]
 [ext_resource type="Texture2D" uid="uid://ceebksldp3424" path="res://Sprites/overheat.png" id="8_6jssq"]
+[ext_resource type="PackedScene" uid="uid://ba6dy5lj1emvv" path="res://Scenes/enemy_radar.tscn" id="8_dneem"]
 [ext_resource type="AudioStream" uid="uid://djvwjmevgjp06" path="res://Audio/Other/Error Triplet-5.wav" id="9_3nrpj"]
 [ext_resource type="AudioStream" uid="uid://dh2xp0gced1da" path="res://Audio/Other/power-down-45784.mp3" id="10_slp1l"]
+[ext_resource type="FontFile" uid="uid://daqp8uaec7q1w" path="res://Gameplaya.ttf" id="11_i0isd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uflt7"]
 bg_color = Color(0.09019608, 0.078431375, 0.101960786, 1)
@@ -26,246 +29,149 @@ fill_from = Vector2(0.4991453, 0.50085473)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6jssq"]
 blend_mode = 1
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_byt00"]
+blend_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_dneem"]
+font = ExtResource("11_i0isd")
+font_size = 199
+font_color = Color(0.8980392, 0.34509805, 0.34509805, 1)
+
 [node name="PLAYER_UI" type="Control"]
 layout_mode = 3
-anchor_left = -0.22200002
-anchor_top = -0.35200003
-anchor_right = 0.22200002
-anchor_bottom = 0.43800002
-offset_left = 284.16003
-offset_top = 253.44002
-offset_right = -228.16003
-offset_bottom = -259.36002
+anchor_top = -0.74600005
+anchor_right = 0.5
+anchor_bottom = 0.24200001
+offset_top = 537.12006
+offset_bottom = -0.2400055
 script = ExtResource("1_qipxh")
 
-[node name="TnytanxUiSprites" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-64.583984, -151.656)
-scale = Vector2(2, 2)
-texture = ExtResource("1_dxtgh")
-
 [node name="UI_frame_bottom" type="Sprite2D" parent="."]
-position = Vector2(0, 28)
+position = Vector2(320, -147)
 scale = Vector2(2, 2)
 texture = ExtResource("1_ohrjl")
-offset = Vector2(0, 39)
+offset = Vector2(0, 117)
 region_enabled = true
-region_rect = Rect2(0, 78, 320, 242)
+region_rect = Rect2(0, 233, 320, 87)
 
 [node name="frame_top" type="Sprite2D" parent="UI_frame_bottom"]
+visible = false
 position = Vector2(0, -132)
 texture = ExtResource("1_ohrjl")
 region_enabled = true
 region_rect = Rect2(0, 0, 320, 136)
 
+[node name="ColorRect" type="ColorRect" parent="UI_frame_bottom/frame_top"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 2.029
+offset_left = -155.0
+offset_top = -63.0
+offset_right = -165.0
+offset_bottom = -70.944
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12941177, 0.11372549, 0.14509805, 1)
+
+[node name="Pilot_portrait_UI" parent="UI_frame_bottom" instance=ExtResource("6_jbpjp")]
+position = Vector2(-155.5, 77.5)
+
+[node name="weapon_slot_UI_1" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
+position = Vector2(7, 77.5)
+
+[node name="weapon_slot_UI_2" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
+position = Vector2(7, 97.5)
+
+[node name="weapon_slot_UI_3" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
+position = Vector2(-69.5, 77.5)
+scale = Vector2(-1, 1)
+
+[node name="weapon_slot_UI_4" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
+position = Vector2(-69.5, 97.5)
+scale = Vector2(-1, 1)
+
 [node name="paper_target" parent="UI_frame_bottom" instance=ExtResource("4_46yqn")]
-position = Vector2(126, 102.5)
+position = Vector2(-67, 77.5)
 
-[node name="enemy_target" type="Sprite2D" parent="UI_frame_bottom"]
-unique_name_in_owner = true
-position = Vector2(79, 93)
-scale = Vector2(0.49155053, 0.49155053)
-texture = ExtResource("1_ohrjl")
+[node name="Overheat_bar" type="Node2D" parent="UI_frame_bottom/paper_target"]
+position = Vector2(61, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="UI_frame_bottom/paper_target/Overheat_bar"]
+position = Vector2(5.5, 31.5)
+texture = ExtResource("5_byt00")
 region_enabled = true
-region_rect = Rect2(255, 238, 61, 61)
-script = ExtResource("5_vi3dy")
+region_rect = Rect2(128, 48, 11, 63)
 
-[node name="enemy_paper_target" parent="UI_frame_bottom/enemy_target" instance=ExtResource("4_46yqn")]
-position = Vector2(0, -6)
-
-[node name="Overheat" type="Control" parent="UI_frame_bottom"]
+[node name="Overheat" type="Control" parent="UI_frame_bottom/paper_target/Overheat_bar"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = 15.999999
-offset_top = 140.0
-offset_right = 25.0
-offset_bottom = 200.0
+offset_left = 9.999999
+offset_top = 61.0
+offset_right = 19.0
+offset_bottom = 120.99999
 rotation = 3.1415927
 
-[node name="Heat_Bar" type="Sprite2D" parent="UI_frame_bottom/Overheat"]
-position = Vector2(4.5, 30)
+[node name="Heat_Bar" type="Sprite2D" parent="UI_frame_bottom/paper_target/Overheat_bar/Overheat"]
+position = Vector2(4.500004, 31)
 rotation = 3.1415927
 texture = ExtResource("1_dxtgh")
 region_enabled = true
 region_rect = Rect2(72, 240, 7, 58)
 
-[node name="Total_health" type="Control" parent="UI_frame_bottom"]
+[node name="Total_armor" type="Control" parent="UI_frame_bottom/paper_target"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = 103.18713
-offset_top = 127.5
-offset_right = 106.18713
-offset_bottom = 172.5
+offset_left = 8.0
+offset_top = 55.1615
+offset_right = 11.498581
+offset_bottom = 101.1913
 rotation = 4.712389
+metadata/_edit_use_anchors_ = true
 
-[node name="health_bar" type="Sprite2D" parent="UI_frame_bottom/Total_health"]
-position = Vector2(1.5425282, 22.524305)
+[node name="armor_bar" type="Sprite2D" parent="UI_frame_bottom/paper_target/Total_armor"]
+position = Vector2(2.294753, 23.01758)
 rotation = 3.1415927
-scale = Vector2(1.0286106, 15.012549)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(263, 290, 3, 3)
-
-[node name="weapon_slot_l1" type="Node2D" parent="UI_frame_bottom"]
-position = Vector2(-44, 86.5)
-
-[node name="Cannon" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l1"]
-position = Vector2(-0.5, 0)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(136, 271, 11, 11)
-
-[node name="Weapon_cooldown_r3" type="Control" parent="UI_frame_bottom/weapon_slot_l1/Cannon"]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 10.5
-offset_top = -1.5
-offset_right = 15.551872
-offset_bottom = 29.440643
-rotation = 4.712389
-
-[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l1/Cannon/Weapon_cooldown_r3"]
-position = Vector2(2.9999986, 14.999998)
-rotation = 4.712389
-scale = Vector2(1, 1.175)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(101, 256, 29, 3)
-
-[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l1/Cannon"]
-visible = false
-position = Vector2(18.5, -1)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(83, 238, 49, 14)
-
-[node name="weapon_slot_l2" type="Node2D" parent="UI_frame_bottom"]
-position = Vector2(-44, 101.5)
-
-[node name="rockets" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l2"]
-position = Vector2(0, 0.5)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(136, 286, 12, 12)
-
-[node name="Weapon_cooldown_r4" type="Control" parent="UI_frame_bottom/weapon_slot_l2/rockets"]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 9.5
-offset_top = -1.0
-offset_right = 14.551872
-offset_bottom = 29.940643
-rotation = 4.712389
-
-[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l2/rockets/Weapon_cooldown_r4"]
-position = Vector2(2.4661927, 15.253706)
-rotation = 4.712389
-scale = Vector2(1, 1.175)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(101, 256, 29, 3)
-
-[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/weapon_slot_l2/rockets"]
-visible = false
-position = Vector2(17.5, 0)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(83, 238, 49, 14)
-
-[node name="Weapon_slot_r1" type="Node2D" parent="UI_frame_bottom"]
-position = Vector2(-44, 118)
-
-[node name="Laser" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r1"]
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(136, 238, 12, 12)
-
-[node name="Weapon_cooldown_r1" type="Control" parent="UI_frame_bottom/Weapon_slot_r1/Laser"]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 10.0
-offset_top = -1.5
-offset_right = 15.051872
-offset_bottom = 29.440636
-rotation = 4.712389
-
-[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r1/Laser/Weapon_cooldown_r1"]
-position = Vector2(2.4661927, 15.253706)
-rotation = 4.712389
-scale = Vector2(1, 1.175)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(101, 256, 29, 3)
-
-[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r1/Laser"]
-visible = false
-position = Vector2(17.5, 0)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(83, 238, 49, 14)
-
-[node name="Weapon_slot_r2" type="Node2D" parent="UI_frame_bottom"]
-position = Vector2(-44, 134)
-
-[node name="MachineGun" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r2"]
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(136, 254, 12, 12)
-
-[node name="Weapon_cooldown_r2" type="Control" parent="UI_frame_bottom/Weapon_slot_r2/MachineGun"]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 9.5
-offset_top = -1.5
-offset_right = 14.551872
-offset_bottom = 29.440643
-rotation = 4.712389
-
-[node name="cooldown_bar" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r2/MachineGun/Weapon_cooldown_r2"]
-position = Vector2(2.4661927, 15.253706)
-rotation = 4.712389
-scale = Vector2(1, 1.175)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(101, 256, 29, 3)
-
-[node name="disabled" type="Sprite2D" parent="UI_frame_bottom/Weapon_slot_r2/MachineGun"]
-visible = false
-position = Vector2(17.5, 0)
-texture = ExtResource("1_dxtgh")
-region_enabled = true
-region_rect = Rect2(83, 238, 49, 14)
-
-[node name="Total_armor" type="Control" parent="UI_frame_bottom"]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 103.0
-offset_top = 132.5
-offset_right = 106.0
-offset_bottom = 177.5
-rotation = 4.712389
-
-[node name="armor_bar" type="Sprite2D" parent="UI_frame_bottom/Total_armor"]
-position = Vector2(1.5425282, 22.524305)
-rotation = 3.1415927
-scale = Vector2(1.0286106, 15.012549)
+scale = Vector2(1.1992284, 15.389493)
 texture = ExtResource("1_dxtgh")
 region_enabled = true
 region_rect = Rect2(263, 285, 3, 3)
 
-[node name="Pilot_portrait" parent="UI_frame_bottom" instance=ExtResource("6_jbpjp")]
-position = Vector2(-139, 96)
-scale = Vector2(1.8743364, 1.8743364)
+[node name="Total_health" type="Control" parent="UI_frame_bottom/paper_target"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 49.690964
+offset_right = 11.690964
+offset_bottom = 95.720764
+rotation = 4.712389
+metadata/_edit_use_anchors_ = true
+
+[node name="health_bar" type="Sprite2D" parent="UI_frame_bottom/paper_target/Total_health"]
+position = Vector2(2.000003, 22.802505)
+rotation = 3.1415927
+scale = Vector2(1.0032578, 15.53288)
+texture = ExtResource("1_dxtgh")
+region_enabled = true
+region_rect = Rect2(263, 290, 3, 3)
+
+[node name="enemy_paper_target" parent="UI_frame_bottom" instance=ExtResource("4_46yqn")]
+position = Vector2(26.499996, 109)
+scale = Vector2(0.49155053, 0.49155053)
+
+[node name="Radar_frame" type="Sprite2D" parent="UI_frame_bottom"]
+position = Vector2(89.5, 108.5)
+texture = ExtResource("5_byt00")
+region_enabled = true
+region_rect = Rect2(129, 129, 62, 62)
+
+[node name="Enemy_Radar" parent="UI_frame_bottom/Radar_frame" instance=ExtResource("8_dneem")]
 
 [node name="mechbuilder" type="Node2D" parent="."]
 visible = false
+position = Vector2(320, -176)
 
 [node name="PanelContainer" type="PanelContainer" parent="mechbuilder"]
 offset_left = -310.0
@@ -349,16 +255,15 @@ region_rect = Rect2(136, 253, 13, 13)
 [node name="Heat_vignette" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = -310.0
-offset_top = -362.0
-offset_right = 310.0
-offset_bottom = 176.0
+offset_top = -549.0
+offset_right = 640.0
 texture = SubResource("GradientTexture2D_6jssq")
 
 [node name="Overheat_warning" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.7058824)
+visible = false
+modulate = Color(0.88, 0, 0.26400018, 1)
 material = SubResource("CanvasItemMaterial_6jssq")
-position = Vector2(-1.9073486e-06, -79)
+position = Vector2(320, -255)
 scale = Vector2(4.71147, 4.71147)
 texture = ExtResource("8_6jssq")
 
@@ -370,3 +275,15 @@ pitch_scale = 0.38
 [node name="overheat_warning2" type="AudioStreamPlayer" parent="Overheat_warning"]
 stream = ExtResource("10_slp1l")
 volume_db = 7.429
+
+[node name="overheat_warning_text" type="Label" parent="Overheat_warning"]
+material = SubResource("CanvasItemMaterial_byt00")
+offset_left = -60.490685
+offset_top = -12.7348795
+offset_right = 1160.5093
+offset_bottom = 188.26512
+scale = Vector2(0.099200875, 0.12670098)
+theme_override_fonts/font = ExtResource("11_i0isd")
+theme_override_font_sizes/font_size = 200
+text = "OVERHEAT!"
+label_settings = SubResource("LabelSettings_dneem")

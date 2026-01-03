@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://dadv1dl70yfki"]
+
+[ext_resource type="Script" uid="uid://brmj002cupo85" path="res://Scripts/weapon_slot_UI.gd" id="1_qlpp3"]
+[ext_resource type="Texture2D" uid="uid://di1krihlk1okg" path="res://Sprites/tnytanxUI_new.png" id="2_06d6d"]
+[ext_resource type="Texture2D" uid="uid://b7wbeh1h4hvir" path="res://Sprites/tnytanxUI_sprites.png" id="3_qle8s"]
+
+[node name="weapon_slot_UI" type="Node2D"]
+script = ExtResource("1_qlpp3")
+
+[node name="Meter_frame" type="Sprite2D" parent="."]
+position = Vector2(17, 0)
+texture = ExtResource("2_06d6d")
+centered = false
+region_enabled = true
+region_rect = Rect2(159, 55, 33, 8)
+
+[node name="Weapon_cooldown_bar" type="Control" parent="."]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 19.0
+offset_top = 5.0
+offset_right = 22.0
+offset_bottom = 34.0
+rotation = 4.712389
+
+[node name="cooldown_bar" type="Sprite2D" parent="Weapon_cooldown_bar"]
+position = Vector2(1.7881393e-07, 29.125)
+rotation = 4.712389
+texture = ExtResource("3_qle8s")
+centered = false
+region_enabled = true
+region_rect = Rect2(101, 256, 29, 3)
+
+[node name="Icon_frame" type="Sprite2D" parent="."]
+texture = ExtResource("2_06d6d")
+centered = false
+region_enabled = true
+region_rect = Rect2(192, 80, 16, 17)
+
+[node name="Weapon_sprite" type="Sprite2D" parent="."]
+position = Vector2(1, -1)
+texture = ExtResource("2_06d6d")
+centered = false
+hframes = 4
+frame = 2
+region_enabled = true
+region_rect = Rect2(144, 112, 64, 16)
+
+[node name="Cooldown_disabled" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(17, 0)
+texture = ExtResource("2_06d6d")
+centered = false
+region_enabled = true
+region_rect = Rect2(32, 18, 33, 7)
+
+[node name="Weapon_disabled" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 1)
+texture = ExtResource("2_06d6d")
+centered = false
+region_enabled = true
+region_rect = Rect2(17, 17, 14, 14)

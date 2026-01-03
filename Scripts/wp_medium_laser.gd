@@ -84,4 +84,5 @@ func setup_raycast():
 			print(area.name)
 			raycast.add_exception(area)
 	ray_set = true
-	
+func get_meter():
+	return cooldown_timer/cooldown	

@@ -29,3 +29,5 @@ func fire(dir :float):
 			new_shot.direction = -move_direction
 			new_shot.projectile_owner = gun_owner
 			get_parent().get_parent().get_parent().get_parent().get_parent().add_child(new_shot)
+func get_meter():
+	return cooldown_timer/cooldown
