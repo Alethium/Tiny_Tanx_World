@@ -68,7 +68,8 @@ region_enabled = true
 region_rect = Rect2(17, 17, 14, 14)
 
 [node name="Health bar" type="Sprite2D" parent="."]
-position = Vector2(14, 0)
+position = Vector2(0, 18)
+rotation = -1.5707964
 scale = Vector2(2, 2)
 texture = ExtResource("2_06d6d")
 centered = false

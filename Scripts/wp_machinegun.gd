@@ -26,6 +26,9 @@ func _process(delta: float) -> void:
 	if overheat == max_overheat and !jammed:
 		jam_timer = jam_length
 		jammed = true
+		health -= starting_health * 0.5
+		if health <= 0:
+			on_destruction()
 	
 	if jam_timer <= 0 and jammed:
 		jammed = false

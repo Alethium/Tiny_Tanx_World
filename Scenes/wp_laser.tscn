@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgxw3ow82ruaw"]
+[gd_scene load_steps=12 format=3 uid="uid://dgxw3ow82ruaw"]
 
 [ext_resource type="PackedScene" uid="uid://cmcdcsgi0wple" path="res://Scenes/weapon.tscn" id="1_3peil"]
 [ext_resource type="Script" uid="uid://pw5q4wstj3x5" path="res://Scripts/wp_medium_laser.gd" id="2_4hx4o"]
+[ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="2_qlnsf"]
 [ext_resource type="AudioStream" uid="uid://c3ex1gx4537uo" path="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/SCIEnrg_Energy Orb_05.wav" id="3_qlnsf"]
 
 [sub_resource type="Curve" id="Curve_mou6w"]
@@ -32,6 +33,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.32701993, 1, 1, 1, 0.011764706)
 size = Vector2(8, 14)
 
 [node name="Laser" instance=ExtResource("1_3peil")]
+material = ExtResource("2_qlnsf")
 script = ExtResource("2_4hx4o")
 effective_range = 300
 pulse_length = 20.0

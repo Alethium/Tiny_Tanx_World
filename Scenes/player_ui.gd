@@ -82,6 +82,11 @@ func _process(delta: float) -> void:
 		else:
 			$UI_frame_bottom/enemy_paper_target.visible = false
 func handle_weapon_cooldown_bars():	
+	weapon_slots[0].health_bar.modulate = paper_target.health_components[9].modulate
+	weapon_slots[1].health_bar.modulate = paper_target.health_components[10].modulate
+	weapon_slots[2].health_bar.modulate = paper_target.health_components[11].modulate
+	weapon_slots[3].health_bar.modulate = paper_target.health_components[12].modulate
+
 	weapon_slots[0].cooldown_bar.size.y = Observed_player.weapons[0].get_meter() * 29
 	weapon_slots[1].cooldown_bar.size.y = Observed_player.weapons[1].get_meter() * 29
 	weapon_slots[2].cooldown_bar.size.y = Observed_player.weapons[2].get_meter() * 29

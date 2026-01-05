@@ -96,14 +96,14 @@ func on_player_death(player,lives_remaining):
 	elif player == "Player_1":
 		player_1_bulbs.get_child(lives_remaining-1).toggle_light()
 	
-	print("RESPAWNING DEAD PLAYER : ", player)
+	print_rich("[b]DEAD PLAYER[b] : ", player)
 	var respawning_player = PLAYER_MECH.instantiate()
 	
 	
 	var furthest_points = []
 	#var max_distance: float = 0.0
 	for spawn in level.spawn_points_array:
-		print("Spawn!!",spawn,"position : ",spawn.global_position,"" )
+		#print("Spawn!!",spawn,"position : ",spawn.global_position,"" )
 		
 		var distance: float 
 		if player == "Player_2":

@@ -1,6 +1,7 @@
 class_name Component
 extends Area2D
-
+@export var sprite : Sprite2D
+@export var sprites = []
 @export var health : float
 @export var armor : float
 @export var paper_target : Sprite2D
@@ -12,14 +13,24 @@ var disabled = false
 const EXPLOSION_COMPONENT = preload("uid://t148unhpctq0")
 
 
+func _ready() -> void:
+	for child in get_children():
+		if child is Sprite2D:
+			sprites.append(child)
+	
+
 		
 func _on_ghost_damage_recieved(damage:float):
 	if armor > 0:
 		armor -= damage/2
-		print("damage : ",damage, "component ghost damaged : " , self.name,"component health and armor : ", health, " / ",armor)
+		apply_blink(Color.WHITE,0.5)
+		#apply_blink(Color.DIM_GRAY)
+		#print("damage : ",damage, "component ghost damaged : " , self.name,"component health and armor : ", health, " / ",armor)
 	elif health > 0:
 		health -= damage
-		print("damage : ",damage, "component ghost damaged : " , self.name,"component health and armor : ", health, " / ",armor)	
+		apply_blink(Color.WHITE,0.7)
+		#apply_blink(Color.DARK_GRAY)
+		#print("damage : ",damage, "component ghost damaged : " , self.name,"component health and armor : ", health, " / ",armor)	
 	elif health <=0 and destroyed == false:
 			on_destruction()
 
@@ -29,11 +40,14 @@ func _on_damage_recieved(damage:float):
 #		check for overlapping boddies that are components
 	if armor > 0:
 		armor -= damage/2
-		print("damage : ",damage, "component damaged : " , self.name,"component health and armor : ", health, " / ",armor)
+		apply_blink(Color.WHITE,0.3)
+		#print("damage : ",damage, "component damaged : " , self.name,"component health and armor : ", health, " / ",armor)
 	elif health > 0:
 		health -= damage
-		print("damage : ",damage, "component damaged : " , self.name,"component health and armor : ", health, " / ",armor)
+		apply_blink(Color.WHITE,0.5)
+		#print("damage : ",damage, "component damaged : " , self.name,"component health and armor : ", health, " / ",armor)
 	elif health <= 0 :
+		apply_blink(Color.WHITE,0.7)
 		#print("COMPONENT DESTROYED:  ", self.name)
 		var num_areas = get_overlapping_areas().size()
 		for area in get_overlapping_areas():
@@ -43,7 +57,7 @@ func _on_damage_recieved(damage:float):
 #		CHECK FOR OVERLAPPING BODIES< IF THOSE CAN TAKE DAMAGE SPREAD THE DAMAGE TO THEM, divide among all overlapping bodies
 func on_destruction():
 	if destroyed == false:
-		print("COMPONENT DESTROYED:  ", self.name)
+		#print("COMPONENT DESTROYED:  ", self.name)
 		var hitspark = EXPLOSION_COMPONENT.instantiate()
 		#explosion.global_position = self.global_position
 		
@@ -51,7 +65,20 @@ func on_destruction():
 		hitspark.global_position = global_transform.origin 
 		hitspark.rotation = rotation
 		destroyed = true
+func apply_blink(color,intensity):
+	set_shader_color(color)
+	var tween = get_tree().create_tween()
+	tween.tween_method(set_shader_blink_intensity,intensity,0.0,0.2)
 	
-
+func set_shader_color(newcolor):
+	for _sprite in sprites:
+		_sprite.material.set_shader_parameter("blink_color",newcolor)
+		
+func set_shader_blink_intensity(newvalue:float):
+	for _sprite in sprites:
+	
+		_sprite.material.set_shader_parameter("blink_intensity",newvalue)
+	
+	
 	
 	

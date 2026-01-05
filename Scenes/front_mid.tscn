@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5wijk4u8ekps"]
+
+[ext_resource type="Script" uid="uid://b300sjtksbva4" path="res://Scripts/front_mid.gd" id="1_ujbeb"]
+[ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="2_jexs1"]
+[ext_resource type="Texture2D" uid="uid://dupx3ik56ldgn" path="res://Sprites/Battlemech top downnew.png" id="3_ovidx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p21fq"]
+size = Vector2(26, 46)
+
+[node name="front_mid" type="Area2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_ujbeb")
+sprite = NodePath("Chassis")
+health = 100.0
+armor = 100.0
+
+[node name="Chassis" type="Sprite2D" parent="."]
+material = ExtResource("2_jexs1")
+position = Vector2(0, 18)
+texture = ExtResource("3_ovidx")
+region_enabled = true
+region_rect = Rect2(3, 79, 26, 48)
+
+[node name="Life_Battery" type="Sprite2D" parent="."]
+material = ExtResource("2_jexs1")
+position = Vector2(0, -2.5)
+texture = ExtResource("3_ovidx")
+region_enabled = true
+region_rect = Rect2(0, 5, 16, 5)
+
+[node name="Life_Battery2" type="Sprite2D" parent="."]
+material = ExtResource("2_jexs1")
+position = Vector2(0, 1.5)
+texture = ExtResource("3_ovidx")
+region_enabled = true
+region_rect = Rect2(0, 5, 16, 5)
+
+[node name="Life_Battery3" type="Sprite2D" parent="."]
+material = ExtResource("2_jexs1")
+position = Vector2(0, 5.5)
+texture = ExtResource("3_ovidx")
+region_enabled = true
+region_rect = Rect2(0, 5, 16, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_p21fq")

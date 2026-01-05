@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://qypua6mkev23"]
+
+[ext_resource type="Script" uid="uid://cnx5w81cdundo" path="res://Scripts/front_left.gd" id="1_ic0kl"]
+[ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="2_v5wb5"]
+[ext_resource type="Texture2D" uid="uid://dupx3ik56ldgn" path="res://Sprites/Battlemech top downnew.png" id="3_et5e2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxxpq"]
+size = Vector2(14, 26)
+
+[node name="front_left" type="Area2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_ic0kl")
+sprite = NodePath("Sprite2D")
+health = 50.0
+armor = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_v5wb5")
+position = Vector2(2, 1)
+texture = ExtResource("3_et5e2")
+region_enabled = true
+region_rect = Rect2(98, 4, 13, 26)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_dxxpq")

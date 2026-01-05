@@ -4,5 +4,7 @@
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_xqk12")
+health = null
+armor = null
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

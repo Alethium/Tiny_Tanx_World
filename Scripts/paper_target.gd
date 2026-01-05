@@ -32,19 +32,7 @@ extends Node2D
 @onready var weapon_l2_health: Sprite2D = $Weapon_l2_health
 
 
-
-
-
-
-
-const UI_GLOW_COLORS_PALETTE = preload("uid://bo5yombeylwhr")
-
-
-
-
-func update_display(player):
-	var ui_colors := UI_GLOW_COLORS_PALETTE.colors as PackedColorArray
-	var armor_components = [
+@onready var armor_components = [
 		front_left,
 		front_right,
 		rear_left,
@@ -60,7 +48,7 @@ func update_display(player):
 		weapon_l2
 	]
 	
-	var health_components = [
+@onready var health_components = [
 		front_left_health,
 		front_right_health,
 		rear_left_health,
@@ -75,6 +63,18 @@ func update_display(player):
 		weapon_l1_health,
 		weapon_l2_health
 	]
+
+
+
+
+
+const UI_GLOW_COLORS_PALETTE = preload("uid://bo5yombeylwhr")
+
+
+
+
+func update_display(player):
+	var ui_colors := UI_GLOW_COLORS_PALETTE.colors as PackedColorArray
 	
 	
 

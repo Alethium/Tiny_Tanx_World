@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmcdcsgi0wple"]
+[gd_scene load_steps=4 format=3 uid="uid://cmcdcsgi0wple"]
 
 [ext_resource type="Script" uid="uid://nx3t11dui8c" path="res://Scripts/Weapon.gd" id="1_qv81b"]
 [ext_resource type="Texture2D" uid="uid://cnm8ncbbhj46o" path="res://topdownmechweapons.png" id="2_e1ly8"]
+[ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="2_l036s"]
 
-[node name="Weapon" type="Area2D"]
+[node name="Weapon" type="Area2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_qv81b")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_l036s")
 texture = ExtResource("2_e1ly8")
 centered = false
 

@@ -13,7 +13,7 @@ script = ExtResource("2_6suf2")
 damage = 100.0
 max_blast_size = 75.0
 anim_speed = 2.0
-frame_count = 12
+frame_count = 10
 
 [node name="Vx sprite" parent="." index="0"]
 texture = ExtResource("3_l6na1")

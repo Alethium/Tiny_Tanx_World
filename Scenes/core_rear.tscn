@@ -1,0 +1,170 @@
+[gd_scene load_steps=12 format=3 uid="uid://c7vm531lxktpr"]
+
+[ext_resource type="Script" uid="uid://hsobbqqft2tg" path="res://Scripts/core_rear.gd" id="1_nptah"]
+[ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="2_ks2cr"]
+[ext_resource type="Texture2D" uid="uid://dupx3ik56ldgn" path="res://Sprites/Battlemech top downnew.png" id="3_lctmx"]
+[ext_resource type="Texture2D" uid="uid://xdf6t2nbnlp0" path="res://smoke_cards2.png" id="4_0f243"]
+[ext_resource type="Texture2D" uid="uid://bxd4ufgoeaudw" path="res://Sprites/firecard.png" id="5_12x60"]
+
+[sub_resource type="Curve" id="Curve_dsq5r"]
+_data = [Vector2(0, 0.25727075), 0.0, 0.38911086, 0, 0, Vector2(1, 0.901566), 1.8080378, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_dsq5r"]
+offsets = PackedFloat32Array(0, 0.63736266, 1)
+colors = PackedColorArray(0.39607844, 0.39607844, 0.39607844, 1, 0.79369557, 0.79369676, 0.79369575, 0.7295365, 1, 1, 1, 0.14509805)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ym03w"]
+
+[sub_resource type="Curve" id="Curve_p5i7k"]
+_data = [Vector2(0, 0.6721389), 0.0, -1.0358834, 0, 0, Vector2(1, 0), -0.06588223, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8cvv8"]
+offsets = PackedFloat32Array(0, 0.07777778, 0.17222223, 0.2888889, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.07999998, 0.5568628, 0.29, 0.29, 0.29, 0.14509805, 0.14767182, 0.14767182, 0.14767176, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l82a"]
+size = Vector2(31.99999, 16.500008)
+
+[node name="Core_Rear" type="Area2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_nptah")
+sprite = NodePath("rear_core_r")
+health = 100.0
+armor = 100.0
+
+[node name="rear_core_l" type="Sprite2D" parent="."]
+material = ExtResource("2_ks2cr")
+position = Vector2(-8, 7)
+texture = ExtResource("3_lctmx")
+region_enabled = true
+region_rect = Rect2(144, 32, 16, 16)
+
+[node name="rear_core_r" type="Sprite2D" parent="."]
+material = ExtResource("2_ks2cr")
+position = Vector2(8, 7)
+texture = ExtResource("3_lctmx")
+region_enabled = true
+region_rect = Rect2(144, 64, 16, 16)
+
+[node name="Vent_l" type="Sprite2D" parent="."]
+material = ExtResource("2_ks2cr")
+position = Vector2(3.0000005, 9)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_lctmx")
+centered = false
+vframes = 4
+region_enabled = true
+region_rect = Rect2(17, 49, 13, 24)
+
+[node name="Vent_l2" type="Sprite2D" parent="."]
+material = ExtResource("2_ks2cr")
+position = Vector2(-15.999998, 9)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_lctmx")
+centered = false
+vframes = 4
+region_enabled = true
+region_rect = Rect2(17, 49, 13, 24)
+
+[node name="smoke3" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.49019608)
+position = Vector2(9, 14)
+scale = Vector2(0.99999994, 0.99999994)
+amount = 50
+texture = ExtResource("4_0f243")
+lifetime = 0.5
+speed_scale = 2.0
+randomness = 0.5
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(5, 3)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.2
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_dsq5r")
+color_ramp = SubResource("Gradient_dsq5r")
+
+[node name="smoke4" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.49019608)
+position = Vector2(-8.999998, 14)
+scale = Vector2(0.99999994, 0.99999994)
+amount = 50
+texture = ExtResource("4_0f243")
+lifetime = 0.5
+speed_scale = 2.0
+randomness = 0.5
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(5, 3)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.2
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_dsq5r")
+color_ramp = SubResource("Gradient_dsq5r")
+
+[node name="engine_fire" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_ym03w")
+position = Vector2(-10, 14)
+scale = Vector2(0.9999997, 0.9999997)
+amount = 20
+texture = ExtResource("5_12x60")
+lifetime = 0.5
+speed_scale = 2.0
+randomness = 0.56
+local_coords = true
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.99
+damping_min = 20.0
+damping_max = 20.0
+angle_min = -180.0
+angle_max = 168.0
+scale_amount_min = 0.0
+scale_amount_curve = SubResource("Curve_p5i7k")
+color_ramp = SubResource("Gradient_8cvv8")
+
+[node name="engine_fire2" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_ym03w")
+position = Vector2(9.999998, 14.000001)
+scale = Vector2(0.9999997, 0.9999997)
+amount = 20
+texture = ExtResource("5_12x60")
+lifetime = 0.5
+speed_scale = 2.0
+randomness = 0.56
+local_coords = true
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.99
+damping_min = 20.0
+damping_max = 20.0
+angle_min = -180.0
+angle_max = 168.0
+scale_amount_min = 0.0
+scale_amount_curve = SubResource("Curve_p5i7k")
+color_ramp = SubResource("Gradient_8cvv8")
+
+[node name="Core_hitbox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-3.0597974e-07, 6.750006)
+scale = Vector2(0.9999988, 0.9999988)
+shape = SubResource("RectangleShape2D_8l82a")
