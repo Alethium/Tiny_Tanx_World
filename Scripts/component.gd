@@ -22,13 +22,19 @@ func _ready() -> void:
 		
 func _on_ghost_damage_recieved(damage:float):
 	if armor > 0:
+		if component_owner.overheated == true:
+			apply_blink(Color.RED,0.3)
+		else:
+			apply_blink(Color.WHITE,0.5)
 		armor -= damage/2
-		apply_blink(Color.WHITE,0.5)
 		#apply_blink(Color.DIM_GRAY)
 		#print("damage : ",damage, "component ghost damaged : " , self.name,"component health and armor : ", health, " / ",armor)
 	elif health > 0:
+		if component_owner.overheated == true:
+			apply_blink(Color.RED,0.3)
+		else:
+			apply_blink(Color.WHITE,0.7)
 		health -= damage
-		apply_blink(Color.WHITE,0.7)
 		#apply_blink(Color.DARK_GRAY)
 		#print("damage : ",damage, "component ghost damaged : " , self.name,"component health and armor : ", health, " / ",armor)	
 	elif health <=0 and destroyed == false:
@@ -41,13 +47,23 @@ func _on_damage_recieved(damage:float):
 	if armor > 0:
 		armor -= damage/2
 		apply_blink(Color.WHITE,0.3)
+		if component_owner.overheated == true:
+			apply_blink(Color.RED,0.3)
+		else:
+			apply_blink(Color.WHITE,0.3)
 		#print("damage : ",damage, "component damaged : " , self.name,"component health and armor : ", health, " / ",armor)
 	elif health > 0:
 		health -= damage
-		apply_blink(Color.WHITE,0.5)
+		if component_owner.overheated == true:
+			apply_blink(Color.RED,0.3)
+		else:
+			apply_blink(Color.WHITE,0.5)
 		#print("damage : ",damage, "component damaged : " , self.name,"component health and armor : ", health, " / ",armor)
 	elif health <= 0 :
-		apply_blink(Color.WHITE,0.7)
+		if component_owner.overheated == true:
+			apply_blink(Color.RED,0.3)
+		else:
+			apply_blink(Color.WHITE,0.7)
 		#print("COMPONENT DESTROYED:  ", self.name)
 		var num_areas = get_overlapping_areas().size()
 		for area in get_overlapping_areas():

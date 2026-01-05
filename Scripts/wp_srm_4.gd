@@ -51,7 +51,7 @@ func fire_volleys():
 			for i in range(0,2):
 				var new_shot = munition.instantiate()
 				gun_owner.overheat += heat
-				gun_owner.cam.shake(2,1)
+				gun_owner.cam.shake(3,1)
 				Input.start_joy_vibration(gun_owner.player_device,1.0,0.5,0.1)
 				$AudioStreamPlayer.play()
 				new_shot.global_rotation = direction

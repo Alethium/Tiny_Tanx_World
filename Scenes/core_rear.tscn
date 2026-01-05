@@ -68,7 +68,6 @@ region_enabled = true
 region_rect = Rect2(17, 49, 13, 24)
 
 [node name="smoke3" type="CPUParticles2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(9, 14)
 scale = Vector2(0.99999994, 0.99999994)
@@ -91,7 +90,6 @@ scale_amount_curve = SubResource("Curve_dsq5r")
 color_ramp = SubResource("Gradient_dsq5r")
 
 [node name="smoke4" type="CPUParticles2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(-8.999998, 14)
 scale = Vector2(0.99999994, 0.99999994)
@@ -114,7 +112,6 @@ scale_amount_curve = SubResource("Curve_dsq5r")
 color_ramp = SubResource("Gradient_dsq5r")
 
 [node name="engine_fire" type="CPUParticles2D" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_ym03w")
 position = Vector2(-10, 14)
 scale = Vector2(0.9999997, 0.9999997)
@@ -141,7 +138,6 @@ scale_amount_curve = SubResource("Curve_p5i7k")
 color_ramp = SubResource("Gradient_8cvv8")
 
 [node name="engine_fire2" type="CPUParticles2D" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_ym03w")
 position = Vector2(9.999998, 14.000001)
 scale = Vector2(0.9999997, 0.9999997)

@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 		cooldown_timer -= 1
 	if firing:
 		
-		gun_owner.cam.shake(0.5,0.5)
+		gun_owner.cam.shake(2,1)
 		Input.start_joy_vibration(gun_owner.player_device,0.1,0.1,0.1)
 		pulse_timer -= 1
 		if raycast.get_collider() != null :
