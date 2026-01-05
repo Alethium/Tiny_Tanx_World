@@ -11,6 +11,8 @@ var pulse_timer = 0
 var hit_point : Vector2
 var ray_set = false
 
+const LASER_PARTICLE = preload("uid://btok0xeaodnkl")
+
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
 	#queue_redraw()
@@ -29,15 +31,17 @@ func _process(delta: float) -> void:
 		gun_owner.cam.shake(0.5,0.5)
 		Input.start_joy_vibration(gun_owner.player_device,0.1,0.1,0.1)
 		pulse_timer -= 1
-		if raycast.get_collider() != null and !raycast.get_collider().is_in_group("sensor"):
-			hit_point = to_local(raycast.get_collision_point())
-			#print("colliding")
-			#print(raycast.get_collider())
-			if raycast.get_collider().has_method("_on_damage_recieved"):
-				raycast.get_collider()._on_damage_recieved(damage)
-				raycast.get_collider().component_owner.cam.shake(1,1)
-			#if raycast.get_collider().has_method("on_damage_recieved"):
-				#raycast.get_collider().get_parent().on_damage_recieved(damage)
+		if raycast.get_collider() != null :
+			if !raycast.get_collider().is_in_group("sensor"):
+				hit_point = to_local(raycast.get_collision_point())
+				impact(hit_point)
+				#print("colliding")
+				#print(raycast.get_collider())
+				if raycast.get_collider().has_method("_on_damage_recieved"):
+					raycast.get_collider()._on_damage_recieved(damage)
+					raycast.get_collider().component_owner.cam.shake(1,1)
+				#if raycast.get_collider().has_method("on_damage_recieved"):
+					#raycast.get_collider().get_parent().on_damage_recieved(damage)
 		else:
 			hit_point = raycast.target_position		
 		%beam.size.y = position.distance_to(hit_point)- 15
@@ -74,7 +78,17 @@ func fire(_dir):
 	# 		do a draw of a line between the target point of the laser 
 	# 		if raycast collides with an area, it needs to make that distance the end of the laser. cant have it passing through things.
 	# 		laser confers damage per frame, it turns on, then turns off.
-
+func impact(point):
+	print("laser hit sparking")
+	var hitspark = LASER_PARTICLE.instantiate()
+	#explosion.global_position = self.global_position
+	hitspark.emitting = true
+	hitspark.global_position = point 
+	hitspark.rotation = rotation
+	add_child(hitspark)
+	await hitspark.finished
+	hitspark.queue_free()
+	
 
 	
 func setup_raycast():

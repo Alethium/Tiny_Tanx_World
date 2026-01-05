@@ -30,6 +30,7 @@ region_enabled = true
 region_rect = Rect2(81, 128, 16, 17)
 
 [node name="Core_hitbox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1.15309376e-07, -6)
 rotation = 0.0016419725
 scale = Vector2(0.9999987, 0.9999987)

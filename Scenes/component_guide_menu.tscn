@@ -1,0 +1,108 @@
+[gd_scene load_steps=3 format=3 uid="uid://gsfollfdm4td"]
+
+[ext_resource type="Theme" uid="uid://766f67hs6wm8" path="res://Tanx_ui_theme.tres" id="1_hktmu"]
+[ext_resource type="Texture2D" uid="uid://bj2ngx6o2gso5" path="res://Sprites/tank blueprint side.png" id="2_slwwk"]
+
+[node name="component_guide_menu" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hktmu")
+metadata/_edit_lock_ = true
+
+[node name="cockpit" type="Sprite2D" parent="Control/Panel"]
+position = Vector2(336, 72)
+scale = Vector2(4, 4)
+texture = ExtResource("2_slwwk")
+centered = false
+region_enabled = true
+region_rect = Rect2(1, 1, 29, 22)
+
+[node name="Rear_Core" type="Sprite2D" parent="Control/Panel"]
+position = Vector2(467, 56)
+scale = Vector2(4, 4)
+texture = ExtResource("2_slwwk")
+centered = false
+region_enabled = true
+region_rect = Rect2(32, 1, 25, 24)
+
+[node name="Mid_chassis" type="Sprite2D" parent="Control/Panel"]
+position = Vector2(320, 168)
+scale = Vector2(4, 4)
+texture = ExtResource("2_slwwk")
+centered = false
+region_enabled = true
+region_rect = Rect2(47, 26, 41, 25)
+
+[node name="Energy Cores" type="Sprite2D" parent="Control/Panel"]
+position = Vector2(148, 200)
+scale = Vector2(4, 4)
+texture = ExtResource("2_slwwk")
+centered = false
+region_enabled = true
+region_rect = Rect2(6, 34, 40, 17)
+
+[node name="Front_tracks" type="Sprite2D" parent="Control/Panel"]
+position = Vector2(76, 264)
+scale = Vector2(4, 4)
+texture = ExtResource("2_slwwk")
+centered = false
+region_enabled = true
+region_rect = Rect2(2, 53, 59, 22)
+
+[node name="Rear_tracks" type="Sprite2D" parent="Control/Panel"]
+position = Vector2(488, 272)
+scale = Vector2(4, 4)
+texture = ExtResource("2_slwwk")
+centered = false
+region_enabled = true
+region_rect = Rect2(7, 78, 55, 20)
+
+[node name="Cannon" type="Sprite2D" parent="Control/Panel"]
+position = Vector2(1087, 14.000004)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("2_slwwk")
+centered = false
+region_enabled = true
+region_rect = Rect2(87, 67, 40, 20)
+
+[node name="Short_range_missiles" type="Sprite2D" parent="Control/Panel"]
+position = Vector2(1250, 23.000004)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("2_slwwk")
+centered = false
+region_enabled = true
+region_rect = Rect2(102, 45, 25, 21)
+
+[node name="Machinegun" type="Sprite2D" parent="Control/Panel"]
+position = Vector2(957, 32.000004)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("2_slwwk")
+centered = false
+region_enabled = true
+region_rect = Rect2(96, 30, 31, 14)
+
+[node name="Laser" type="Sprite2D" parent="Control/Panel"]
+position = Vector2(844, 27.000004)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("2_slwwk")
+centered = false
+region_enabled = true
+region_rect = Rect2(99, 15, 28, 14)

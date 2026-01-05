@@ -1,7 +1,11 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://766f67hs6wm8"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://766f67hs6wm8"]
 
 [ext_resource type="FontFile" uid="uid://daqp8uaec7q1w" path="res://Gameplaya.ttf" id="1_1u1ty"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1u1ty"]
+bg_color = Color(0.25490198, 0.23921569, 0.25882354, 1)
 
 [resource]
 Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_1u1ty")
+Panel/styles/panel = SubResource("StyleBoxFlat_1u1ty")
