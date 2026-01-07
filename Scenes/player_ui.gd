@@ -69,8 +69,7 @@ func _process(delta: float) -> void:
 	if Observed_player != null:
 		
 		CRT_filter.player_index = CRT_filter_index
-		print("player_index :", Observed_player.player_index)
-		print("CRT_index :", CRT_filter.player_index)
+
 
 		CRT_filter.set_screen(Observed_player.player_index)
 		handle_overheat_bar()

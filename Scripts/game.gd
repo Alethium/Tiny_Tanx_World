@@ -135,6 +135,7 @@ func on_player_death(player,lives_remaining):
 		respawning_player.current_lives = lives_remaining
 		print("respawning player 2 at : ", new_spawn.global_position)
 		player_2_ui.Observed_player = player_2
+		player_2_ui.CRT_filter.viewport_player_index = 1
 		player_1_ui.locked_on_player = player_2
 		player_2.player_name = "Player_2"
 		player_2.connect("on_death",on_player_death)
@@ -151,6 +152,7 @@ func on_player_death(player,lives_remaining):
 		respawning_player.current_lives = lives_remaining
 		print("respawning player 1", new_spawn.global_position) 
 		player_1_ui.Observed_player = player_1
+		player_1_ui.CRT_filter.viewport_player_index = 1
 		player_2_ui.locked_on_player = player_1
 		player_1.player_name = "Player_1"
 		player_1.connect("on_death",on_player_death)

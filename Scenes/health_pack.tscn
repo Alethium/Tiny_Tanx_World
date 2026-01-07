@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdl415qfv5c0l"]
+
+[ext_resource type="Script" uid="uid://btrr4wt5tnqir" path="res://Scripts/health_pack.gd" id="1_ghibq"]
+[ext_resource type="Texture2D" uid="uid://di1krihlk1okg" path="res://Sprites/tnytanxUI_new.png" id="2_1orwn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r5vd"]
+size = Vector2(14, 14)
+
+[node name="Health_pack" type="Node2D"]
+script = ExtResource("1_ghibq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1orwn")
+region_enabled = true
+region_rect = Rect2(241, 113, 14, 14)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4r5vd")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

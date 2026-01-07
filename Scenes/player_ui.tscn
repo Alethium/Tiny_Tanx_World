@@ -41,7 +41,7 @@ blend_mode = 1
 [sub_resource type="LabelSettings" id="LabelSettings_dneem"]
 font = ExtResource("11_i0isd")
 font_size = 199
-font_color = Color(0.8980392, 0.34509805, 0.34509805, 1)
+font_color = Color(0.67, 0.2546, 0.2546, 1)
 
 [node name="PLAYER_UI" type="Control"]
 layout_mode = 3

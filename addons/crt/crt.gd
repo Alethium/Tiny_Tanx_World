@@ -9,6 +9,11 @@ extends CanvasLayer
 		viewport_player_index = value
 		
 var player_index := 0
+var player_offset := 0
+
+
+
+
 
 @export var viewport_size: Vector2 = Vector2(640.0, 550.0):
 	set(value):
@@ -16,6 +21,7 @@ var player_index := 0
 		_set_shader_param("viewport_size", viewport_size)
 # Material and update control
 var material: ShaderMaterial
+
 @export var update_in_editor: bool = true:
 	set(value):
 		update_in_editor = value
@@ -145,7 +151,8 @@ func set_screen(index):
 	if index == 0:
 		color_rect.position = Vector2(0 ,0)
 	elif index == 1:
-		color_rect.position = Vector2(640 ,0)
+		player_offset = 640
+		color_rect.position = Vector2(player_offset ,0)
 # Helper function to safely set shader parameters
 func _set_shader_param(param_name: String, value) -> void:
 	if material:
