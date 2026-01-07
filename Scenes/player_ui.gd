@@ -37,8 +37,10 @@ extends Control
 
 @export var locked_on_player : Player
 
+@onready var CRT_filter: CRT = %CanvasLayer
 
 
+@export var CRT_filter_index: int 
 
 
 
@@ -65,10 +67,17 @@ extends Control
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Observed_player != null:
+		
+		CRT_filter.player_index = CRT_filter_index
+		print("player_index :", Observed_player.player_index)
+		print("CRT_index :", CRT_filter.player_index)
+
+		CRT_filter.set_screen(Observed_player.player_index)
 		handle_overheat_bar()
 		handle_health_bars()
 		update_player_stats(delta)
 		handle_radar()
+		handle_throttle_bar()
 		handle_weapon_cooldown_bars()
 		if locked_on_player != null:
 			$UI_frame_bottom/enemy_paper_target.visible = true
@@ -132,6 +141,10 @@ func handle_weapon_cooldown_bars():
 		weapon_slots[3].weapon_destroyed.visible = false
 func handle_overheat_bar():
 	overheat.size.y = Observed_player.overheat * 0.6
+
+func handle_throttle_bar():
+	$UI_frame_bottom/paper_target/throttle_bar/throttle_bar.scale.y = Observed_player.current_throttle/Observed_player.max_throttle * 7.15
+
 	
 func handle_radar():
 	enemy_radar.bottom_direction.rotation = Observed_player.bottom_dir

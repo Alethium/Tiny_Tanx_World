@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var top_half: Node2D = $top_half
 @onready var bottom_half: Node2D = $bottom_half
 @onready var targeting_laser: RayCast2D = $top_half/targeting_laser
-
+@export var player_index := 0
 
 
 @onready var bottom_hitbox: CollisionShape2D = $bottom_hitbox
@@ -126,6 +126,7 @@ var right_damage_mod = 1
 var current_lives = 4
 var current_speed = 0.0
 var current_throttle : float = 0.0
+var max_throttle : float = 50
 @export var health : int
 @export var overheat : float = 0.0
 var max_heat = 100
@@ -274,7 +275,7 @@ func handle_inputs(delta):
 	
 
 		# Accelerate in the direction of input
-	current_throttle = clamp(current_throttle, -50, 50)
+	current_throttle = clamp(current_throttle, -max_throttle, max_throttle *0.80)
 	top_half.global_rotation = top_dir
 	bottom_half.global_rotation = bottom_dir
 	current_speed = current_throttle 

@@ -15,29 +15,46 @@ const PLAYER_1_CONTROLS = preload("uid://m2sjqkxfifmj")
 @onready var player_2_bulbs: Node2D = $"life_meter/Life_meter/Player_2 bulbs"
 var spawned_in = false
 
+#---------------main menu--------------
+# two side by sidearcade machines.
+# insert coin screen, press left shift  on left screen or A/cross button to designate a controller as left side,
+ #press right shift on right screen or B/square to designate a controller to the left side, 
+# or click/tap insert coin button, to get to menu on associated machine
+# when one player has begun but is waiting for the other player the top menu item goes from battle! to practice,or tutorial.
+# in practice / tutorial it will teach you how the tank works. guide you through the mech builder, tell you what all the parts do, let you assemble a tank,
+# and then drop you in a single player practice field, where you can shoot at targets in a course for a time. all the targets would show as dots ont he rader, it could be speed run, maybe have a leaderboard. 
+# if a second 
+# 
+
+
+
+
+
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_in()
-	player_1.connect("on_death",on_player_death)
-	player_2.connect("on_death",on_player_death)
+
 	player_2_view.world_2d = player_1_view.find_world_2d()
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 
-		
-	#if spawned_in == false:
-		#
-		#spawn_in()
-		
-			
+
 		
 		
 	if Input.is_action_just_pressed("ui_accept"):
 		get_tree().reload_current_scene()
+
+
+
+
+
+# feed this two mech builds created by the player in the mech creator.
+
 
 func spawn_in():
 
@@ -45,8 +62,9 @@ func spawn_in():
 	var spawning_player = PLAYER_MECH.instantiate()
 	var new_spawn = level.spawn_points_array[randi_range(0,3)]
 	player_2 = spawning_player
+	spawning_player.player_index = 2
 	player_2.Controls = PLAYER_2_CONTROLS.duplicate()
-	player_2.Controls.player_index = 2
+	player_2.Controls.player_index = 1
 	player_2_view.add_child((spawning_player))
 	spawning_player.global_position = new_spawn.global_position
 	spawning_player.bottom_dir = (new_spawn.global_rotation)
@@ -54,13 +72,15 @@ func spawn_in():
 	spawning_player.current_lives = 4
 	print("spawning player 2 at : ", new_spawn.global_position)
 	player_2_ui.Observed_player = player_2
+	
 	player_2.player_name = "Player_2"
 	player_2.connect("on_death",on_player_death)
 	spawning_player = PLAYER_MECH.instantiate()
 	new_spawn = level.spawn_points_array[randi_range(8,11)]
 	player_1 = spawning_player
+	spawning_player.player_index = 1
 	player_1.Controls = PLAYER_1_CONTROLS.duplicate()
-	player_1.Controls.player_index = 1
+	player_1.Controls.player_index = 0
 	player_1_view.add_child((spawning_player))
 	spawning_player.global_position = new_spawn.global_position
 	spawning_player.bottom_dir = (new_spawn.global_rotation)
@@ -68,6 +88,7 @@ func spawn_in():
 	spawning_player.current_lives = 4
 	print("spawning player 1", new_spawn.global_position) 
 	player_1_ui.Observed_player = player_1
+	player_1_ui.CRT_filter.viewport_player_index = 1
 	player_1.player_name = "Player_1"
 	player_1.connect("on_death",on_player_death)
 
