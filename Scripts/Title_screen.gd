@@ -1,14 +1,22 @@
 class_name TitleScreen
 extends Menu
-enum MenuState {TITLE,START,GARAGE,SETTINGS,PAUSE}
+enum MenuState {TITLE,START,GARAGE,SETTINGS,PAUSE,CLOSED}
+
+@onready var accept_example: AcceptButtonExample = $"Accept Button_example_icon"
+
 
 func _process(delta: float) -> void:
-	visible = active
-	
-	
-	
-	if Input.is_action_just_pressed(Controls.UI_accept):
-		print("player pressing UI button accept")
-		get_parent().menu_state = 1
-		print("player_ui menu state",get_parent().menu_state)
-		active = false
+	if !active:
+		visible = false
+		process_mode = Node.PROCESS_MODE_DISABLED
+	elif active:
+		process_mode = Node.PROCESS_MODE_ALWAYS
+		if owner_index == 1:
+			accept_example.owner_index = 1
+
+		
+		if Input.is_action_just_pressed(Controls.UI_accept):
+			print("player pressing UI button accept")
+			get_parent().menu_state = MenuState.START
+			print("player_ui menu state",get_parent().menu_state)
+			active = false

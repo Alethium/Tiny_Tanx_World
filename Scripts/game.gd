@@ -11,8 +11,7 @@ const PLAYER_2_CONTROLS = preload("uid://djbf4ibjvpqxp")
 const PLAYER_1_CONTROLS = preload("uid://m2sjqkxfifmj")
 @onready var player_2_ui: Control = $PLAYER_UI2
 @onready var player_1_ui: Control = $PLAYER_UI
-@onready var player_1_bulbs: Node2D = $"life_meter/Life_meter/Player_1 bulbs"
-@onready var player_2_bulbs: Node2D = $"life_meter/Life_meter/Player_2 bulbs"
+
 var spawned_in = false
 
 #---------------main menu--------------
@@ -97,10 +96,10 @@ func spawn_in():
 	player_2_ui.locked_on_player = player_1
 
 func on_player_death(player,lives_remaining):
-	if player == "Player_2":
-		player_2_bulbs.get_child(lives_remaining-1).toggle_light()
-	elif player == "Player_1":
-		player_1_bulbs.get_child(lives_remaining-1).toggle_light()
+	#if player == "Player_2":
+		#player_2_bulbs.get_child(lives_remaining-1).toggle_light()
+	#elif player == "Player_1":
+		#player_1_bulbs.get_child(lives_remaining-1).toggle_light()
 	
 	print_rich("[b]DEAD PLAYER[b] : ", player)
 	var respawning_player = PLAYER_MECH.instantiate()

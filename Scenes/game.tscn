@@ -74,6 +74,7 @@ offset_right = 640.0
 offset_bottom = 1266.0
 Controls = ExtResource("5_v158k")
 CRT_filter_index = 1
+player_index = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

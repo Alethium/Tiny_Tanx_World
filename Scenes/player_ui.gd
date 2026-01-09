@@ -44,29 +44,34 @@ extends Control
 @export var CRT_filter_index: int 
 
 
-enum MenuState {TITLE,START,GARAGE,SETTINGS,PAUSE}
+enum MenuState {TITLE,START,GARAGE,SETTINGS,PAUSE,CLOSED}
 @onready var menu_state := MenuState.START	
 @onready var title_screen: Node2D = $Title_screen
 @onready var start_menu: Node2D = $Start_menu
 @onready var settings_menu: Node2D = $Settings_menu
 @onready var garage_menu: Node2D = $Garage_menu
 @onready var pause_menu: Node2D = $Pause_menu
-
+@export var player_index : int
 
 
 			
 func handle_menues():
-	print("menu state",menu_state)
-	if menu_state == 0:
+	#print("menu state",menu_state)
+	if menu_state == MenuState.TITLE:
 		title_screen.active = true
-	elif menu_state == 1:
+		title_screen.owner_index = player_index
+	elif menu_state == MenuState.START:
 		start_menu.active = true
+		start_menu.visible = true
+		start_menu.owner_index = player_index
 	elif menu_state == MenuState.GARAGE:
 		garage_menu.active = true
 	elif menu_state == MenuState.SETTINGS:
 		settings_menu.active = true
 	elif menu_state == MenuState.PAUSE:
 		pause_menu.active = true
+	elif menu_state == MenuState.CLOSED:
+		print("menu closed game begin")
 
 
 
