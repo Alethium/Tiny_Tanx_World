@@ -1,6 +1,7 @@
 extends Control
 
 @export var Observed_player : Player
+@export var Controls: Resource = null
 # TODO
 # collect the players stats and display them
 
@@ -43,52 +44,80 @@ extends Control
 @export var CRT_filter_index: int 
 
 
+enum MenuState {TITLE,START,GARAGE,SETTINGS,PAUSE}
+@onready var menu_state := MenuState.START	
+@onready var title_screen: Node2D = $Title_screen
+@onready var start_menu: Node2D = $Start_menu
+@onready var settings_menu: Node2D = $Settings_menu
+@onready var garage_menu: Node2D = $Garage_menu
+@onready var pause_menu: Node2D = $Pause_menu
 
 
 
+			
+func handle_menues():
+	print("menu state",menu_state)
+	if menu_state == 0:
+		title_screen.active = true
+	elif menu_state == 1:
+		start_menu.active = true
+	elif menu_state == MenuState.GARAGE:
+		garage_menu.active = true
+	elif menu_state == MenuState.SETTINGS:
+		settings_menu.active = true
+	elif menu_state == MenuState.PAUSE:
+		pause_menu.active = true
 
 
-# overheat is a value out of 60.
-# players max heat is 100.
-
-# total health bars are out of 45
-# total armor bars are out of 45
 
 
 #TODO
-# TIE all of the paper target pieces to the players component pieces. paper target, and component need to share the same name.
-
-
-
-# Called when the node enters the scene tree for the first time.
-	
-
+# set up player control interactions for title screen
+# left screen press a to start, right screen press x.
+# assign the controler device id of the controler that presses a/x to the correct player side
+# likely need to make the two controller sets	
+func _ready() -> void:
+	menu_state = MenuState.TITLE
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	CRT_filter.player_index = CRT_filter_index
+	CRT_filter.set_screen(CRT_filter_index)
+	handle_menues()
 	if Observed_player != null:
-		
-		CRT_filter.player_index = CRT_filter_index
+		handle_player_UI(delta)
+	
 
 
-		CRT_filter.set_screen(Observed_player.player_index)
-		handle_overheat_bar()
-		handle_health_bars()
-		update_player_stats(delta)
-		handle_radar()
-		handle_throttle_bar()
-		handle_weapon_cooldown_bars()
-		if locked_on_player != null:
-			$UI_frame_bottom/enemy_paper_target.visible = true
-			#print("locked on player  : ", locked_on_player)
-			Observed_player.targeted_player = locked_on_player
-			update_enemy_paper_target(locked_on_player)
-			enemy_radar.display_tracked_enemies(Observed_player.target_dir,Observed_player.target_distance)
-			if !enemy_radar.tracked_enemies.has(locked_on_player):
-				enemy_radar.tracked_enemies.append(locked_on_player)
+
+
+func handle_player_UI(delta):
+	CRT_filter.player_index = CRT_filter_index
+	CRT_filter.set_screen(Observed_player.player_index)
+	handle_overheat_bar()
+	handle_health_bars()
+	update_player_stats(delta)
+	handle_radar()
+	handle_throttle_bar()
+	handle_weapon_cooldown_bars()
+	if locked_on_player != null:
+		$UI_frame_bottom/enemy_paper_target.visible = true
+		#print("locked on player  : ", locked_on_player)
+		Observed_player.targeted_player = locked_on_player
+		update_enemy_paper_target(locked_on_player)
+		enemy_radar.display_tracked_enemies(Observed_player.target_dir,Observed_player.target_distance)
+		if !enemy_radar.tracked_enemies.has(locked_on_player):
+			enemy_radar.tracked_enemies.append(locked_on_player)
+	else:
+		$UI_frame_bottom/enemy_paper_target.visible = false
 				
-		else:
-			$UI_frame_bottom/enemy_paper_target.visible = false
+
+				
+			
+			
+			
+			
+			
 func handle_weapon_cooldown_bars():	
 	weapon_slots[0].health_bar.modulate = paper_target.health_components[9].modulate
 	weapon_slots[1].health_bar.modulate = paper_target.health_components[10].modulate

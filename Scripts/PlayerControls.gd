@@ -14,6 +14,8 @@ extends Resource
 @export var fire_right_weapon_2 := "fire right weapon 2_p1"
 @export var brake := "brake_p1"
 @export var self_destruct := "self destruct_p1"
+@export var UI_accept := "UI accept_p1"
+@export var UI_back := "UI back_p1"
 @export var UI_up := "UI up_p1"
 @export var UI_down := "UI down_p1"
 @export var UI_right := "UI right_p1"

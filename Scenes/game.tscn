@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpl20eb6x6t14"]
+[gd_scene load_steps=8 format=3 uid="uid://dpl20eb6x6t14"]
 
 [ext_resource type="Script" uid="uid://dvockkcnjdenb" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://jhho1u3orutm" path="res://Scenes/level.tscn" id="1_ebmjs"]
+[ext_resource type="Resource" uid="uid://m2sjqkxfifmj" path="res://Scripts/Player_1_controls.tres" id="4_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://ftl8f5x5g86g" path="res://Scenes/player_ui.tscn" id="5_i6g32"]
-[ext_resource type="PackedScene" uid="uid://bdvtjucvrr360" path="res://Scenes/life_meter.tscn" id="8_ldgsr"]
+[ext_resource type="Resource" uid="uid://djbf4ibjvpqxp" path="res://Scripts/Player_2_controls.tres" id="5_v158k"]
 [ext_resource type="Script" uid="uid://ce6011hj5sy22" path="res://Scripts/The_game_music.gd" id="10_ldgsr"]
 [ext_resource type="AudioStream" uid="uid://dqlm06ws6kp05" path="res://Audio/Lazer (RT 6.0)/Synthwave Lazer Intensity 1.wav" id="11_rku1e"]
 
@@ -59,6 +60,7 @@ anchor_bottom = 0.0
 offset_top = 546.0
 offset_right = 0.0
 offset_bottom = 1266.0
+Controls = ExtResource("4_1l0tm")
 
 [node name="PLAYER_UI2" parent="." instance=ExtResource("5_i6g32")]
 layout_mode = 0
@@ -70,6 +72,7 @@ offset_left = 640.0
 offset_top = 546.0
 offset_right = 640.0
 offset_bottom = 1266.0
+Controls = ExtResource("5_v158k")
 CRT_filter_index = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -80,9 +83,6 @@ offset_top = -0.1439209
 offset_right = 644.7123
 offset_bottom = 719.8561
 color = Color(0.25490198, 0.23921569, 0.25882354, 1)
-
-[node name="life_meter" parent="." instance=ExtResource("8_ldgsr")]
-position = Vector2(616, 478)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_rku1e")

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0qdnxniphh6d"]
 
-[ext_resource type="Script" uid="uid://cchf8aivj3hq5" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Script" uid="uid://d4mpcma0pxlkm" path="res://Scripts/Title_screen.gd" id="1_48xlc"]
 [ext_resource type="Texture2D" uid="uid://if7kuhbi1okl" path="res://Sprites/start menu screens.png" id="2_48xlc"]
 
-[node name="Main_menu" type="Node2D"]
-script = ExtResource("1_28flt")
+[node name="Title_screen" type="Node2D"]
+script = ExtResource("1_48xlc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_48xlc")

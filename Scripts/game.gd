@@ -35,7 +35,7 @@ var spawned_in = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawn_in()
+	#spawn_in()
 
 	player_2_view.world_2d = player_1_view.find_world_2d()
 
@@ -48,7 +48,8 @@ func _process(_delta: float) -> void:
 		
 	if Input.is_action_just_pressed("ui_accept"):
 		get_tree().reload_current_scene()
-
+	if Input.is_action_just_pressed("ui_cancel"):
+		spawn_in()
 
 
 
@@ -62,7 +63,7 @@ func spawn_in():
 	var spawning_player = PLAYER_MECH.instantiate()
 	var new_spawn = level.spawn_points_array[randi_range(0,3)]
 	player_2 = spawning_player
-	spawning_player.player_index = 2
+	spawning_player.player_index = 1
 	player_2.Controls = PLAYER_2_CONTROLS.duplicate()
 	player_2.Controls.player_index = 1
 	player_2_view.add_child((spawning_player))
@@ -78,7 +79,7 @@ func spawn_in():
 	spawning_player = PLAYER_MECH.instantiate()
 	new_spawn = level.spawn_points_array[randi_range(8,11)]
 	player_1 = spawning_player
-	spawning_player.player_index = 1
+	spawning_player.player_index = 0
 	player_1.Controls = PLAYER_1_CONTROLS.duplicate()
 	player_1.Controls.player_index = 0
 	player_1_view.add_child((spawning_player))
@@ -126,6 +127,7 @@ func on_player_death(player,lives_remaining):
 		player_2 = respawning_player
 		player_2.Controls = PLAYER_2_CONTROLS.duplicate()
 		player_2.Controls.player_index = 2
+		player_2.player_index = 1
 		player_2.player_device = 1
 		player_2.player_color = Color.LIGHT_SKY_BLUE
 		player_2_view.add_child((respawning_player))
@@ -135,7 +137,7 @@ func on_player_death(player,lives_remaining):
 		respawning_player.current_lives = lives_remaining
 		print("respawning player 2 at : ", new_spawn.global_position)
 		player_2_ui.Observed_player = player_2
-		player_2_ui.CRT_filter.viewport_player_index = 1
+		player_1_ui.CRT_filter.viewport_player_index = 1
 		player_1_ui.locked_on_player = player_2
 		player_2.player_name = "Player_2"
 		player_2.connect("on_death",on_player_death)
@@ -143,6 +145,7 @@ func on_player_death(player,lives_remaining):
 		player_1 = respawning_player
 		player_1.Controls = PLAYER_1_CONTROLS.duplicate()
 		player_1.Controls.player_index = 1
+		player_1.player_index = 0
 		player_1.player_device = 0
 		player_1.player_color = Color.HOT_PINK
 		player_1_view.add_child((respawning_player))

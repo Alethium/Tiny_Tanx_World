@@ -6,8 +6,8 @@ shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture;
 
 // Base resolution for pixel-perfect effects (lower values = larger pixels)
-uniform vec2 resolution = vec2(320.0, 180.0);
-
+uniform vec2 resolution = vec2(640.0, 550.0);
+uniform int player_index = 0;
 // Viewport size for the CRT area (should match your ColorRect size)
 uniform vec2 viewport_size = vec2(640.0, 550.0);
 
@@ -155,30 +155,41 @@ vec3 Tri(vec2 pos) {
  * This is key for making effects work within the 640x550 area
  */
 vec2 to_crt_space(vec2 uv) {
-    // Convert to local CRT screen coordinates (0 to 1 within the CRT area)
-    vec2 screen_uv = (uv - 0.5) * (viewport_size / resolution) + 0.5;
-    return screen_uv;
+    // Determine which screen we're in (left or right)
+    float screen_index = floor(uv.x * 2.0);
+    
+    // Offset to that screen
+    vec2 screen_uv = uv;
+    screen_uv.x = screen_uv.x * 2.0 - screen_index;
+    
+    return vec2(screen_uv.x, screen_uv.y);
 }
 
-/**
- * Applies a spherize/bulge distortion to simulate CRT screen curvature
- * Warps UV coordinates more severely towards screen edges
- */
 vec2 warp(vec2 uv) {
-    // Convert to CRT space first
-    uv = to_crt_space(uv);
+    // Determine screen index
+    float screen_index = floor(uv.x * 2.0);
     
-    // Calculate distance from center and apply non-linear warping
-    vec2 delta = uv - 0.5;
-    float delta2 = dot(delta.xy, delta.xy);
-    float delta4 = delta2 * delta2;
-    float delta_offset = delta4 * warp_amount;
+    // Convert to CRT space
+    vec2 screen_uv = uv;
+    screen_uv.x = screen_uv.x * 2.0 - screen_index;
     
-    // Apply warping and normalize back to 0-1 range
-    vec2 warped = uv + delta * delta_offset;
-    vec2 result = (warped - 0.5) / mix(1.0, 1.2, warp_amount/5.0) + 0.5;
+    // Only warp if we're in valid screen space
+    if (screen_uv.x >= 0.0 && screen_uv.x <= 1.0) {
+        // Calculate distance from center and apply non-linear warping
+        vec2 delta = screen_uv - 0.5;
+        float delta2 = dot(delta.xy, delta.xy);
+        float delta4 = delta2 * delta2;
+        float delta_offset = delta4 * warp_amount;
+        
+        // Apply warping
+        vec2 warped = screen_uv + delta * delta_offset;
+        screen_uv = (warped - 0.5) / mix(1.0, 1.2, warp_amount/5.0) + 0.5;
+    }
     
     // Convert back to full-screen space
+    vec2 result = screen_uv;
+    result.x = result.x * 0.5 + screen_index * 0.5;
+    
     return result;
 }
 

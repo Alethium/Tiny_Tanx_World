@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 		Input.start_joy_vibration(gun_owner.player_device,0.1,0.1,0.1)
 		pulse_timer -= 1
 		if raycast.get_collider() != null :
-			if !raycast.get_collider().is_in_group("sensor"):
+			if !raycast.get_collider().is_in_group("sensor") and !raycast.get_collider().is_in_group("projectile"):
 				hit_point = to_local(raycast.get_collision_point())
 				impact(hit_point)
 				#print("colliding")

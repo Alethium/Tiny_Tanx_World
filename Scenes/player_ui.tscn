@@ -15,13 +15,13 @@
 [ext_resource type="Script" uid="uid://cvscfggkjswnj" path="res://Scripts/UI_text_display.gd" id="9_cfvot"]
 [ext_resource type="AudioStream" uid="uid://dh2xp0gced1da" path="res://Audio/Other/power-down-45784.mp3" id="10_slp1l"]
 [ext_resource type="FontFile" uid="uid://daqp8uaec7q1w" path="res://Gameplaya.ttf" id="11_i0isd"]
-[ext_resource type="Script" uid="uid://cqfdnuqxeotk0" path="res://addons/virtual_joystick/virtual_joystick.gd" id="17_xibup"]
-[ext_resource type="PackedScene" uid="uid://b0qdnxniphh6d" path="res://Scenes/main_menu.tscn" id="18_6gly2"]
-[ext_resource type="Texture2D" uid="uid://oitbsa2x1c5e" path="res://addons/virtual_joystick/resources/textures/joystick_texture_6.png" id="18_urr38"]
-[ext_resource type="Texture2D" uid="uid://x14xbs0r8srb" path="res://addons/virtual_joystick/resources/textures/stick_texture_4.png" id="19_6gly2"]
+[ext_resource type="PackedScene" uid="uid://baqtoubb7rst5" path="res://Scenes/title_screen.tscn" id="15_v28tg"]
+[ext_resource type="Script" uid="uid://bktkkiq3e4wok" path="res://Scripts/start_menu.gd" id="16_v28tg"]
 [ext_resource type="PackedScene" uid="uid://d2xx4hlq3nn3j" path="res://Scenes/settings_menu.tscn" id="19_v28tg"]
+[ext_resource type="Texture2D" uid="uid://if7kuhbi1okl" path="res://Sprites/start menu screens.png" id="20_famu2"]
 [ext_resource type="PackedScene" uid="uid://dwpuds388jfvw" path="res://Scenes/mechbuilder_menu.tscn" id="20_hehxj"]
 [ext_resource type="Script" uid="uid://bghaddibpt6f1" path="res://addons/crt/crt.gd" id="22_v28tg"]
+[ext_resource type="PackedScene" uid="uid://bdvtjucvrr360" path="res://Scenes/life_meter.tscn" id="25_famu2"]
 
 [sub_resource type="Gradient" id="Gradient_uflt7"]
 offsets = PackedFloat32Array(0.80849534, 1)
@@ -72,6 +72,7 @@ position = Vector2(-55.5, 98)
 offset_left = 1.0
 offset_right = 14.0
 offset_bottom = 16.0
+metadata/_edit_use_anchors_ = true
 
 [node name="top_left_button" type="Sprite2D" parent="UI_frame_bottom/Buttons/Bottom_turning_buttons/Button"]
 position = Vector2(0.5, 0.5)
@@ -84,6 +85,7 @@ region_rect = Rect2(163, 33, 11, 15)
 offset_left = 20.0
 offset_right = 33.0
 offset_bottom = 16.0
+metadata/_edit_use_anchors_ = true
 
 [node name="top_left_button" type="Sprite2D" parent="UI_frame_bottom/Buttons/Bottom_turning_buttons/Button2"]
 position = Vector2(1.5, 0.5)
@@ -99,6 +101,7 @@ position = Vector2(61.5, 99)
 offset_left = 1.0
 offset_right = 14.0
 offset_bottom = 16.0
+metadata/_edit_use_anchors_ = true
 
 [node name="top_left_button" type="Sprite2D" parent="UI_frame_bottom/Buttons/Top_turning_buttons/Button"]
 position = Vector2(0.5, 0.5)
@@ -111,6 +114,7 @@ region_rect = Rect2(163, 33, 11, 15)
 offset_left = 19.5
 offset_right = 32.5
 offset_bottom = 16.0
+metadata/_edit_use_anchors_ = true
 
 [node name="top_left_button" type="Sprite2D" parent="UI_frame_bottom/Buttons/Top_turning_buttons/Button2"]
 position = Vector2(1.5, 0.5)
@@ -311,6 +315,7 @@ offset_left = 2.0
 offset_top = 2.0
 offset_right = 82.0
 offset_bottom = 27.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Text_box" type="Sprite2D" parent="UI_frame_bottom/Text_display"]
 position = Vector2(17, 15)
@@ -373,46 +378,43 @@ theme_override_font_sizes/font_size = 200
 text = "OVERHEAT!"
 label_settings = SubResource("LabelSettings_dneem")
 
-[node name="virtual_joystick_throttle" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_left = 143.00002
-offset_top = 6.0000005
-offset_right = 345.0
-offset_bottom = 208.0
-scale = Vector2(0.283, 0.283)
-pivot_offset = Vector2(100.99999, 101)
-script = ExtResource("17_xibup")
-scale_factor = 0.28300000000000003
-joystick_preset_texture = 6
-joystick_texture = ExtResource("18_urr38")
-stick_preset_texture = 4
-stick_texture = ExtResource("19_6gly2")
-
-[node name="Main_menu" parent="." instance=ExtResource("18_6gly2")]
-visible = false
+[node name="Title_screen" parent="." instance=ExtResource("15_v28tg")]
 position = Vector2(0, -547)
 
-[node name="Sprite2D" parent="Main_menu" index="0"]
+[node name="Start_menu" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, -547)
+script = ExtResource("16_v28tg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Start_menu"]
 position = Vector2(-4, -3.999998)
 scale = Vector2(1.0124999, 1.0127273)
+texture = ExtResource("20_famu2")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 550)
 
 [node name="Settings_menu" parent="." instance=ExtResource("19_v28tg")]
 visible = false
 position = Vector2(320, -176)
 
-[node name="mechbuilder_menu" parent="." instance=ExtResource("20_hehxj")]
+[node name="Garage_menu" parent="." instance=ExtResource("20_hehxj")]
 visible = false
 position = Vector2(320, -176)
+
+[node name="Pause_menu" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, -547)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 0
 script = ExtResource("22_v28tg")
-resolution = Vector2(640, 550)
+resolution = Vector2(1280, 550)
 scan_line_strength = -4.018
 warp_amount = 0.0
-noise_amount = 0.0
+interference_amount = 0.0
+grille_amount = 0.069
 vignette_intensity = 0.0
 aberation_amount = 0.0
 roll_line_amount = 0.022
@@ -425,4 +427,5 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 320, 237)
 
-[editable path="Main_menu"]
+[node name="life_meter" parent="." instance=ExtResource("25_famu2")]
+position = Vector2(533, 85)

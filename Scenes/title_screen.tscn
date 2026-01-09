@@ -1,21 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://baqtoubb7rst5"]
+[gd_scene load_steps=4 format=3 uid="uid://baqtoubb7rst5"]
 
-[ext_resource type="Script" uid="uid://c5ydboqx5ku80" path="res://Scripts/pilot_portrait.gd" id="1_p3fck"]
-[ext_resource type="Texture2D" uid="uid://fsofjw36c72v" path="res://Sprites/interdictor.png" id="2_4gxqj"]
+[ext_resource type="Script" uid="uid://d4mpcma0pxlkm" path="res://Scripts/Title_screen.gd" id="1_p3fck"]
+[ext_resource type="Texture2D" uid="uid://if7kuhbi1okl" path="res://Sprites/start menu screens.png" id="2_4gxqj"]
+[ext_resource type="PackedScene" uid="uid://bf3bxaby7cesm" path="res://Scenes/accept_button_example_icon.tscn" id="3_4gxqj"]
 
-[node name="Pilot_portrait" type="Node2D"]
+[node name="Title_screen" type="Node2D"]
 script = ExtResource("1_p3fck")
 
-[node name="main_body" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4gxqj")
-hframes = 8
+centered = false
 region_enabled = true
-region_rect = Rect2(0, 64, 128, 16)
+region_rect = Rect2(0, 0, 640, 550)
 
-[node name="facial_expression" type="Sprite2D" parent="main_body"]
+[node name="Sprite2D2" type="Sprite2D" parent="."]
 texture = ExtResource("2_4gxqj")
-hframes = 2
-vframes = 2
-frame = 1
+centered = false
 region_enabled = true
-region_rect = Rect2(0, 80, 16, 16)
+region_rect = Rect2(631, 2, 650, 535)
+
+[node name="Accept Button_example_icon" parent="." instance=ExtResource("3_4gxqj")]
+position = Vector2(202, 264)
+scale = Vector2(2, 2)

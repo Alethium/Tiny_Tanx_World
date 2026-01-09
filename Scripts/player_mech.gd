@@ -97,10 +97,10 @@ const WP_SRM_4 = preload("uid://ydce2xf53jyc")
 
 var weapons = []
 @export var chosen_weapons = [
+	WP_CANNON,
 	WP_LASER,
-	WP_LASER,
-	WP_LASER,
-	WP_LASER
+	WP_MACHINEGUN,
+	WP_SRM_4
 ]
 
 
@@ -147,6 +147,9 @@ var throttle = 0.0
 
 # -----PLAYER CONTROLLED SETTINGS------------
 @export var top_locked = true
+enum Control_type {KEYBOARD,XBOX,PLAYSTATION,SWITCH}
+
+var controller_type: String
 var control_style = ControlStyles.Complex
 enum ControlStyles {Complex,Simple,Twinstick}
 @export var player_color:Color
