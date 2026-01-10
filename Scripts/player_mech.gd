@@ -154,9 +154,11 @@ var control_style = ControlStyles.Complex
 enum ControlStyles {Complex,Simple,Twinstick}
 @export var player_color:Color
 
+var throttle_decay = false
+var torso_lock = false
 
 
-
+ 
 
 
 
@@ -284,7 +286,13 @@ func handle_inputs(delta):
 	current_speed = current_throttle 
 	current_speed = clamp(current_speed, -max_speed*0.8, max_speed)
 	#print("current speed : ",current_speed)
-	if Input.is_action_pressed(Controls.brake):
+	if Input.is_action_just_pressed(Controls.brake):
+		throttle_decay = !throttle_decay
+		print("throttle decay : ",throttle_decay)
+	if Input.is_action_just_pressed(Controls.top_lock):	
+		top_locked = !top_locked
+	
+	if throttle_decay == true and throttle == 0 :
 		current_throttle = lerp(current_throttle,0.0,delta) 
 		
 		if abs(current_speed) < 15:

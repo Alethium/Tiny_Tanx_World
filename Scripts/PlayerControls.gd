@@ -13,6 +13,7 @@ extends Resource
 @export var fire_right_weapon_1 := "fire right weapon 1_p1"
 @export var fire_right_weapon_2 := "fire right weapon 2_p1"
 @export var brake := "brake_p1"
+@export var top_lock:= "top_lock_p1"
 @export var self_destruct := "self destruct_p1"
 @export var UI_accept := "UI accept_p1"
 @export var UI_back := "UI back_p1"

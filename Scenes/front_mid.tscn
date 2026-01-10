@@ -21,6 +21,27 @@ texture = ExtResource("3_ovidx")
 region_enabled = true
 region_rect = Rect2(35, 79, 26, 48)
 
+[node name="Life_Battery4" type="Sprite2D" parent="."]
+material = ExtResource("2_jexs1")
+position = Vector2(0, -2.5)
+texture = ExtResource("3_ovidx")
+region_enabled = true
+region_rect = Rect2(81, 5, 14, 5)
+
+[node name="Life_Battery5" type="Sprite2D" parent="."]
+material = ExtResource("2_jexs1")
+position = Vector2(0, 1.5)
+texture = ExtResource("3_ovidx")
+region_enabled = true
+region_rect = Rect2(81, 5, 14, 5)
+
+[node name="Life_Battery6" type="Sprite2D" parent="."]
+material = ExtResource("2_jexs1")
+position = Vector2(0, 5.5)
+texture = ExtResource("3_ovidx")
+region_enabled = true
+region_rect = Rect2(81, 5, 14, 5)
+
 [node name="Chassis" type="Sprite2D" parent="."]
 material = ExtResource("2_ujbeb")
 instance_shader_parameters/blink_color = Color(1, 1, 1, 1)
@@ -42,14 +63,14 @@ material = ExtResource("2_ujbeb")
 position = Vector2(0, 1.5)
 texture = ExtResource("3_ovidx")
 region_enabled = true
-region_rect = Rect2(0, 5, 16, 5)
+region_rect = Rect2(65, 5, 14, 5)
 
 [node name="Life_Battery3" type="Sprite2D" parent="."]
 material = ExtResource("2_ujbeb")
 position = Vector2(0, 5.5)
 texture = ExtResource("3_ovidx")
 region_enabled = true
-region_rect = Rect2(0, 5, 16, 5)
+region_rect = Rect2(33, 5, 14, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
