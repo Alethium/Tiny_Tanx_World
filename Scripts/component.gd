@@ -95,11 +95,13 @@ func apply_blink(color,intensity):
 func set_shader_color(newcolor):
 	for _sprite in sprites:
 		_sprite.set_instance_shader_parameter("blink_color",newcolor)
+		#_sprite.material.set_shader_parameter("blink_color",newcolor)
 		
 func set_shader_blink_intensity(newvalue:float):
 	for _sprite in sprites:
 	
 		_sprite.set_instance_shader_parameter("blink_intensity",newvalue)
+		#_sprite.material.set_shader_parameter("blink_intensity",newvalue)
 		
 	
 	

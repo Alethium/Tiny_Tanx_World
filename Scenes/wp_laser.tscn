@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dgxw3ow82ruaw"]
+[gd_scene load_steps=13 format=3 uid="uid://dgxw3ow82ruaw"]
 
 [ext_resource type="PackedScene" uid="uid://cmcdcsgi0wple" path="res://Scenes/weapon.tscn" id="1_3peil"]
 [ext_resource type="Script" uid="uid://pw5q4wstj3x5" path="res://Scripts/wp_medium_laser.gd" id="2_4hx4o"]
 [ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="2_qlnsf"]
 [ext_resource type="AudioStream" uid="uid://c3ex1gx4537uo" path="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/SCIEnrg_Energy Orb_05.wav" id="3_qlnsf"]
-[ext_resource type="Shader" uid="uid://86s4tve6ebnv" path="res://Scripts/Blink.gdshader" id="4_qlnsf"]
+[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://destructable_sprite.tres" id="4_qlnsf"]
 
 [sub_resource type="Curve" id="Curve_mou6w"]
 _data = [Vector2(0, 0.39877844), 0.0, 0.0, 0, 0, Vector2(1, 0.25414497), 0.0, 0.0, 0, 0]
@@ -30,12 +30,6 @@ color_ramp = SubResource("Gradient_c8ure")
 offsets = PackedFloat32Array(0, 0.0446281, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.32701993, 1, 1, 1, 0.011764706)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5ptf"]
-resource_local_to_scene = true
-shader = ExtResource("4_qlnsf")
-shader_parameter/blink_color = Color(1, 0.42000002, 0.42000002, 1)
-shader_parameter/blink_intensity = 0.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h4h0y"]
 size = Vector2(8, 14)
 
@@ -48,7 +42,7 @@ ray_offset_x = 9
 ray_offset_y = -5
 damage = 25.0
 cooldown = 200.0
-heat = 0.7
+heat = 1.0
 health = 50.0
 armor = 50.0
 
@@ -99,7 +93,7 @@ joint_mode = 2
 begin_cap_mode = 2
 
 [node name="Sprite2D" parent="." index="2"]
-material = SubResource("ShaderMaterial_b5ptf")
+material = ExtResource("4_qlnsf")
 position = Vector2(-4, -7)
 region_enabled = true
 region_rect = Rect2(68, 2, 8, 14)

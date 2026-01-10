@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bjnw7gvu1qdiu" path="res://Scripts/wp_srm_4.gd" id="2_26t47"]
 [ext_resource type="PackedScene" uid="uid://cwdmtqbybucq1" path="res://Scenes/srm.tscn" id="3_pf7tx"]
 [ext_resource type="AudioStream" uid="uid://djkfcnvy3w7ne" path="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/GUNArtl_Rocket Launcher Fire_02.wav" id="4_37hsd"]
-[ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="4_85els"]
+[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://destructable_sprite.tres" id="4_85els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26t47"]
 size = Vector2(14, 12)

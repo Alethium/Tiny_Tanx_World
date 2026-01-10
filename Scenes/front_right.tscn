@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b2bopcgx8l3kj" path="res://Scripts/front_right.gd" id="1_aejjf"]
 [ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="2_2pivf"]
-[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://Scenes/destructable_sprite.tres" id="2_aejjf"]
+[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://destructable_sprite.tres" id="2_aejjf"]
 [ext_resource type="Texture2D" uid="uid://dupx3ik56ldgn" path="res://Sprites/Battlemech top downnew.png" id="3_b3x04"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shtb6"]
@@ -19,9 +19,8 @@ material = ExtResource("2_2pivf")
 position = Vector2(-9, -12)
 texture = ExtResource("3_b3x04")
 centered = false
-flip_h = true
 region_enabled = true
-region_rect = Rect2(114, 4, 13, 26)
+region_rect = Rect2(130, 4, 13, 26)
 
 [node name="fresh" type="Sprite2D" parent="."]
 material = ExtResource("2_aejjf")

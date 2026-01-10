@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://8qrv1ct2axpq"]
+[gd_scene load_steps=8 format=3 uid="uid://8qrv1ct2axpq"]
 
 [ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="1_140io"]
 [ext_resource type="PackedScene" uid="uid://b1ho04fxtvp8l" path="res://Scenes/cannon_lg.tscn" id="1_l0sxq"]
 [ext_resource type="Script" uid="uid://clvh5vo58d6wm" path="res://Scripts/wp_cannon.gd" id="1_la6kp"]
 [ext_resource type="Texture2D" uid="uid://cnm8ncbbhj46o" path="res://topdownmechweapons.png" id="1_n7oph"]
 [ext_resource type="AudioStream" uid="uid://dtmm5gu64t7xd" path="res://Audio/Sci Fi Weapons Cyberpunk Arsenal Preview/AUDIO/LASRGun_Plasma Rifle Fire_03.wav" id="4_0au2x"]
+[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://destructable_sprite.tres" id="4_l0f7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ml5r5"]
 size = Vector2(7.9999833, 12.749994)
@@ -23,13 +24,13 @@ heat = 20.0
 munition = ExtResource("1_l0sxq")
 spread = 1.0
 icon_index = 2
-sprite = NodePath("Sprite2D")
+sprite = NodePath("fresh")
 health = 50.0
 armor = 50.0
 metadata/_edit_horizontal_guides_ = [-34.0]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = ExtResource("1_140io")
+[node name="fresh" type="Sprite2D" parent="."]
+material = ExtResource("4_l0f7s")
 position = Vector2(1.1920929e-07, 0)
 texture = ExtResource("1_n7oph")
 flip_h = true

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cnx5w81cdundo" path="res://Scripts/front_left.gd" id="1_ic0kl"]
 [ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="1_v5wb5"]
-[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://Scenes/destructable_sprite.tres" id="2_ic0kl"]
+[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://destructable_sprite.tres" id="2_ic0kl"]
 [ext_resource type="Texture2D" uid="uid://dupx3ik56ldgn" path="res://Sprites/Battlemech top downnew.png" id="3_et5e2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxxpq"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7vm531lxktpr"]
+[gd_scene load_steps=13 format=3 uid="uid://c7vm531lxktpr"]
 
 [ext_resource type="Script" uid="uid://hsobbqqft2tg" path="res://Scripts/core_rear.gd" id="1_nptah"]
-[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://Scenes/destructable_sprite.tres" id="2_nptah"]
+[ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="2_ks2cr"]
+[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://destructable_sprite.tres" id="2_nptah"]
 [ext_resource type="Texture2D" uid="uid://dupx3ik56ldgn" path="res://Sprites/Battlemech top downnew.png" id="3_lctmx"]
 [ext_resource type="Texture2D" uid="uid://xdf6t2nbnlp0" path="res://smoke_cards2.png" id="4_0f243"]
 [ext_resource type="Texture2D" uid="uid://bxd4ufgoeaudw" path="res://Sprites/firecard.png" id="5_12x60"]
@@ -33,8 +34,24 @@ sprite = NodePath("rear_core_r")
 health = 100.0
 armor = 100.0
 
+[node name="rear_core_lbroken" type="Sprite2D" parent="."]
+material = ExtResource("2_ks2cr")
+position = Vector2(-8, 7)
+texture = ExtResource("3_lctmx")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(160, 64, 16, 16)
+
+[node name="rear_core_rbroken" type="Sprite2D" parent="."]
+material = ExtResource("2_ks2cr")
+position = Vector2(8, 7)
+texture = ExtResource("3_lctmx")
+region_enabled = true
+region_rect = Rect2(176, 64, 16, 16)
+
 [node name="rear_core_l" type="Sprite2D" parent="."]
 material = ExtResource("2_nptah")
+instance_shader_parameters/destroy_amount = 0.902000042845
 position = Vector2(-8, 7)
 texture = ExtResource("3_lctmx")
 region_enabled = true
@@ -42,6 +59,7 @@ region_rect = Rect2(144, 32, 16, 16)
 
 [node name="rear_core_r" type="Sprite2D" parent="."]
 material = ExtResource("2_nptah")
+instance_shader_parameters/destroy_amount = 0.902000042845
 position = Vector2(8, 7)
 texture = ExtResource("3_lctmx")
 region_enabled = true
@@ -49,6 +67,7 @@ region_rect = Rect2(144, 64, 16, 16)
 
 [node name="Vent_l" type="Sprite2D" parent="."]
 material = ExtResource("2_nptah")
+instance_shader_parameters/destroy_amount = 0.902000042845
 position = Vector2(3.0000005, 9)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("3_lctmx")
@@ -59,6 +78,7 @@ region_rect = Rect2(17, 49, 13, 24)
 
 [node name="Vent_l2" type="Sprite2D" parent="."]
 material = ExtResource("2_nptah")
+instance_shader_parameters/destroy_amount = 0.902000042845
 position = Vector2(-15.999998, 9)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("3_lctmx")
@@ -68,6 +88,7 @@ region_enabled = true
 region_rect = Rect2(17, 49, 13, 24)
 
 [node name="smoke3" type="CPUParticles2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(9, 14)
 scale = Vector2(0.99999994, 0.99999994)
@@ -90,6 +111,7 @@ scale_amount_curve = SubResource("Curve_dsq5r")
 color_ramp = SubResource("Gradient_dsq5r")
 
 [node name="smoke4" type="CPUParticles2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(-8.999998, 14)
 scale = Vector2(0.99999994, 0.99999994)
@@ -112,6 +134,7 @@ scale_amount_curve = SubResource("Curve_dsq5r")
 color_ramp = SubResource("Gradient_dsq5r")
 
 [node name="engine_fire" type="CPUParticles2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_ym03w")
 position = Vector2(-10, 14)
 scale = Vector2(0.9999997, 0.9999997)
@@ -138,6 +161,7 @@ scale_amount_curve = SubResource("Curve_p5i7k")
 color_ramp = SubResource("Gradient_8cvv8")
 
 [node name="engine_fire2" type="CPUParticles2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_ym03w")
 position = Vector2(9.999998, 14.000001)
 scale = Vector2(0.9999997, 0.9999997)

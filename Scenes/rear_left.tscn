@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://uplxswwiy56"]
+[gd_scene load_steps=6 format=3 uid="uid://uplxswwiy56"]
 
 [ext_resource type="Script" uid="uid://c3lslhnd1ieaa" path="res://Scripts/rear_left.gd" id="1_a8gp1"]
-[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://Scenes/destructable_sprite.tres" id="2_a8gp1"]
+[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://destructable_sprite.tres" id="2_a8gp1"]
+[ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="2_sh2x3"]
 [ext_resource type="Texture2D" uid="uid://dupx3ik56ldgn" path="res://Sprites/Battlemech top downnew.png" id="3_eyyir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpdlx"]
@@ -9,11 +10,19 @@ size = Vector2(13, 23)
 
 [node name="rear_left" type="Area2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_a8gp1")
-sprite = NodePath("Sprite2D")
+sprite = NodePath("fresh")
 health = 50.0
 armor = 100.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="broken" type="Sprite2D" parent="."]
+material = ExtResource("2_sh2x3")
+position = Vector2(-4, -15)
+texture = ExtResource("3_eyyir")
+centered = false
+region_enabled = true
+region_rect = Rect2(114, 36, 13, 23)
+
+[node name="fresh" type="Sprite2D" parent="."]
 material = ExtResource("2_a8gp1")
 position = Vector2(-4, -15)
 texture = ExtResource("3_eyyir")
