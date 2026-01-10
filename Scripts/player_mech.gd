@@ -185,6 +185,7 @@ func _ready():
 	
 func _physics_process(delta: float) -> void:
 	
+
 	if !overheated:
 		if overheat > 80:
 			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire2.emitting  = true
@@ -205,7 +206,6 @@ func _physics_process(delta: float) -> void:
 		for component in components:
 			component._on_damage_recieved(0.3)
 	# Add the gravity.
-	
 	handle_inputs(delta)
 	apply_movement(delta)
 	handle_damaged_components(delta)

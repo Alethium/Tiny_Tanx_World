@@ -67,7 +67,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_a43kq")
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/Begin_button"]
+[node name="Begin_text" type="Label" parent="Control/VBoxContainer/Begin_button"]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 64.0

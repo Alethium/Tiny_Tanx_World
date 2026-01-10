@@ -1,5 +1,5 @@
 extends Control
-
+@onready var ready_up = false
 @export var Observed_player : Player
 @export var Controls: Resource = null
 # TODO
@@ -71,7 +71,7 @@ func handle_menues():
 	elif menu_state == MenuState.PAUSE:
 		pause_menu.active = true
 	elif menu_state == MenuState.CLOSED:
-		print("menu closed game begin")
+		pass
 
 
 
@@ -90,6 +90,7 @@ func _process(delta: float) -> void:
 	CRT_filter.set_screen(CRT_filter_index)
 	handle_menues()
 	if Observed_player != null:
+		
 		handle_player_UI(delta)
 	
 

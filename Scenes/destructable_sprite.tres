@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://c52cim57ba728"]
+
+[ext_resource type="Shader" uid="uid://cqdkcle05x2xr" path="res://Scripts/destructable_sprite.tres" id="1_iaswg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iaswg"]
+noise_type = 5
+seed = 6
+frequency = 0.2351
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ugf4g"]
+noise = SubResource("FastNoiseLite_iaswg")
+
+[resource]
+shader = ExtResource("1_iaswg")
+shader_parameter/Noise2 = SubResource("NoiseTexture2D_ugf4g")

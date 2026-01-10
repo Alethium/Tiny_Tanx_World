@@ -42,7 +42,7 @@ func _on_ghost_damage_recieved(damage:float):
 
 func _on_damage_recieved(damage:float):
 				
-				
+	apply_damage_visual()			
 #		check for overlapping boddies that are components
 	if armor > 0:
 		armor -= damage/2
@@ -81,6 +81,12 @@ func on_destruction():
 		hitspark.global_position = global_transform.origin 
 		hitspark.rotation = rotation
 		destroyed = true
+		
+func apply_damage_visual():
+	for _sprite in sprites:
+			_sprite.set_instance_shader_parameter("destroy_amount",(health+armor)/(starting_health+starting_armor))
+			
+		
 func apply_blink(color,intensity):
 	set_shader_color(color)
 	var tween = get_tree().create_tween()
@@ -88,12 +94,13 @@ func apply_blink(color,intensity):
 	
 func set_shader_color(newcolor):
 	for _sprite in sprites:
-		_sprite.material.set_shader_parameter("blink_color",newcolor)
+		_sprite.set_instance_shader_parameter("blink_color",newcolor)
 		
 func set_shader_blink_intensity(newvalue:float):
 	for _sprite in sprites:
 	
-		_sprite.material.set_shader_parameter("blink_intensity",newvalue)
+		_sprite.set_instance_shader_parameter("blink_intensity",newvalue)
+		
 	
 	
 	

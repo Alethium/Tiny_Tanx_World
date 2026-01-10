@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bdvtjucvrr360" path="res://Scenes/life_meter.tscn" id="25_famu2"]
 
 [sub_resource type="Gradient" id="Gradient_uflt7"]
-offsets = PackedFloat32Array(0.80849534, 1)
+offsets = PackedFloat32Array(0.34231806, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0.7, 0.21455, 0.18899998, 0.654902)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6jssq"]
@@ -398,24 +398,26 @@ position = Vector2(0, -547)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-layer = 0
 script = ExtResource("22_v28tg")
 resolution = Vector2(1280, 550)
-scan_line_strength = -4.018
-warp_amount = 0.0
+scan_line_amount = 0.697
+scan_line_strength = -7.395
+warp_amount = 2.118
 interference_amount = 0.0
 grille_amount = 0.069
 vignette_intensity = 0.0
 aberation_amount = 0.0
 roll_line_amount = 0.022
 
-[node name="Uiscreenframe" type="Sprite2D" parent="."]
-position = Vector2(0, -547)
-scale = Vector2(2, 2.315)
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Uiscreenframe" type="Sprite2D" parent="CanvasLayer2"]
+position = Vector2(0, -551)
 texture = ExtResource("2_2l008")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 320, 237)
+region_rect = Rect2(0, 0, 640, 550)
 
 [node name="life_meter" parent="." instance=ExtResource("25_famu2")]
 position = Vector2(533, 85)

@@ -4,14 +4,14 @@ var respawn_timer = 60
 @onready var player_2_view: SubViewport = $HBoxContainer/Player_2/player_2_view
 @export var player_1 : Player
 @export var player_2 : Player
-var players = [player_1,player_2]
+@onready var players = [player_1,player_2]
 const PLAYER_MECH = preload("uid://cx1y1p4ehilni")
 @onready var level: Node2D = $HBoxContainer/Player_1/player_1_view/level
 const PLAYER_2_CONTROLS = preload("uid://djbf4ibjvpqxp")
 const PLAYER_1_CONTROLS = preload("uid://m2sjqkxfifmj")
 @onready var player_2_ui: Control = $PLAYER_UI2
 @onready var player_1_ui: Control = $PLAYER_UI
-
+@onready var players_ui = [player_1_ui,player_2_ui]
 var spawned_in = false
 
 #---------------main menu--------------
@@ -28,7 +28,7 @@ var spawned_in = false
 
 
 
-
+var ready_players = []
 
 
 
@@ -41,7 +41,17 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-
+	
+	for player in players_ui:
+		if player.ready_up == true and !ready_players.has(player):
+			player.menu_state = 5
+			player.start_menu.visible = false
+			player.start_menu.active = false
+			ready_players.append(player)
+			
+	#print("ready players : ", ready_players.size())
+	if ready_players.size() == 2  and !spawned_in:
+		spawn_in()
 
 		
 		
@@ -58,6 +68,7 @@ func _process(_delta: float) -> void:
 
 func spawn_in():
 
+		
 	
 	var spawning_player = PLAYER_MECH.instantiate()
 	var new_spawn = level.spawn_points_array[randi_range(0,3)]
@@ -94,6 +105,7 @@ func spawn_in():
 
 	player_1_ui.locked_on_player = player_2
 	player_2_ui.locked_on_player = player_1
+	spawned_in = true
 
 func on_player_death(player,lives_remaining):
 	#if player == "Player_2":

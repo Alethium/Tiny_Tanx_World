@@ -7,12 +7,13 @@ var highlighted_button_index = 0
 @onready var garage: Panel = $Control/VBoxContainer/Garage_button
 @onready var settings: Panel = $Control/VBoxContainer/Settings_button
 @onready var exit: Panel = $Control/VBoxContainer/Exit_button
+@onready var begin_text: Label = $Control/VBoxContainer/Begin_button/Begin_text
 
 var active_button_index = 0
 
 
 func _process(delta: float) -> void:
-	print("start menu active : ",active)
+	
 	if !active:
 		visible = false
 
@@ -59,8 +60,11 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed(Controls.UI_accept):
 			if active_button_index == 0:
 				print("player pressing UI button accept on begin")
-				process_mode = Node.PROCESS_MODE_DISABLED
-				get_parent().menu_state = MenuState.CLOSED
-				get_parent().get_parent().spawn_in()
-				active = false
-				visible = false
+				get_parent().ready_up = true
+				begin_text.set_text("Ready")
+				#get_parent().menu_state = MenuState.CLOSED
+				#get_parent().get_parent().spawn_in()
+				#active = false
+				#visible = false
+			if active_button_index == 3:
+				get_tree().quit()

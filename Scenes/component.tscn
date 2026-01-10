@@ -1,10 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdxvrjjk58ylu"]
+[gd_scene load_steps=3 format=3 uid="uid://bdxvrjjk58ylu"]
 
 [ext_resource type="Script" uid="uid://c3tewmu2hck7h" path="res://Scripts/component.gd" id="1_xqk12"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xqk12"]
+
 [node name="Area2D" type="Area2D"]
+material = SubResource("ShaderMaterial_xqk12")
 script = ExtResource("1_xqk12")
-health = null
-armor = null
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

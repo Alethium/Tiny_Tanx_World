@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2al8365r286s"]
 
 [ext_resource type="Script" uid="uid://dulaaixjsglyo" path="res://Scripts/core_r.gd" id="1_ii1wo"]
-[ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="2_x2ayv"]
+[ext_resource type="Material" uid="uid://c52cim57ba728" path="res://Scenes/destructable_sprite.tres" id="2_ii1wo"]
 [ext_resource type="Texture2D" uid="uid://dupx3ik56ldgn" path="res://Sprites/Battlemech top downnew.png" id="3_o0xo1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fk877"]
@@ -14,7 +14,7 @@ health = 100.0
 armor = 100.0
 
 [node name="armor" type="Sprite2D" parent="."]
-material = ExtResource("2_x2ayv")
+material = ExtResource("2_ii1wo")
 position = Vector2(-9, -11)
 texture = ExtResource("3_o0xo1")
 centered = false
