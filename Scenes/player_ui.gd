@@ -38,7 +38,8 @@ extends Control
 
 @export var locked_on_player : Player
 
-@onready var CRT_filter: CRT = %CanvasLayer
+@onready var CRT_filter: CRT = %"CanvasLayer=1"
+
 
 
 @export var CRT_filter_index: int 

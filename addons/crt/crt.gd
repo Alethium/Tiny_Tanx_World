@@ -2,7 +2,8 @@
 @icon("res://addons/crt/icon.svg")
 class_name CRT
 extends CanvasLayer
-@onready var color_rect = ColorRect.new()
+
+@onready var color_rect: ColorRect = $ColorRect
 
 @export var viewport_player_index: int :
 	set(value):

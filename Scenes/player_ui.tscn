@@ -65,7 +65,7 @@ metadata/_edit_lock_ = true
 [node name="Buttons" type="Node2D" parent="UI_frame_bottom"]
 
 [node name="Bottom_turning_buttons" type="Node2D" parent="UI_frame_bottom/Buttons"]
-position = Vector2(-55.5, 98)
+position = Vector2(-73, 98)
 
 [node name="Button" type="Button" parent="UI_frame_bottom/Buttons/Bottom_turning_buttons"]
 offset_left = 1.0
@@ -94,7 +94,7 @@ region_enabled = true
 region_rect = Rect2(176, 33, 11, 15)
 
 [node name="Top_turning_buttons" type="Node2D" parent="UI_frame_bottom/Buttons"]
-position = Vector2(61.5, 99)
+position = Vector2(44, 99)
 
 [node name="Button" type="Button" parent="UI_frame_bottom/Buttons/Top_turning_buttons"]
 offset_left = 1.0
@@ -126,21 +126,21 @@ region_rect = Rect2(176, 33, 11, 15)
 script = ExtResource("5_r1ks8")
 
 [node name="throttle_hole" type="Sprite2D" parent="UI_frame_bottom/Buttons/throttle"]
-position = Vector2(-45.5, 122)
+position = Vector2(-63, 122)
 texture = ExtResource("5_byt00")
 centered = false
 region_enabled = true
 region_rect = Rect2(1, 128, 14, 32)
 
 [node name="throttle_pole" type="Sprite2D" parent="UI_frame_bottom/Buttons/throttle"]
-position = Vector2(-43.5, 122.5)
+position = Vector2(-61, 122.5)
 texture = ExtResource("5_byt00")
 centered = false
 region_enabled = true
 region_rect = Rect2(51, 122, 9, 22)
 
 [node name="throttle_handle" type="Sprite2D" parent="UI_frame_bottom/Buttons/throttle"]
-position = Vector2(-54.5, 122)
+position = Vector2(-72, 122)
 texture = ExtResource("5_byt00")
 centered = false
 region_enabled = true
@@ -183,21 +183,21 @@ position = Vector2(129.25, 89)
 scale = Vector2(0.25, 0.25)
 
 [node name="weapon_slot_UI_1" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(61, 77.5)
+position = Vector2(43.5, 77.5)
 
 [node name="weapon_slot_UI_2" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(79, 77.5)
+position = Vector2(61.5, 77.5)
 
 [node name="weapon_slot_UI_3" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(-21, 77.5)
+position = Vector2(-38.5, 77.5)
 scale = Vector2(-1, 1)
 
 [node name="weapon_slot_UI_4" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(-39, 77.5)
+position = Vector2(-56.5, 77.5)
 scale = Vector2(-1, 1)
 
 [node name="paper_target" parent="UI_frame_bottom" instance=ExtResource("4_46yqn")]
-position = Vector2(-11, 96.5)
+position = Vector2(-28.5, 96.5)
 
 [node name="Overheat_bar" type="Node2D" parent="UI_frame_bottom/paper_target"]
 position = Vector2(61, 0)
@@ -396,13 +396,31 @@ position = Vector2(320, -176)
 visible = false
 position = Vector2(0, -547)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer=10" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Uiscreenframe" type="Sprite2D" parent="CanvasLayer=10"]
+z_index = 2
+texture = ExtResource("2_2l008")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 550)
+
+[node name="Uiscreenframe2" type="Sprite2D" parent="CanvasLayer=10"]
+z_index = 2
+position = Vector2(640, 0)
+texture = ExtResource("2_2l008")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 550)
+
+[node name="CanvasLayer=1" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 script = ExtResource("22_v28tg")
 resolution = Vector2(1280, 550)
 scan_line_amount = 0.697
 scan_line_strength = -4.439
-warp_amount = 0.088
+warp_amount = 0.658
 noise_amount = 0.018
 interference_amount = 0.33
 grille_amount = 0.13
@@ -412,12 +430,9 @@ aberation_amount = 0.273
 roll_line_amount = 0.022
 roll_speed = 0.36599999999999966
 
-[node name="Uiscreenframe" type="Sprite2D" parent="."]
-position = Vector2(0, -550)
-texture = ExtResource("2_2l008")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 640, 550)
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer=1"]
+offset_right = 640.0
+offset_bottom = 550.0
 
 [node name="life_meter" parent="." instance=ExtResource("25_famu2")]
 position = Vector2(533, 85)
