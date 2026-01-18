@@ -142,7 +142,7 @@ func _ready() -> void:
 	
 
 	color_rect.material = material
-	add_child(color_rect)
+	#add_child(color_rect)
 	if _should_update():
 		visible = true
 	else:

@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwpuds388jfvw"]
+
+[ext_resource type="Script" uid="uid://cay3u75y7ko8g" path="res://Scripts/Garage_menu.gd" id="1_8ouao"]
+[ext_resource type="Texture2D" uid="uid://if7kuhbi1okl" path="res://Sprites/start menu screens.png" id="2_4mylt"]
+[ext_resource type="Texture2D" uid="uid://dx6q2wg3fb1ej" path="res://Sprites/Garage_menu_sprites.png" id="2_yq7x0"]
+[ext_resource type="Texture2D" uid="uid://bd5e01diaq88m" path="res://Sprites/uisprites.png" id="3_4mylt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uuw8p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uflt7"]
+bg_color = Color(0.09019608, 0.078431375, 0.101960786, 1)
+
+[node name="Garage_Menu" type="Node2D"]
+script = ExtResource("1_8ouao")
+
+[node name="Menu_container" type="PanelContainer" parent="."]
+offset_right = 640.0
+offset_bottom = 546.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_uuw8p")
+
+[node name="Panel" type="Panel" parent="Menu_container"]
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uflt7")
+
+[node name="BG_color" type="Sprite2D" parent="Menu_container/Panel"]
+position = Vector2(0, 2.3841858e-07)
+scale = Vector2(1.0124999, 1.0127273)
+texture = ExtResource("2_4mylt")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 550)
+
+[node name="TankBlueprint_view" type="Sprite2D" parent="Menu_container/Panel"]
+position = Vector2(310, 411)
+scale = Vector2(4, 4)
+texture = ExtResource("2_yq7x0")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(0, 67, 512, 61)
+
+[node name="Weapon_selection" type="Sprite2D" parent="Menu_container/Panel"]
+z_index = 1
+position = Vector2(310, 155)
+scale = Vector2(4, 4)
+texture = ExtResource("2_yq7x0")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 67)
+
+[node name="LargeWeaponBlueprint" type="Sprite2D" parent="Menu_container/Panel"]
+position = Vector2(118, 113)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("2_yq7x0")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(256, 128, 128, 16)
+
+[node name="Builder_ui" type="Control" parent="Menu_container"]
+layout_mode = 2
+
+[node name="Button" type="Node2D" parent="Menu_container/Builder_ui"]
+position = Vector2(166, 225)
+
+[node name="L1_Selection" type="Sprite2D" parent="Menu_container/Builder_ui/Button"]
+position = Vector2(0, -8)
+scale = Vector2(4, 4)
+texture = ExtResource("3_4mylt")
+centered = false
+hframes = 4
+region_enabled = true
+region_rect = Rect2(144, 112, 64, 16)
+
+[node name="Button2" type="Node2D" parent="Menu_container/Builder_ui"]
+position = Vector2(242, 225)
+
+[node name="L2_Selection" type="Sprite2D" parent="Menu_container/Builder_ui/Button2"]
+position = Vector2(0, -8)
+scale = Vector2(4, 4)
+texture = ExtResource("3_4mylt")
+centered = false
+hframes = 4
+region_enabled = true
+region_rect = Rect2(144, 112, 64, 16)
+
+[node name="Button3" type="Node2D" parent="Menu_container/Builder_ui"]
+position = Vector2(322, 225)
+
+[node name="R2_Selection" type="Sprite2D" parent="Menu_container/Builder_ui/Button3"]
+position = Vector2(0, -8)
+scale = Vector2(4, 4)
+texture = ExtResource("3_4mylt")
+centered = false
+hframes = 4
+region_enabled = true
+region_rect = Rect2(144, 112, 64, 16)
+
+[node name="R1_selection" type="Node2D" parent="Menu_container/Builder_ui"]
+position = Vector2(398, 225)
+
+[node name="R1_Selection" type="Sprite2D" parent="Menu_container/Builder_ui/R1_selection"]
+position = Vector2(0, -8)
+scale = Vector2(4, 4)
+texture = ExtResource("3_4mylt")
+centered = false
+hframes = 4
+region_enabled = true
+region_rect = Rect2(144, 112, 64, 16)

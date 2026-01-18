@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 		visible = false
 
 	if active:
+		visible = true
 		if Input.is_action_just_pressed(Controls.UI_down):
 			print("player pressing UI button down : ", active_button_index)
 			if active_button_index < 3:
@@ -56,12 +57,19 @@ func _process(delta: float) -> void:
 
 		
 		
-		
 		if Input.is_action_just_pressed(Controls.UI_accept):
 			if active_button_index == 0:
 				print("player pressing UI button accept on begin")
 				get_parent().ready_up = true
 				begin_text.set_text("Ready")
+				active = false
+			if active_button_index == 1:
+				print("player pressing UI button accept on Garage")
+				get_parent().garage_menu.process_mode = Node.PROCESS_MODE_ALWAYS
+				get_parent().set_state(MenuState.GARAGE)
+			if active_button_index == 2:
+				get_parent().settings_menu.process_mode = Node.PROCESS_MODE_ALWAYS
+				get_parent().set_state(MenuState.SETTINGS)
 				#get_parent().menu_state = MenuState.CLOSED
 				#get_parent().get_parent().spawn_in()
 				#active = false

@@ -1,5 +1,10 @@
 extends Control
 @onready var ready_up = false
+# change what buttons do while in these menus. 
+@onready var garage_menu_open = false
+@onready var settings_menu_open = false
+
+
 @export var Observed_player : Player
 @export var Controls: Resource = null
 # TODO
@@ -55,27 +60,6 @@ enum MenuState {TITLE,START,GARAGE,SETTINGS,PAUSE,CLOSED}
 @export var player_index : int
 
 
-			
-func handle_menues():
-	#print("menu state",menu_state)
-	if menu_state == MenuState.TITLE:
-		title_screen.active = true
-		title_screen.owner_index = player_index
-	elif menu_state == MenuState.START:
-		start_menu.active = true
-		start_menu.visible = true
-		start_menu.owner_index = player_index
-	elif menu_state == MenuState.GARAGE:
-		garage_menu.active = true
-	elif menu_state == MenuState.SETTINGS:
-		settings_menu.active = true
-	elif menu_state == MenuState.PAUSE:
-		pause_menu.active = true
-	elif menu_state == MenuState.CLOSED:
-		pass
-
-
-
 
 #TODO
 # set up player control interactions for title screen
@@ -118,6 +102,69 @@ func handle_player_UI(delta):
 	else:
 		$UI_frame_bottom/enemy_paper_target.visible = false
 				
+func set_state(state):
+	menu_state = state
+	if menu_state == MenuState.TITLE:
+		title_screen.active = true
+		start_menu.active = false
+		garage_menu.active = false
+		pause_menu.active = false
+		settings_menu.active = false
+		title_screen.owner_index = player_index
+	elif menu_state == MenuState.START:
+		title_screen.active = false
+		start_menu.active = true
+		garage_menu.active = false
+		pause_menu.active = false
+		settings_menu.active = false
+		start_menu.owner_index = player_index
+	elif menu_state == MenuState.GARAGE:
+		title_screen.active = false
+		start_menu.active = false
+		garage_menu.active = true
+		pause_menu.active = false
+		settings_menu.active = false
+	elif menu_state == MenuState.SETTINGS:
+		title_screen.active = false
+		start_menu.active = false
+		garage_menu.active = false
+		settings_menu.active = true
+		pause_menu.active = false
+	elif menu_state == MenuState.PAUSE:
+		title_screen.active = false
+		start_menu.active = false
+		garage_menu.active = false
+		settings_menu.active = false
+		pause_menu.active = true
+	elif menu_state == MenuState.CLOSED:
+		title_screen.active = false
+		start_menu.active = false
+		garage_menu.active = false
+		settings_menu.active = false
+		pause_menu.active = false
+	print("state is now set to : ",menu_state)
+
+
+func handle_menues():
+	pass
+	#print("menu state",menu_state)
+	if menu_state == MenuState.TITLE:
+		title_screen.active = true
+		title_screen.owner_index = player_index
+	elif menu_state == MenuState.START:
+		start_menu.active = true
+		start_menu.visible = true
+		start_menu.owner_index = player_index
+	elif menu_state == MenuState.GARAGE:
+		garage_menu.active = true
+	elif menu_state == MenuState.SETTINGS:
+		settings_menu.active = true
+	elif menu_state == MenuState.PAUSE:
+		pause_menu.active = true
+	elif menu_state == MenuState.CLOSED:
+		pass
+
+
 
 				
 			
@@ -188,6 +235,7 @@ func handle_radar():
 	#print("target dir/dist : ", Observed_player.target_dir,"  ::  ",Observed_player.target_distance)
 	
 
+			
 
 func handle_health_bars():
 	total_armor.size.y = Observed_player.curr_armor/Observed_player.total_armor * 45

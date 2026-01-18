@@ -29,6 +29,7 @@ const EXPLOSION_LARGE = preload("uid://bg7xl82oy8js1")
 @onready var core_rear: Area2D = %Core_Rear
 signal on_death()
 @onready var cam: Camera2D = $top_half/Player_cam
+@onready var death_nuke_timer: Timer = $Death_nuke_timer
 
 
 # TODO in future make this list populate the weapons on ready from whatever the player has selected for weapons. 
@@ -156,7 +157,7 @@ enum ControlStyles {Complex,Simple,Twinstick}
 
 var throttle_decay = false
 var torso_lock = false
-
+var destroyed = false
 
  
 
@@ -212,8 +213,6 @@ func _physics_process(delta: float) -> void:
 	apply_movement(delta)
 	handle_damaged_components(delta)
 	
-	if cockpit.health <= 0:
-		_on_destroyed()
 	# Handle heat
 	overheat -= cool_speed
 	overheat = clamp(overheat,0,max_heat)
@@ -229,24 +228,52 @@ func _physics_process(delta: float) -> void:
 	if targeted_player:
 		target_dir = rad_to_deg(get_angle_to(targeted_player.global_position)) 
 		target_distance = global_position.distance_to(targeted_player.global_position)
+		
+		
+		
+	if cockpit.health <= 0 and destroyed == false:
+		death_nuke_timer.start(5)
+		print("starting nuke timer")
+		
+	if cockpit.health <= 0:
+		print(" nuke timer : ", death_nuke_timer.time_left)
+		_on_destroyed()
+	
+		
+	if destroyed && death_nuke_timer.time_left == 0:
+		explode()
+		
+		
+		
+		
 	update_total_health_bars()
 	move_and_slide()
 	
 
 
 func _on_destroyed():
-	print("PLAYER DEAD : ", self.name)
-	var explosion = EXPLOSION_LARGE.instantiate()
-	#explosion.global_position = self.global_position
-	visible = false
-	set_deferred("monitoring",false)
-	set_deferred("monitorable",false)
+	destroyed = true
+	#print("PLAYER DEAD : ", self.name)
 	
-	get_parent().add_child(explosion)
-	explosion.global_position = global_transform.origin 
-	call_deferred("queue_free")
+		
 	current_lives -= 1
 	if current_lives > 0:
+		overheat += 100
+		#overheated = true
+		
+		
+func explode():
+		print("PLAYER DEAD : ", self.name)
+			#await death_nuke_timer.timeout
+		var explosion = EXPLOSION_LARGE.instantiate()
+		#explosion.global_position = self.global_position
+		visible = false
+		set_deferred("monitoring",false)
+		set_deferred("monitorable",false)
+		
+		get_parent().add_child(explosion)
+		explosion.global_position = global_transform.origin 
+		call_deferred("queue_free")
 		on_death.emit(player_name,current_lives)
 
 func handle_inputs(delta):

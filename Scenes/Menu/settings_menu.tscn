@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2xx4hlq3nn3j"]
+
+[ext_resource type="Script" uid="uid://ci5thlyd76o1r" path="res://Scripts/settings_menu.gd" id="1_icv2g"]
+[ext_resource type="LabelSettings" uid="uid://clt1g6y7ny32b" path="res://label_text.tres" id="2_051s4"]
+[ext_resource type="Texture2D" uid="uid://if7kuhbi1okl" path="res://Sprites/start menu screens.png" id="2_poyrj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uit7r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_051s4"]
+bg_color = Color(0.09019608, 0.078431375, 0.101960786, 1)
+
+[node name="Settings_menu" type="Node2D"]
+script = ExtResource("1_icv2g")
+
+[node name="Menu_container" type="PanelContainer" parent="."]
+offset_right = 640.0
+offset_bottom = 546.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_uit7r")
+
+[node name="Panel" type="Panel" parent="Menu_container"]
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_051s4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Menu_container/Panel"]
+position = Vector2(0, 2.3841858e-07)
+scale = Vector2(1.0124999, 1.0127273)
+texture = ExtResource("2_poyrj")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 550)
+
+[node name="Settings_UI" type="Control" parent="Menu_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Menu_container/Settings_UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 50.0
+offset_right = 110.0
+offset_bottom = 92.0
+grow_horizontal = 2
+text = "SETTINGS"
+label_settings = ExtResource("2_051s4")

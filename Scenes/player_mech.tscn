@@ -50,6 +50,9 @@ script = ExtResource("1_e0bbr")
 TOP_TURN_SPEED = 2.0
 top_locked = false
 
+[node name="Death_nuke_timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="bottom_hitbox" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CapsuleShape2D_v4qfu")
@@ -150,10 +153,9 @@ target_position = Vector2(0, -122)
 collision_mask = 2
 
 [node name="Player_cam" type="Camera2D" parent="top_half"]
-position = Vector2(0, -29.000002)
+position = Vector2(0, -119.00001)
 scale = Vector2(1.0000001, 1.0000001)
 ignore_rotation = false
-zoom = Vector2(3.57, 3.57)
 limit_enabled = false
 rotation_smoothing_speed = 3.0
 script = ExtResource("10_6bbur")

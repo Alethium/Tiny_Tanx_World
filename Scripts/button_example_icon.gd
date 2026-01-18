@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 		
 
 func cycle_controls():
-	print("cycling button : ", cycle_index)
+	#print("cycling button : ", cycle_index)
 	if cycle_index < 2:
 		cycle_index += 1
 	else:
