@@ -40,6 +40,8 @@ extends Control
 	weapon_slot_ui_3,
 ]
 
+@onready var chosen_weapons = []
+
 
 @export var locked_on_player : Player
 

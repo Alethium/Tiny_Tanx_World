@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwhsxdy4wpmf7"]
+
+[ext_resource type="Script" uid="uid://bi0uqtgcxxdvw" path="res://Scenes/player_cam.gd" id="1_0e61k"]
+
+[node name="Player_cam" type="Camera2D"]
+scale = Vector2(1.0000001, 1.0000001)
+ignore_rotation = false
+limit_enabled = false
+rotation_smoothing_speed = 3.0
+script = ExtResource("1_0e61k")

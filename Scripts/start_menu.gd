@@ -34,25 +34,25 @@ func _process(delta: float) -> void:
 				active_button_index = 3
 		
 		if active_button_index == 0:
-			begin.modulate = Color.GREEN
-			garage.modulate = Color.RED
-			settings.modulate = Color.RED
-			exit.modulate = Color.RED
+			begin.modulate = Color.LAWN_GREEN
+			garage.modulate = Color.DARK_RED
+			settings.modulate = Color.DARK_RED
+			exit.modulate = Color.DARK_RED
 		elif active_button_index == 1:
-			begin.modulate = Color.RED
-			garage.modulate = Color.GREEN
-			settings.modulate = Color.RED
-			exit.modulate = Color.RED
+			begin.modulate = Color.DARK_RED
+			garage.modulate = Color.LAWN_GREEN
+			settings.modulate = Color.DARK_RED
+			exit.modulate = Color.DARK_RED
 		elif active_button_index == 2:
-			begin.modulate = Color.RED
-			garage.modulate = Color.RED
-			settings.modulate = Color.GREEN
-			exit.modulate = Color.RED
+			begin.modulate = Color.DARK_RED
+			garage.modulate = Color.DARK_RED
+			settings.modulate = Color.LAWN_GREEN
+			exit.modulate = Color.DARK_RED
 		elif active_button_index == 3:
-			begin.modulate = Color.RED
-			garage.modulate = Color.RED
-			settings.modulate = Color.RED
-			exit.modulate = Color.GREEN
+			begin.modulate = Color.DARK_RED
+			garage.modulate = Color.DARK_RED
+			settings.modulate = Color.DARK_RED
+			exit.modulate = Color.LAWN_GREEN
 			
 
 		

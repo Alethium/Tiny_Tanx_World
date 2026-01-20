@@ -72,8 +72,14 @@ func spawn_in():
 	
 	var spawning_player = PLAYER_MECH.instantiate()
 	var new_spawn = level.spawn_points_array[randi_range(0,3)]
+	
 	player_2 = spawning_player
 	spawning_player.player_index = 1
+	player_2.UI = player_2_ui
+	player_2.chosen_weapons[0] = player_2_ui.garage_menu.selected_weapons_array[0][2]
+	player_2.chosen_weapons[1] = player_2_ui.garage_menu.selected_weapons_array[1][2]
+	player_2.chosen_weapons[2] = player_2_ui.garage_menu.selected_weapons_array[2][2]
+	player_2.chosen_weapons[3] = player_2_ui.garage_menu.selected_weapons_array[3][2]
 	player_2.Controls = PLAYER_2_CONTROLS.duplicate()
 	player_2.Controls.player_index = 1
 	player_2_view.add_child((spawning_player))
@@ -83,13 +89,20 @@ func spawn_in():
 	spawning_player.current_lives = 4
 	print("spawning player 2 at : ", new_spawn.global_position)
 	player_2_ui.Observed_player = player_2
-	
 	player_2.player_name = "Player_2"
 	player_2.connect("on_death",on_player_death)
+	
+	
 	spawning_player = PLAYER_MECH.instantiate()
 	new_spawn = level.spawn_points_array[randi_range(8,11)]
+	
 	player_1 = spawning_player
 	spawning_player.player_index = 0
+	player_1.UI = player_1_ui
+	player_1.chosen_weapons[0] = player_1_ui.garage_menu.selected_weapons_array[0][2]
+	player_1.chosen_weapons[1] = player_1_ui.garage_menu.selected_weapons_array[1][2]
+	player_1.chosen_weapons[2] = player_1_ui.garage_menu.selected_weapons_array[2][2]
+	player_1.chosen_weapons[3] = player_1_ui.garage_menu.selected_weapons_array[3][2]
 	player_1.Controls = PLAYER_1_CONTROLS.duplicate()
 	player_1.Controls.player_index = 0
 	player_1_view.add_child((spawning_player))
@@ -136,8 +149,13 @@ func on_player_death(player,lives_remaining):
 	
 	if player == "Player_2":
 		player_2 = respawning_player
+		player_2.UI = player_2_ui
 		player_2.Controls = PLAYER_2_CONTROLS.duplicate()
 		player_2.Controls.player_index = 2
+		player_2.chosen_weapons[0] = player_2_ui.garage_menu.selected_weapons_array[0][2]
+		player_2.chosen_weapons[1] = player_2_ui.garage_menu.selected_weapons_array[1][2]
+		player_2.chosen_weapons[2] = player_2_ui.garage_menu.selected_weapons_array[2][2]
+		player_2.chosen_weapons[3] = player_2_ui.garage_menu.selected_weapons_array[3][2]
 		player_2.player_index = 1
 		player_2.player_device = 1
 		player_2.player_color = Color.LIGHT_SKY_BLUE
@@ -154,8 +172,13 @@ func on_player_death(player,lives_remaining):
 		player_2.connect("on_death",on_player_death)
 	elif player == "Player_1":
 		player_1 = respawning_player
+		player_1.UI = player_1_ui
 		player_1.Controls = PLAYER_1_CONTROLS.duplicate()
 		player_1.Controls.player_index = 1
+		player_1.chosen_weapons[0] = player_1_ui.garage_menu.selected_weapons_array[0][2]
+		player_1.chosen_weapons[1] = player_1_ui.garage_menu.selected_weapons_array[1][2]
+		player_1.chosen_weapons[2] = player_1_ui.garage_menu.selected_weapons_array[2][2]
+		player_1.chosen_weapons[3] = player_1_ui.garage_menu.selected_weapons_array[3][2]
 		player_1.player_index = 0
 		player_1.player_device = 0
 		player_1.player_color = Color.HOT_PINK

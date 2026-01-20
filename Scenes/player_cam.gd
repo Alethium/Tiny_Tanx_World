@@ -12,7 +12,9 @@ var shake_time_speed: float = 20.0
 var noise = FastNoiseLite.new()
 
 func _physics_process(delta: float) -> void:
+	
 	if active_shake_time > 0 :
+		
 		shake_time += delta * shake_time_speed
 		active_shake_time -= delta
 		

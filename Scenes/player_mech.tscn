@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://uplxswwiy56" path="res://Scenes/rear_left.tscn" id="5_jb6ot"]
 [ext_resource type="PackedScene" uid="uid://bynjmf8lgsegn" path="res://Scenes/rear_right.tscn" id="6_6bbur"]
 [ext_resource type="PackedScene" uid="uid://b5wijk4u8ekps" path="res://Scenes/front_mid.tscn" id="7_lyki2"]
-[ext_resource type="Script" uid="uid://bi0uqtgcxxdvw" path="res://Scenes/player_cam.gd" id="10_6bbur"]
+[ext_resource type="PackedScene" uid="uid://cwhsxdy4wpmf7" path="res://Scenes/player_cam.tscn" id="10_i4unb"]
 [ext_resource type="Texture2D" uid="uid://bxd4ufgoeaudw" path="res://Sprites/firecard.png" id="11_fj6lv"]
 [ext_resource type="PackedScene" uid="uid://cbucvf1uw3wiw" path="res://Scenes/core_l.tscn" id="12_fj6lv"]
 [ext_resource type="PackedScene" uid="uid://d2al8365r286s" path="res://Scenes/core_r.tscn" id="13_ym03w"]
@@ -152,13 +152,8 @@ scale = Vector2(1.0000001, 1.0000001)
 target_position = Vector2(0, -122)
 collision_mask = 2
 
-[node name="Player_cam" type="Camera2D" parent="top_half"]
+[node name="Player_cam" parent="top_half" instance=ExtResource("10_i4unb")]
 position = Vector2(0, -119.00001)
-scale = Vector2(1.0000001, 1.0000001)
-ignore_rotation = false
-limit_enabled = false
-rotation_smoothing_speed = 3.0
-script = ExtResource("10_6bbur")
 
 [node name="weapon_slots" type="Node2D" parent="top_half"]
 position = Vector2(0.00328394, -1.9999974)

@@ -50,10 +50,10 @@ shader_parameter/resolution = Vector2(1280, 550)
 shader_parameter/player_index = 0
 shader_parameter/viewport_size = Vector2(640, 550)
 shader_parameter/scan_line_amount = 0.697
-shader_parameter/scan_line_strength = -4.439
+shader_parameter/scan_line_strength = -2.6080000000000005
 shader_parameter/warp_amount = 0.658
-shader_parameter/noise_amount = 0.018
-shader_parameter/interference_amount = 0.33
+shader_parameter/noise_amount = 0.0
+shader_parameter/interference_amount = 0.0
 shader_parameter/grille_amount = 0.13
 shader_parameter/grille_size = 1.0
 shader_parameter/vignette_amount = 0.547
@@ -204,17 +204,17 @@ position = Vector2(129.25, 89)
 scale = Vector2(0.25, 0.25)
 
 [node name="weapon_slot_UI_1" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(43.5, 77.5)
+position = Vector2(-54.5, 77.5)
 
 [node name="weapon_slot_UI_2" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(61.5, 77.5)
+position = Vector2(-72.5, 77.5)
 
 [node name="weapon_slot_UI_3" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(-38.5, 77.5)
+position = Vector2(77.5, 77.5)
 scale = Vector2(-1, 1)
 
 [node name="weapon_slot_UI_4" parent="UI_frame_bottom" instance=ExtResource("6_byt00")]
-position = Vector2(-56.5, 77.5)
+position = Vector2(59.5, 77.5)
 scale = Vector2(-1, 1)
 
 [node name="paper_target" parent="UI_frame_bottom" instance=ExtResource("4_46yqn")]
@@ -442,10 +442,10 @@ unique_name_in_owner = true
 script = ExtResource("22_v28tg")
 resolution = Vector2(1280, 550)
 scan_line_amount = 0.697
-scan_line_strength = -4.439
+scan_line_strength = -2.6080000000000005
 warp_amount = 0.658
-noise_amount = 0.018
-interference_amount = 0.33
+noise_amount = 0.0
+interference_amount = 0.0
 grille_amount = 0.13
 vignette_amount = 0.547
 vignette_intensity = 0.106
@@ -454,7 +454,6 @@ roll_line_amount = 0.022
 roll_speed = 0.36599999999999966
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer=1"]
-visible = false
 material = SubResource("ShaderMaterial_hehxj")
 offset_right = 640.0
 offset_bottom = 550.0

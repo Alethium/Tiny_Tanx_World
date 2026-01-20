@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var bottom_half: Node2D = $bottom_half
 @onready var targeting_laser: RayCast2D = $top_half/targeting_laser
 @export var player_index := 0
-
+@onready var UI : Control
 
 @onready var bottom_hitbox: CollisionShape2D = $bottom_hitbox
 
@@ -82,18 +82,18 @@ const WP_LASER = preload("uid://dgxw3ow82ruaw")
 const WP_MACHINEGUN = preload("uid://dx11aqaggxpxn")
 const WP_SRM_4 = preload("uid://ydce2xf53jyc")
 
-@onready var equippable_weapons = [
-	WP_CANNON,
-	WP_LASER,
-	WP_MACHINEGUN,
-	WP_SRM_4
-]
+#@onready var equippable_weapons = [
+	#WP_CANNON,
+	#WP_LASER,
+	#WP_MACHINEGUN,
+	#WP_SRM_4
+#]
 
 @onready var weapon_slots = [
-	right_arm_weapon_slot,
-	right_shoulder_weapon_slot,
 	left_arm_weapon_slot,
-	left_shoulder_weapon_slot
+	left_shoulder_weapon_slot,
+	right_shoulder_weapon_slot,
+	right_arm_weapon_slot,
 ]
 
 var weapons = []
@@ -190,21 +190,25 @@ func _physics_process(delta: float) -> void:
 	
 
 	if !overheated:
+		UI.CRT_filter.noise_amount = 0
 		if overheat > 80:
 			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire2.emitting  = true
 			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire.emitting = true
 			$bottom_half/engine_fire.emitting = true
+			
 			Input.start_joy_vibration(player_device,1.0,1.0,delta)
 		elif overheat > 60:
 			#$top_half/engine_fire.visible = true
 			#$top_half/engine_fire2.visible = true
 			Input.start_joy_vibration(player_device,0.5,0.3,delta)
+			
 		else:
 			#Input.stop_joy_vibration(player_device)
 			$bottom_half/engine_fire.emitting = false
 			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire.emitting = false
 			$top_half/Top_Armor_Hitboxes/Core_Rear/engine_fire2.emitting = false
 	else:
+		UI.CRT_filter.noise_amount = overheat/500
 		Input.start_joy_vibration(player_device,0.05,0.0,delta)
 		for component in components:
 			component._on_damage_recieved(0.3)
@@ -346,7 +350,16 @@ func apply_movement(delta):
 	velocity = move_direction * current_speed
 	global_position += velocity * delta
 	bottom_hitbox.rotation = bottom_half.rotation
-	
+
+func handle_screen_effects():
+	pass
+#		when taking damage add an amount of fuzz, something like 0.03
+		#and then here decay that fuzz unless overheated
+		
+#
+#
+#
+#
 	
 func update_total_health_bars():
 
