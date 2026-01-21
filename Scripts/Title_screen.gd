@@ -20,3 +20,7 @@ func _process(delta: float) -> void:
 			get_parent().menu_state = MenuState.START
 			print("player_ui menu state",get_parent().menu_state)
 			active = false
+#		THIS IS WHERE I NEED TO CAPTURE WHAT DEVICE A PLAYER WANTS TO USE
+#> 		IF CONTROLLER PRESS A THEN THEY GO ON THE LEFT
+#> 		IF THEY PRESS X THEY GO ON THE RIGHTT
+#		

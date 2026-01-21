@@ -25,6 +25,13 @@ const WP_SRM_4 = preload("uid://ydce2xf53jyc")
 	WP_CANNON,
 	WP_SRM_4
 ]
+@onready var Weapon_text_array = [
+	["Medium Laser","Highly Focused Beam \n High Damage Over Time"],
+	["MachineGun","High Rate of Fire \n Can Overheat And Break"],
+	["AutoCannon", "Low Rate of Fire \n Very High Damage"],
+	["Short Range Missile", " 2x2 Heat Seeking Missiles \n Can Go Over Terrain"]
+	
+]
 @onready var selected_weapons_array = [
 	[l_1, 0,equippable_weapons[0]],  # Pair 1
 	[l_2, 0,equippable_weapons[0]],  # Pair 2  
@@ -33,7 +40,7 @@ const WP_SRM_4 = preload("uid://ydce2xf53jyc")
 ]
 
 
-
+#TODO add text in. 
 
 
 
@@ -80,6 +87,8 @@ func _process(_delta: float) -> void:
 		tank_blueprint.frame = active_button_index
 		selected_weapons_array[active_button_index][0].frame = selected_weapons_array[active_button_index][1]
 		weapon_blueprint.frame = selected_weapons_array[active_button_index][1]
+		print("the currently displayed weapon index is :", selected_weapons_array[active_button_index][1])
+		
 	
 		if Input.is_action_just_pressed(Controls.UI_back):
 			print("player pressing UI button back")

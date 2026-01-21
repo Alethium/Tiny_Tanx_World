@@ -21,8 +21,14 @@ func _process(delta: float) -> void:
 #		master volume
 #		sfx
 #		music
-
+	
+# ____________Controls____________________
 #
+#		display a controller or keyboard. 
+		
+#
+#		control style		
+#		
 #		
 #		
 #		

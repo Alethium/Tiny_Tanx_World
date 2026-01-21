@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwpuds388jfvw"]
+[gd_scene load_steps=14 format=3 uid="uid://dwpuds388jfvw"]
 
 [ext_resource type="Script" uid="uid://cay3u75y7ko8g" path="res://Scripts/Garage_menu.gd" id="1_8ouao"]
 [ext_resource type="Texture2D" uid="uid://if7kuhbi1okl" path="res://Sprites/start menu screens.png" id="2_4mylt"]
 [ext_resource type="Texture2D" uid="uid://dx6q2wg3fb1ej" path="res://Sprites/Garage_menu_sprites.png" id="2_yq7x0"]
 [ext_resource type="Texture2D" uid="uid://bd5e01diaq88m" path="res://Sprites/uisprites.png" id="3_4mylt"]
+[ext_resource type="FontFile" uid="uid://duoousnhi43ef" path="res://Sprites/Gameplaya.ttf" id="4_b2vcj"]
 [ext_resource type="Script" uid="uid://x654quiagax" path="res://Scenes/accept_button_example_icon.gd" id="5_w3dan"]
 [ext_resource type="Texture2D" uid="uid://ui3f0djh15i2" path="res://Sprites/gdb-keyboard-2.png" id="6_b2vcj"]
 [ext_resource type="Texture2D" uid="uid://biq7r7tc4ng7i" path="res://Sprites/gdb-xbox-2.png" id="7_kcbxi"]
@@ -14,6 +15,11 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uflt7"]
 bg_color = Color(0.09019608, 0.078431375, 0.101960786, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kcbxi"]
+font = ExtResource("4_b2vcj")
+font_size = 41
+font_color = Color(0.46666667, 0.49019608, 0.76862746, 1)
 
 [node name="Garage_Menu" type="Node2D"]
 script = ExtResource("1_8ouao")
@@ -61,6 +67,28 @@ scale = Vector2(4, 4)
 texture = ExtResource("2_yq7x0")
 region_enabled = true
 region_rect = Rect2(322, 193, 124, 62)
+
+[node name="weapon_name" type="Label" parent="Menu_container/Panel/Text_Display"]
+offset_left = -35.0
+offset_top = -25.0
+offset_right = 507.66858
+offset_bottom = 17.0
+scale = Vector2(0.16400436, 0.16400436)
+text = "Weapon Name"
+label_settings = SubResource("LabelSettings_kcbxi")
+horizontal_alignment = 1
+
+[node name="weapon_name2" type="Label" parent="Menu_container/Panel/Text_Display"]
+offset_left = -35.0
+offset_top = -14.0
+offset_right = 507.66858
+offset_bottom = 175.01938
+scale = Vector2(0.16400436, 0.16400436)
+text = "Weapon information
+line 2"
+label_settings = SubResource("LabelSettings_kcbxi")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LargeWeaponBlueprint" type="Sprite2D" parent="Menu_container/Panel"]
 position = Vector2(130, 104)
@@ -125,7 +153,7 @@ region_rect = Rect2(144, 112, 64, 16)
 [node name="Back" type="Node2D" parent="Menu_container/Builder_ui"]
 
 [node name="Back Button_example_icon" type="Node2D" parent="Menu_container/Builder_ui/Back"]
-position = Vector2(54, 319)
+position = Vector2(74, 360)
 scale = Vector2(2, 2)
 script = ExtResource("5_w3dan")
 
@@ -189,5 +217,64 @@ region_rect = Rect2(17, 65, 14, 14)
 
 [node name="Timer" type="Timer" parent="Menu_container/Builder_ui/Back/Back Button_example_icon"]
 autostart = true
+
+[node name="Arrow" type="Sprite2D" parent="Menu_container/Builder_ui/Back"]
+position = Vector2(54, 371)
+rotation = -1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("3_4mylt")
+region_enabled = true
+region_rect = Rect2(53, 48, 7, 4)
+
+[node name="Arrow" type="Sprite2D" parent="Menu_container/Builder_ui"]
+position = Vector2(385, 273)
+rotation = -1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("3_4mylt")
+region_enabled = true
+region_rect = Rect2(51, 48, 11, 6)
+
+[node name="Arrow2" type="Sprite2D" parent="Menu_container/Builder_ui"]
+position = Vector2(414, 273)
+rotation = -4.712389
+scale = Vector2(4, 4)
+texture = ExtResource("3_4mylt")
+region_enabled = true
+region_rect = Rect2(51, 48, 11, 6)
+
+[node name="Arrow3" type="Sprite2D" parent="Menu_container/Builder_ui"]
+position = Vector2(428, 292)
+scale = Vector2(4, 4)
+texture = ExtResource("3_4mylt")
+region_enabled = true
+region_rect = Rect2(51, 48, 11, 6)
+
+[node name="Arrow4" type="Sprite2D" parent="Menu_container/Builder_ui"]
+position = Vector2(460, 292)
+rotation = -3.1415927
+scale = Vector2(4, 4)
+texture = ExtResource("3_4mylt")
+region_enabled = true
+region_rect = Rect2(51, 48, 11, 6)
+
+[node name="weapon_name" type="Label" parent="Menu_container/Builder_ui"]
+layout_mode = 0
+offset_left = 482.00003
+offset_top = 282.0
+offset_right = 1024.6686
+offset_bottom = 324.0
+scale = Vector2(0.35, 0.51)
+text = "Select Weapon"
+label_settings = SubResource("LabelSettings_kcbxi")
+
+[node name="weapon_name2" type="Label" parent="Menu_container/Builder_ui"]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 250.0
+offset_right = 968.6686
+offset_bottom = 292.0
+scale = Vector2(0.35, 0.51)
+text = "Select Hardpoint"
+label_settings = SubResource("LabelSettings_kcbxi")
 
 [connection signal="timeout" from="Menu_container/Builder_ui/Back/Back Button_example_icon/Timer" to="Menu_container/Builder_ui/Back/Back Button_example_icon" method="cycle_controls"]
