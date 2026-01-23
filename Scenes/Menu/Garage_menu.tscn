@@ -78,7 +78,7 @@ text = "Weapon Name"
 label_settings = SubResource("LabelSettings_kcbxi")
 horizontal_alignment = 1
 
-[node name="weapon_name2" type="Label" parent="Menu_container/Panel/Text_Display"]
+[node name="weapon_description" type="Label" parent="Menu_container/Panel/Text_Display"]
 offset_left = -35.0
 offset_top = -14.0
 offset_right = 507.66858

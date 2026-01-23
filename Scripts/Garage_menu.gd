@@ -26,10 +26,10 @@ const WP_SRM_4 = preload("uid://ydce2xf53jyc")
 	WP_SRM_4
 ]
 @onready var Weapon_text_array = [
-	["Medium Laser","Highly Focused Beam \n High Damage Over Time"],
-	["MachineGun","High Rate of Fire \n Can Overheat And Break"],
-	["AutoCannon", "Low Rate of Fire \n Very High Damage"],
-	["Short Range Missile", " 2x2 Heat Seeking Missiles \n Can Go Over Terrain"]
+	["Medium Laser"," Highly Focused Beam \n High Damage \n Over Time"],
+	["MachineGun","High Rate of Fire \n Can Overheat \n And Break"],
+	["AutoCannon", "Low Rate of Fire \n Very High \n Damage"],
+	["Short Range Missile", " 2x2 Heat \n Seeking Missiles \n Can Go Over \n Terrain"]
 	
 ]
 @onready var selected_weapons_array = [
@@ -87,6 +87,8 @@ func _process(_delta: float) -> void:
 		tank_blueprint.frame = active_button_index
 		selected_weapons_array[active_button_index][0].frame = selected_weapons_array[active_button_index][1]
 		weapon_blueprint.frame = selected_weapons_array[active_button_index][1]
+		$Menu_container/Panel/Text_Display/weapon_name.text = Weapon_text_array[selected_weapons_array[active_button_index][1]][0]
+		$Menu_container/Panel/Text_Display/weapon_description.text = Weapon_text_array[selected_weapons_array[active_button_index][1]][1]
 		print("the currently displayed weapon index is :", selected_weapons_array[active_button_index][1])
 		
 	
