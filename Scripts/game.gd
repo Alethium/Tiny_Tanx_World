@@ -159,7 +159,6 @@ func on_player_death(player,lives_remaining):
 		player_2.player_index = 1
 		player_2.player_device = 1
 		player_2.destroyed = false
-	
 		player_2.player_color = Color.LIGHT_SKY_BLUE
 		player_2_view.add_child((respawning_player))
 		respawning_player.global_position = new_spawn.global_position
