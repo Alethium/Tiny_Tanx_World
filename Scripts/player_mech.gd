@@ -155,9 +155,9 @@ var control_style = ControlStyles.Complex
 enum ControlStyles {Complex,Simple,Twinstick}
 @export var player_color:Color
 
-var throttle_decay = false
-var torso_lock = false
-var destroyed = false
+@onready var throttle_decay = false
+@onready var torso_lock = false
+@onready var destroyed = false
 
  
 
@@ -182,7 +182,7 @@ func _ready():
 		components.append(slot.get_children()[0])
 	for part in components:
 		part.component_owner = self
-	
+	destroyed = false
 	
 
 	
@@ -220,7 +220,7 @@ func _physics_process(delta: float) -> void:
 	# Handle heat
 	overheat -= cool_speed
 	overheat = clamp(overheat,0,max_heat)
-	if overheat == max_heat:
+	if overheat == max_heat or destroyed == true:
 		overheated = true
 		
 	if overheated and overheat <= 65:
@@ -235,13 +235,13 @@ func _physics_process(delta: float) -> void:
 		
 		
 		
-	if cockpit.health <= 0 and destroyed == false:
-		death_nuke_timer.start(5)
-		print("starting nuke timer")
+	
+
 		
-	if cockpit.health <= 0:
-		print(" nuke timer : ", death_nuke_timer.time_left)
-		_on_destroyed()
+	#if cockpit.health <= 0:
+		#apply_blink(Color.LIGHT_YELLOW,0.9)
+		#
+		#_on_destroyed()
 	
 		
 	if destroyed && death_nuke_timer.time_left == 0:
@@ -257,13 +257,19 @@ func _physics_process(delta: float) -> void:
 
 func _on_destroyed():
 	destroyed = true
-	#print("PLAYER DEAD : ", self.name)
+	
+	apply_blink(Color.LIGHT_YELLOW,0.9)
+	death_nuke_timer.start(5)
+	print("starting nuke timer")
 	
 		
 	current_lives -= 1
 	if current_lives > 0:
+		print(" nuke timer : ", death_nuke_timer.time_left)
+		print("PLAYER DEAD : ", self.name)
+		print("overheated? ", overheated)
 		overheat += 100
-		#overheated = true
+		overheated = true
 		
 		
 func explode():
@@ -405,7 +411,18 @@ func handle_damaged_components(delta):
 #
 #
 #
-
+func apply_blink(color,intensity):
+	set_shader_color(color)
+	var tween = get_tree().create_tween()
+	tween.tween_method(set_shader_blink_intensity,intensity,0.0,0.2)
+	
+func set_shader_color(newcolor):
+		set_instance_shader_parameter("blink_color",newcolor)
+		#_sprite.material.set_shader_parameter("blink_color",newcolor)
+		
+func set_shader_blink_intensity(newvalue:float):
+		set_instance_shader_parameter("blink_intensity",newvalue)
+		#_sprite.material.set_shader_parameter("blink_intensity",newvalue)
 		
 	
 	

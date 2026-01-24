@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://cx1y1p4ehilni"]
+[gd_scene load_steps=24 format=3 uid="uid://cx1y1p4ehilni"]
 
 [ext_resource type="Texture2D" uid="uid://bu44113t6v1f8" path="res://tank tracks.png" id="1_3ll58"]
 [ext_resource type="Script" uid="uid://p1cx4nnqj5s1" path="res://Scripts/player_mech.gd" id="1_e0bbr"]
+[ext_resource type="Material" uid="uid://c54er1wtrtxgb" path="res://Scenes/FLashing_component.tres" id="1_p21fq"]
 [ext_resource type="Texture2D" uid="uid://xdf6t2nbnlp0" path="res://smoke_cards2.png" id="3_dsq5r"]
 [ext_resource type="PackedScene" uid="uid://qypua6mkev23" path="res://Scenes/front_left.tscn" id="3_i4unb"]
 [ext_resource type="PackedScene" uid="uid://ccww8lls05b2d" path="res://Scenes/front_right.tscn" id="4_p21fq"]
@@ -43,6 +44,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.07999998, 0.5568628, 0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 2
+material = ExtResource("1_p21fq")
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
@@ -51,6 +53,7 @@ TOP_TURN_SPEED = 2.0
 top_locked = false
 
 [node name="Death_nuke_timer" type="Timer" parent="."]
+process_callback = 0
 one_shot = true
 
 [node name="bottom_hitbox" type="CollisionShape2D" parent="."]

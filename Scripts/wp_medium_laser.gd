@@ -79,7 +79,7 @@ func fire(_dir):
 	# 		if raycast collides with an area, it needs to make that distance the end of the laser. cant have it passing through things.
 	# 		laser confers damage per frame, it turns on, then turns off.
 func impact(point):
-	print("laser hit sparking")
+	#print("laser hit sparking")
 	var hitspark = LASER_PARTICLE.instantiate()
 	#explosion.global_position = self.global_position
 	hitspark.emitting = true

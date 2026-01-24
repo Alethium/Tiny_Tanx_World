@@ -158,6 +158,8 @@ func on_player_death(player,lives_remaining):
 		player_2.chosen_weapons[3] = player_2_ui.garage_menu.selected_weapons_array[3][2]
 		player_2.player_index = 1
 		player_2.player_device = 1
+		player_2.destroyed = false
+	
 		player_2.player_color = Color.LIGHT_SKY_BLUE
 		player_2_view.add_child((respawning_player))
 		respawning_player.global_position = new_spawn.global_position
@@ -181,6 +183,7 @@ func on_player_death(player,lives_remaining):
 		player_1.chosen_weapons[3] = player_1_ui.garage_menu.selected_weapons_array[3][2]
 		player_1.player_index = 0
 		player_1.player_device = 0
+		player_1.destroyed = false
 		player_1.player_color = Color.HOT_PINK
 		player_1_view.add_child((respawning_player))
 		respawning_player.global_position = new_spawn.global_position

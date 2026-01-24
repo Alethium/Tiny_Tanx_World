@@ -19,6 +19,7 @@ extends Control
 
 
 @onready var overheat: Control = $UI_frame_bottom/paper_target/Overheat_bar/Overheat
+@onready var overheat_warning_text: Label = $Overheat_warning/overheat_warning_text
 
 
 @onready var total_health: Control = $UI_frame_bottom/paper_target/Total_health
@@ -225,6 +226,7 @@ func handle_weapon_cooldown_bars():
 		weapon_slots[3].weapon_destroyed.visible = false
 func handle_overheat_bar():
 	overheat.size.y = Observed_player.overheat * 0.6
+	
 
 func handle_throttle_bar():
 	$UI_frame_bottom/paper_target/throttle_bar/throttle_bar.scale.y = Observed_player.current_throttle/Observed_player.max_throttle * 7.15
@@ -258,6 +260,12 @@ func update_player_stats(delta):
 		$Heat_vignette.modulate.a = lerpf($Heat_vignette.modulate.a,0.0,delta)
 	
 	$Overheat_warning.visible = Observed_player.overheated
+	
+	if Observed_player.destroyed == false:
+		overheat_warning_text.text = "OVERHEAT!!"
+	else:
+		overheat_warning_text.text = "DEAD!!"
+		
 	if Observed_player.overheat >= 100:
 		$Overheat_warning/overheat_warning.play()
 		$Overheat_warning/overheat_warning2.play()
