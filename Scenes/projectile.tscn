@@ -8,11 +8,16 @@ size = Vector2(8, 10.5)
 
 [node name="projectile" type="Area2D" groups=["projectile"]]
 script = ExtResource("1_yr2qt")
+proj_name = null
+speed = null
+damage = null
+heat = null
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, -16)
-enabled = false
 target_position = Vector2(0, -10.065)
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -24)

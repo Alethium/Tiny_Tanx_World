@@ -11,6 +11,7 @@ extends Area2D
 var projectile_owner = Player
 var sprite_index = 0
 var direction : Vector2
+@onready var ray: RayCast2D = $RayCast2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,22 +38,34 @@ func move(delta):
 	global_position += direction * speed * delta	
 
 func _on_body_entered(body: Node2D) -> void:
-	var ray = $RayCast2D
+	
 	ray.enabled = true
 	if body is TileMapLayer:
 		var collision_point = ray.get_collision_point() - (ray.get_collision_normal() * 5)
 		var tilemap: TileMapLayer = body
 		var local_pos = tilemap.to_local(collision_point)
+		print("global position   : ", ray.get_collision_point())
 		var tile_pos = tilemap.local_to_map(local_pos)
-		print("Body entered tile: ", tile_pos)
-		print("body name : ", body.name)
-		var tiledata = tilemap.get_cell_tile_data(tile_pos)
-		print("tile health before hit : ",tiledata.get_custom_data("health") )
-		var tilehealth = tiledata.get_custom_data("health")
-		if tilehealth > 0:
-			tiledata.set_custom_data("health",tilehealth - 1)
-			print("tile health after hit : ",tiledata.get_custom_data("health") )
-		else:
-			print("Destroy tile")
+		print("tile_pos   : ", tilemap.local_to_map(local_pos))
+		
+		var tile_dict = get_parent().get_parent().get_parent().get_parent().level.tile_dict
+		
+		for i in range(0,tile_dict.size()):
+			if tile_dict[i][0] == tile_pos:
+				tile_dict[i][1] -= 1
+				print("tile index : ", i)
+				print("at  :", tile_pos)
+				print("tile health  : ",tile_dict[i][1])
+				
+		#print("Body entered tile: ", tile_pos)
+		#print("body name : ", body.name)
+		#var tiledata = tilemap.get_cell_tile_data(tile_pos)
+		#print("tile health before hit : ",tiledata.get_custom_data("health") )
+		#var tilehealth = tiledata.get_custom_data("health")
+		#if tilehealth > 0:
+			#tiledata.set_custom_data("health",tilehealth - 1)
+			#print("tile health after hit : ",tiledata.get_custom_data("health") )
+		#else:
+			#print("Destroy tile")
 			#tilemap.erase_cell(tile_pos)
 		#print(cell_data.get_custom_data("health"))
