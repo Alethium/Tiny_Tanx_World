@@ -53,9 +53,11 @@ func _on_body_entered(body: Node2D) -> void:
 		for i in range(0,tile_dict.size()):
 			var tile_health = tile_dict[i][1]
 			if tile_dict[i][0] == tile_pos  :
-				tile_health -= damage/2
-				tile_health = clampi(tile_health,0,10)
-				damage_tile(body,tile_pos)
+				tile_health -= damage * 0.5
+				tile_health = clampf(tile_health,0.0,10.0)
+				if abs(tile_health - round(tile_health)) < 0.001:
+					damage_tile(body, tile_pos)
+							
 
 
 #				 set tile at this posiion to atlas spot -1
@@ -81,4 +83,9 @@ func _on_body_entered(body: Node2D) -> void:
 func damage_tile(body,tile_pos):
 	var old_atlas = body.get_cell_atlas_coords(tile_pos)
 	var new_atlas = Vector2(old_atlas.x-1,old_atlas.y)
+	var nearby_tiles = body.get_surrounding_cells(tile_pos)
+	for tile in nearby_tiles:
+		var old_nearby_atlas = body.get_cell_atlas_coords(tile)
+		var new_nearby_atlas = Vector2(old_nearby_atlas.x-0.5,old_nearby_atlas.y)
+		body.set_cell(tile,body.get_cell_source_id(tile),new_nearby_atlas,0)
 	body.set_cell(tile_pos,body.get_cell_source_id(tile_pos),new_atlas,0)
