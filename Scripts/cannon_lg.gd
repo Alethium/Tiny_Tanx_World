@@ -43,6 +43,7 @@ func _on_airburst():
 
 
 func _on_body_entered(body):
+	super._on_body_entered(body)
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 

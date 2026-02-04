@@ -51,11 +51,20 @@ func _on_body_entered(body: Node2D) -> void:
 		var tile_dict = get_parent().get_parent().get_parent().get_parent().level.tile_dict
 		
 		for i in range(0,tile_dict.size()):
-			if tile_dict[i][0] == tile_pos:
-				tile_dict[i][1] -= 1
+			var tile_health = tile_dict[i][1]
+			if tile_dict[i][0] == tile_pos  :
+				tile_health -= damage/2
+				tile_health = clampi(tile_health,0,10)
+				damage_tile(body,tile_pos)
+
+
+#				 set tile at this posiion to atlas spot -1
 				print("tile index : ", i)
 				print("at  :", tile_pos)
+				tile_dict[i][1] = tile_health
 				print("tile health  : ",tile_dict[i][1])
+			#elif tile_dict[i][0] == tile_pos and tile_dict[i][1] == 0 :
+				#print("tile destroyed")
 				
 		#print("Body entered tile: ", tile_pos)
 		#print("body name : ", body.name)
@@ -69,3 +78,7 @@ func _on_body_entered(body: Node2D) -> void:
 			#print("Destroy tile")
 			#tilemap.erase_cell(tile_pos)
 		#print(cell_data.get_custom_data("health"))
+func damage_tile(body,tile_pos):
+	var old_atlas = body.get_cell_atlas_coords(tile_pos)
+	var new_atlas = Vector2(old_atlas.x-1,old_atlas.y)
+	body.set_cell(tile_pos,body.get_cell_source_id(tile_pos),new_atlas,0)

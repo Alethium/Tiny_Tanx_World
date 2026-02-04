@@ -9,13 +9,13 @@ z_index = 1
 script = ExtResource("2_d7kvd")
 proj_name = "mg_bullet"
 speed = 0.0
-damage = 1.0
+damage = 3.0
 heat = 1.0
 impact_effect = ExtResource("3_d7kvd")
 
 [node name="RayCast2D" parent="." index="0"]
 position = Vector2(0, -13)
-target_position = Vector2(0, -5)
+target_position = Vector2(0, -9)
 
 [node name="sprite" parent="." index="1"]
 position = Vector2(0, -8)
