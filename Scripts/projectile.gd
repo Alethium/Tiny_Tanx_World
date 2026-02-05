@@ -53,7 +53,7 @@ func _on_body_entered(body: Node2D) -> void:
 		for i in range(0,tile_dict.size()):
 			var tile_health = tile_dict[i][1]
 			if tile_dict[i][0] == tile_pos  :
-				tile_health -= damage * 0.5
+				tile_health -= damage * 0.1
 				tile_health = clampf(tile_health,0.0,10.0)
 				if abs(tile_health - round(tile_health)) < 0.001:
 					damage_tile(body, tile_pos)
